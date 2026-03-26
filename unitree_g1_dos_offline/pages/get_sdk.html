@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>获取SDK - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link active" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>获取SDK</h1>
+          <div class="meta">更新时间：2025-09-03 20:00:40</div>
+        </header>
+        <section class="content">
+          <h2 id="sdk">SDK 介绍</h2>
+<p>unitree_sdk2 是宇树科技为新一代机器人开发的 SDK。SDK 将底层电机控制、高层运动控制等接口进行封装，并提供相关的函数接口。您可以按照我们提供的接口和例程，配套 《G1 SDK 开发指南》，学习机器人控制，完成 G1 的二次开发。</p>
+<h2 id="sdk_1">SDK 下载地址</h2>
+<p><a href="https://github.com/unitreerobotics/unitree_sdk2" rel="noopener noreferrer" target="_blank">https://github.com/unitreerobotics/unitree_sdk2 </a></p>
+<h3 id="-step">简化模型-STEP</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">机型</th>
+<th style="text-align: left;">G1-EDU标准版</th>
+<th style="text-align: left;">G1-EDU进阶版</th>
+<th style="text-align: left;">G1-EDU旗舰版A</th>
+<th style="text-align: left;">G1-EDU旗舰版B</th>
+<th style="text-align: left;">G1-EDU旗舰版C</th>
+<th style="text-align: left;">G1-EDU旗舰版D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">配置</td>
+<td style="text-align: left;">整机 23dof</td>
+<td style="text-align: left;">整机 29dof</td>
+<td style="text-align: left;">整机 29dof + 2 只Dex3-1力控3指灵巧手（不含触觉）</td>
+<td style="text-align: left;">整机 29dof + 2 只Dex3-1力控3指灵巧手（含触觉）</td>
+<td style="text-align: left;">整机 29dof + 2 只因时DFQ灵巧手</td>
+<td style="text-align: left;">整机 29dof + 2 只因时FTP灵巧手</td>
+</tr>
+<tr>
+<td style="text-align: left;">简化模型V1.0</td>
+<td style="text-align: left;"><a href="https://oss-global-cdn.unitree.com/static/3cd67b91bd9c462b9908b691eaee16d6.zip" rel="noopener noreferrer" target="_blank">G1-EDU 标准版</a></td>
+<td style="text-align: left;"><a href="https://oss-global-cdn.unitree.com/static/5013bcf0c6e547748a1d17f4090977e4.zip" rel="noopener noreferrer" target="_blank">G1-EDU 进阶版</a></td>
+<td style="text-align: left;"><a href="https://oss-global-cdn.unitree.com/static/34ffe0672e6c4198ac847a996c100785.zip" rel="noopener noreferrer" target="_blank">G1-EDU 旗舰版A</a></td>
+<td style="text-align: left;"><a href="https://oss-global-cdn.unitree.com/static/34ffe0672e6c4198ac847a996c100785.zip" rel="noopener noreferrer" target="_blank">G1-EDU 旗舰版B</a></td>
+<td style="text-align: left;"><a href="https://oss-global-cdn.unitree.com/static/57c3f8597b8d41759de58eec332e08e0.zip" rel="noopener noreferrer" target="_blank">G1-EDU 旗舰版C</a></td>
+<td style="text-align: left;"><a href="https://oss-global-cdn.unitree.com/static/89a2cdd6e2ac460b811936b03f2f0229.zip" rel="noopener noreferrer" target="_blank">G1-EDU 旗舰版D</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">简化模型V2.0</td>
+<td style="text-align: left;"><a href="https://oss-global-cdn.unitree.com/static/29b3cbeb4876420f912af2456a3e9855.zip" rel="noopener noreferrer" target="_blank">G1-EDU 标准版</a></td>
+<td style="text-align: left;"><a href="https://oss-global-cdn.unitree.com/static/20a7fa8c6c2d4ff4afcbc574d07977b0.zip" rel="noopener noreferrer" target="_blank">G1-EDU 进阶版</a></td>
+<td style="text-align: left;"><a href="https://oss-global-cdn.unitree.com/static/5973c1405a264773872ed52765f97d75.zip" rel="noopener noreferrer" target="_blank">G1-EDU 旗舰版A</a></td>
+<td style="text-align: left;"><a href="https://oss-global-cdn.unitree.com/static/5973c1405a264773872ed52765f97d75.zip" rel="noopener noreferrer" target="_blank">G1-EDU 旗舰版B</a></td>
+<td style="text-align: left;"><a href="https://oss-global-cdn.unitree.com/static/eb6890b28eed445b89f9f564acce68d9.zip" rel="noopener noreferrer" target="_blank">G1-EDU 旗舰版C</a></td>
+<td style="text-align: left;"><a href="https://oss-global-cdn.unitree.com/static/b83b883977ba4665b93b02b3a007714e.zip" rel="noopener noreferrer" target="_blank">G1-EDU 旗舰版D</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="urdf">URDF</h3>
+<p>G1各版本URDF已经上传至宇树对外GitHub仓库，可以通过以下链接下载：
+<a href="https://github.com/unitreerobotics/unitree_ros/tree/master/robots/g1_description" rel="noopener noreferrer" target="_blank">URDF：Github获取</a></p>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

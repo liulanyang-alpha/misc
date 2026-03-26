@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>因时DFX灵巧手开发 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link active" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>因时DFX灵巧手开发</h1>
+          <div class="meta">更新时间：2025-08-28 16:37:33</div>
+        </header>
+        <section class="content">
+          <h2 id="dfx">DFX 灵巧手介绍</h2>
+<p>G1可搭载 <a href="https://inspire-robots.com/product/frwz/" rel="noopener noreferrer" target="_blank">Inspire Robotics (RH56DFX)</a> 的仿人五指灵巧手，该灵巧手具有6个自由度和12个运动关节，可以模拟人手实现复杂动作。
+<img alt="" src="../assets/images/3a97d6ceee754821.webp"/></p>
+<h2 id="_1">控制方式</h2>
+<p>因时机械手官方SDK通过串口进行通讯，G1提供一个USB转串口模块，用户可以将该USB插在G1开发计算单元(PC2)上进行通讯控制灵巧手。此时端口通常左手为/dev/ttyUSB1，右手为/dev/ttyUSB2。</p>
+<ol>
+<li>使用因时官方SDK控制</li>
+</ol>
+<p>用户可以根据因时灵巧手官方通讯协议自行编写程序控制灵巧手。</p>
+<ol start="2">
+<li>使用宇树灵巧手SDK控制</li>
+</ol>
+<p>G1通信建立在DDS框架之上。为便于使用unitree_sdk2进行控制灵巧手。宇树提供将串口收发的数据转为DDS消息的示例程序(下载链接见文档底部)。</p>
+<h2 id="sdk">宇树SDK接口说明</h2>
+<p>用户向 <code>"rt/inspire/cmd"</code> 话题发送 <code>"unitree_go::msg::dds::MotorCmds_"</code> 消息控制灵巧手。
+从 <code>"rt/inspire/state"</code> 话题接受 <code>"unitree_go::msg::dds::MotorStates_"</code> 消息获取灵巧手状态。</p>
+<pre><code class="language-mermaid">graph LR
+A(user) --rt/inspire/cmd--&gt; B(G1)
+B --rt/inspire/state--&gt; A
+</code></pre>
+<h2 id="idl">IDL数据格式</h2>
+<p>采用数组格式的电机数据，内部包含双手12个电机数据。具体MotorCmd_.idl和MotorState_.idl的格式见 <a href="https://support.unitree.com/home/zh/H1_developer/Basic_Services_Interface" rel="noopener noreferrer" target="_blank">底层服务接口</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>当前灵巧手只支持关节控制，即在idl格式中只有参数 q 有意义。其他保留。</p>
+</div>
+<pre><code class="language-bash"># namespace unitree_go::msg::dds_
+
+# unitree_go::msg::dds_::MotorCmds_
+struct MotorCmds_ 
+{
+    sequence&lt;unitree_go::msg::dds_::MotorCmd_&gt; cmds;
+};
+
+# unitree_go::msg::dds_::MotorStates_
+struct MotorCmds_ 
+{
+    sequence&lt;unitree_go::msg::dds_::MotorState&gt; states;
+};
+</code></pre>
+<ul>
+<li>IDL中的关节顺序</li>
+</ul>
+<div style="text-align: center;">
+<table border="1">
+<tr>
+<td>Id</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+<td>10</td>
+<td>11</td>
+</tr>
+<tr>
+<td rowspan="2">Joint</td>
+<td colspan="6">Right Hand</td>
+<td colspan="6">Left Hand</td>
+</tr>
+<tr>
+<td>pinky</td>
+<td>ring</td>
+<td>middle</td>
+<td>index</td>
+<td>thumb-bend</td>
+<td>thumb-rotation</td>
+<td>pinky</td>
+<td>ring</td>
+<td>middle</td>
+<td>index</td>
+<td>thumb-bend</td>
+<td>thumb-rotation</td>
+</tr>
+</table>
+</div>
+<h2 id="_2">示例程序</h2>
+<p>以下是示例中封装好的灵巧手控制接口。</p>
+<pre><code class="language-cpp">/**
+ * @brief Unitree H1 Hand Controller
+ * The user can subscribe to "rt/inspire/state" to get the current state of the hand and publish to "rt/inspire/cmd" to control the hand.
+ * 
+ *                  IDL Types
+ * user ---(unitree_go::msg::dds_::MotorCmds_)---&gt; "rt/inspire/cmd"
+ * user &lt;--(unitree_go::msg::dds_::MotorStates_)-- "rt/inspire/state"
+ * 
+ * @attention Currently the hand only supports position control, which means only the `q` field in idl is used.
+ */
+class H1HandController
+{
+public:
+    H1HandController()
+    {
+        this-&gt;InitDDS_();
+    }
+
+    /**
+     * @brief Control the hand to a specific label
+     */
+    void ctrl(std::string label)
+    {
+        if(labels.find(label) != labels.end())
+        {
+            this-&gt;ctrl(labels[label], labels[label]);
+        }
+        else
+        {
+            std::cout &lt;&lt; "Invalid label: " &lt;&lt; label &lt;&lt; std::endl;
+        }
+    }
+
+    /**
+     * @brief Move the fingers to the specified angles
+     * 
+     * @note The angles should be in the range [0, 1]
+     *       0: close  1: open
+     */
+    void ctrl(
+        const Eigen::Matrix&lt;float, 6, 1&gt;&amp; right_angles, 
+        const Eigen::Matrix&lt;float, 6, 1&gt;&amp; left_angles)
+    {
+        for(size_t i(0); i&lt;6; i++)
+        {
+            cmd.cmds()[i].q() = right_angles(i);
+            cmd.cmds()[i+6].q() = left_angles(i);
+        }
+        handcmd-&gt;Write(cmd);
+    }
+
+    /**
+     * @brief Get the right hand angles
+     * 
+     * Joint order: [pinky, ring, middle, index, thumb_bend, thumb_rotation]
+     */
+    Eigen::Matrix&lt;float, 6, 1&gt; getRightQ()
+    {
+        std::lock_guard&lt;std::mutex&gt; lock(mtx);
+        Eigen::Matrix&lt;float, 6, 1&gt; q;
+        for(size_t i(0); i&lt;6; i++)
+        {
+            q(i) = state.states()[i].q();
+        }
+        return q;
+    }
+
+    /**
+     * @brief Get the left hand angles
+     * 
+     * Joint order: [pinky, ring, middle, index, thumb_bend, thumb_rotation]
+     */
+    Eigen::Matrix&lt;float, 6, 1&gt; getLeftQ()
+    {
+        std::lock_guard&lt;std::mutex&gt; lock(mtx);
+        Eigen::Matrix&lt;float, 6, 1&gt; q;
+        for(size_t i(0); i&lt;6; i++)
+        {
+            q(i) = state.states()[i+6].q();
+        }
+        return q;
+    }
+
+    unitree_go::msg::dds_::MotorCmds_ cmd;
+    unitree_go::msg::dds_::MotorStates_ state;
+private:
+    void InitDDS_()
+    {
+        handcmd = std::make_shared&lt;unitree::robot::ChannelPublisher&lt;unitree_go::msg::dds_::MotorCmds_&gt;&gt;(
+            "rt/inspire/cmd");
+        handcmd-&gt;InitChannel();
+        cmd.cmds().resize(12);
+        handstate = std::make_shared&lt;unitree::robot::ChannelSubscriber&lt;unitree_go::msg::dds_::MotorStates_&gt;&gt;(
+            "rt/inspire/state");
+        handstate-&gt;InitChannel([this](const void *message){
+            std::lock_guard&lt;std::mutex&gt; lock(mtx);
+            state = *(unitree_go::msg::dds_::MotorStates_*)message;
+        });
+        state.states().resize(12);
+    }
+
+    // DDS parameters
+    std::mutex mtx;
+    unitree::robot::ChannelPublisherPtr&lt;unitree_go::msg::dds_::MotorCmds_&gt; handcmd;
+    unitree::robot::ChannelSubscriberPtr&lt;unitree_go::msg::dds_::MotorStates_&gt; handstate;
+
+    // Saved labels
+    std::unordered_map&lt;std::string, Eigen::Matrix&lt;float, 6, 1&gt;&gt; labels = {
+        {"open",   Eigen::Matrix&lt;float, 6, 1&gt;::Ones()},
+        {"close",  Eigen::Matrix&lt;float, 6, 1&gt;::Zero()},
+        {"half",   Eigen::Matrix&lt;float, 6, 1&gt;::Constant(0.5)},
+    };
+};
+</code></pre>
+<h2 id="_3">程序下载</h2>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>更新说明</th>
+<th>下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024-5-7</td>
+<td>初版(复用H1)</td>
+<td><a href="https://oss-global-cdn.unitree.com/static/0a8335f7498548d28412c31ea047d4be.zip" rel="noopener noreferrer" target="_blank">点击下载</a></td>
+</tr>
+<tr>
+<td>2025-8-28</td>
+<td></td>
+<td><a href="https://github.com/unitreerobotics/DFX_inspire_service.git" rel="noopener noreferrer" target="_blank">github</a></td>
+</tr>
+</tbody>
+</table>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

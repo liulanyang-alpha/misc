@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>腰部固定件使用说明 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link active" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>腰部固定件使用说明</h1>
+          <div class="meta">更新时间：2024-10-24 17:57:32</div>
+        </header>
+        <section class="content">
+          <style>
+table th:first-of-type {
+    width: 25%;
+}
+table th:nth-of-type(2) {
+    width: 25%;
+}
+table th:nth-of-type(3) {
+    width: 25%;
+}
+  table th:nth-of-type(4) {
+    width: 25%;
+}
+</style>
+<style>
+    img[alt="0"]{
+        height:650px;
+    }
+      img[alt="1"]{
+        height:150px;
+    }
+</style>
+<h1 id="_1">腰部固定件背景介绍</h1>
+<p>G1-EDU 机身29自由度版本，腰部有三个自由度，对于大多数用户来讲控制会有一定难度。为此，宇树为您提供了一个腰部固定件，在您不需要控制两个腰部并联关节时，可以通过腰部固定件将这两个并联电机物理锁住，同时在Unitree Explore APP上开启腰部电机锁住功能。详细操作如下文。</p>
+<h2 id="_2">物品清单</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">腰部固定件1</th>
+<th style="text-align: center;">腰部固定件 2</th>
+<th style="text-align: center;">内六角 M5*30 螺钉×2</th>
+<th style="text-align: center;">内六角 L 型扳手×1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="1" src="../assets/images/70de3b4030915ef1.webp"/></td>
+<td style="text-align: center;"><img alt="1" src="../assets/images/e0efed6c4692394b.webp"/></td>
+<td style="text-align: center;"><img alt="1" src="../assets/images/b883e86152039e83.webp"/></td>
+<td style="text-align: center;"><img alt="" src="../assets/images/7952dd4a5514c241.webp"/></td>
+</tr>
+<tr>
+<td style="text-align: center;">## 安装说明</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="step11">Step1：安装腰部固定件1</h3>
+<p>先将G1机身往后倒，将腰部固定件1放置如图所示位置。</p>
+<p><img alt="" src="../assets/images/cca0851765547694.webp"/></p>
+<h3 id="step22">Step2：安装腰部固定件2</h3>
+<p>腰部固定件1放置好后将G1机身往前倒，将腰部固定件2放置如图所示位置。</p>
+<p><img alt="" src="../assets/images/043d7553b1de1ebc.webp"/></p>
+<div class="admonition note">
+<p class="admonition-title">注意！！！</p>
+<p>安装腰部固定件时请勿压到腰部线缆，避免损坏线缆造成接触不良。</p>
+</div>
+<h3 id="step3">Step3：固定</h3>
+<p>使用内六角L型扳手将2颗M5螺钉固定到腰部固定件，随后拧紧。
+<img alt="" src="../assets/images/0f69353c5b2dd559.webp"/></p>
+<h3 id="step4">Step4：安装完成</h3>
+<div class="center-block">
+<p><img alt="0" src="../assets/images/36432ea433de4572.webp"/></p>
+</div>
+<h3 id="step5">Step5：软件配置</h3>
+<p>腰部固定件安装完成之后，需要您在Unitree Explore APP【<strong>设置</strong>】-【<strong>机器人</strong>】上开启腰部电机锁住功能，如下图所示：</p>
+<p><img alt="" src="../assets/images/d70ca616194cf267.webp"/></p>
+<p>并按照弹窗提示，重启设备。</p>
+<h2 id="_3">拆解说明</h2>
+<h3 id="step1">Step1：取下腰部固定件螺钉</h3>
+<p>使用内六角L型扳手将2颗M5螺钉从腰部固定件取下。
+<img alt="" src="../assets/images/0f69353c5b2dd559.webp"/></p>
+<h3 id="step22_1">Step2：取下腰部固定件2</h3>
+<p>将G1机身往前倒，将腰部固定件2按照如图所示位置取出。</p>
+<p><img alt="" src="../assets/images/74f9820032d54fa7.webp"/></p>
+<h3 id="step31">Step3：取下腰部固定件1</h3>
+<p>先G1机身往后倒，将腰部固定件1按照如图所示位置取出。</p>
+<p><img alt="" src="../assets/images/97e7454312a81389.webp"/></p>
+<h3 id="step4_1">Step4：软件配置</h3>
+<p>拆装完成之后，需要您在Unitree Explore APP【<strong>设置</strong>】-【<strong>机器人</strong>】关闭腰部电机锁住功能，如下图所示：
+<img alt="" src="../assets/images/61d03b6da0963acc.webp"/></p>
+<p>并按照弹窗提示，重启设备。</p>
+<div class="admonition note">
+<p class="admonition-title">注意</p>
+<p><strong>在锁腰使用过程中，如果您已经对设备27关节电机进行了标定，后续若需要重新解锁腰部固定件，在您解锁完腰部固定件的全部操作后，需要重新标定解锁后的29关节电机</strong>。</p>
+</div>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RL例程 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link active" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>RL例程</h1>
+          <div class="meta">更新时间：2024-09-20 20:54:39</div>
+        </header>
+        <section class="content">
+          <p>本文档将提供强化学习控制 G1 的简单示例。下文将介绍如何使用 <strong>isaac_gym</strong> 仿真平台训练 G1 控制算法。</p>
+<h1 id="_1">硬件准备</h1>
+<p>由于 isaac_gym 仿真平台需要 <code>CUDA</code>,本文建议硬件需要配置 NVIDIA 显卡(显存&gt;8GB、 RTX系列显卡)，并安装相应的显卡驱动。建议系统使用 <code>ubuntu18/20</code>，显卡驱动 525 版本</p>
+<div class="center-block">
+<p><img alt="" src="../assets/images/7eed28a7cc44ee2c.webp"/></p>
+</div>
+<h1 id="_2">环境配置</h1>
+<p>建议在虚拟环境 <code>conda</code> 中配置该环境。
+   1. 创建虚拟环境
+ ```bash
+      conda create -n rl-g1 python=3.8</p>
+<pre><code>
+   2. 激活虚拟环境 
+```bash
+       conda activate rl-g1
+</code></pre>
+<ol start="3">
+<li>安装 <code>CUDA</code>， <code>pytorch</code></li>
+</ol>
+<pre><code class="language-bash">   pip3 install torch==1.10.0+cu113 torchvision==0.11.1+cu113 torchaudio==0.10.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
+</code></pre>
+<blockquote>
+<p>注意 numpy库版本不要太高，建议安装 1.23.5版本。</p>
+</blockquote>
+<ol start="4">
+<li>下载 <a href="https://developer.nvidia.com/isaac-gym" rel="noopener noreferrer" target="_blank">Isaac Gym Preview 4</a> 仿真平台，解压后进入 <code>python</code> 目录，使用 <code>pip</code> 安装。</li>
+</ol>
+<pre><code class="language-bash"># current directory: isaacgym/python
+pip install -e .
+</code></pre>
+<ol start="5">
+<li>运行 <code>python/examples</code> 目录下的例程，验证安装是否成功。</li>
+</ol>
+<pre><code class="language-bash"># current directory: isaacgym/python/examples
+python 1080_balls_of_solitude.py
+</code></pre>
+<p>若安装成功，可看到如下窗口。</p>
+<p><img alt="" src="../assets/images/c56da1d6eb660a71.webp"/>
+ 6. 安装rsl_rl库（请使用1.0.2版本）
+ ```bash
+git clone https://github.com/leggedrobotics/rsl_rl
+cd rsl_rl
+git checkout v1.0.2
+pip install -e .</p>
+<pre><code>
+# 模型训练使用
+   1. 下载宇树官方示例代码  
+```bash
+   git clone https://github.com/unitreerobotics/unitree_rl_gym.git
+</code></pre>
+<ol start="2">
+<li>修改 <code>legged_gym/scripts/train.py</code> ， <code>legged_gym/scripts/play.py</code> 中的<code>sys.path.append("/home/unitree/h1/legged_gym")</code>
+      为自己的路径。</li>
+<li>激活强化学习虚拟环境 </li>
+</ol>
+<pre><code class="language-bash">   conda activate rl-g1
+</code></pre>
+<ol start="4">
+<li>切换到 legged_gym/scripts 目录下，执行训练指令，开始训练。</li>
+</ol>
+<pre><code class="language-bash">  python3  train.py --task=g1
+</code></pre>
+<p>修改 train.py 文件中的 <code>args.headless</code> 参数，可开启或关闭可视化界面。</p>
+<p>isaac_gym 出现如下界面，则训练开始。</p>
+<p><img alt="" src="../assets/images/8edc71d4a2c7ab9c.webp"/></p>
+<p>终端输出窗口如下：</p>
+<div class="center-block">
+<p><img alt="" src="../assets/images/4baa738260044797.webp"/></p>
+</div>
+<p>训练 1500 次后，运行测试指令。</p>
+<pre><code class="language-c++">python play.py --task=g1
+</code></pre>
+<h1 id="_3">效果演示</h1>
+<video autoplay="" controls="" loop="loop" src="../assets/files/0733da44534b7260.mp4" style="width: 100%"></video>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

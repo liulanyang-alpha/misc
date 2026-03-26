@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dex3-1 灵巧手开发 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link active" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>Dex3-1 灵巧手开发</h1>
+          <div class="meta">更新时间：2025-02-10 11:56:16</div>
+        </header>
+        <section class="content">
+          <h2 id="_1">灵巧手介绍</h2>
+<p>G1 可选配宇树自研 Dex3-1 力控灵巧手，该灵巧手共有 3 根手指, 其中各手指有 2 个弯曲自由度，拇指额外有 1 个旋转自由度, 共有 7 个自由度。
+灵巧手可选配安装点阵触觉传感器, 在每个指肚位置(共 6 处)有一个 3 * 4 的点阵式传感器。
+本文只介绍如何如何通过 unitree_sdk2 控制 G1  上的灵巧手，文档最后附 Demo 程序，其中有示例获取灵巧手的状态信息、控制功能等。
+灵巧手区分为左右手。其中，单只 Dex3-1 灵巧手左右对称。在进行灵巧手控制的时候，分别对不同的消息通道进行通信并控制对应的灵巧手。详见灵巧手控制控制方式一节。</p>
+<p><img alt="" src="../assets/images/eea89d2d95a0ea1f.webp"/></p>
+<p>可从 <a href="get_sdk.html">此处</a> 访问 unitree_sdk2，运行方式详见 <a href="quick_development.html">《快速开发》</a>。
+本章节例程源代码位于 <a href="https://github.com/unitreerobotics/unitree_sdk2/blob/main/example/g1/dex3/dex3_subscribe.cpp" rel="noopener noreferrer" target="_blank">GitHub</a>。</p>
+<h2 id="_2">技术参数</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">型号</th>
+<th style="text-align: center;">控制接口</th>
+<th style="text-align: center;">自由度</th>
+<th style="text-align: center;">额定电压</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Dex3-1</td>
+<td style="text-align: center;">RS485</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">24V</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">灵巧手控制控制方式</h2>
+<p>G1 内部会提供和 Dex3-1 进行通信并转为 DDS 消息的程序作为常驻服务，该服务会接收并处理用户请求。
+获取 unitree_sdk2 之后，系统会加载消息结构体库，用户正确使用消息结构体，并与对应的接口通信就能够控制对应的灵巧手。
+灵巧手头文件位于
+<code>/usr/local/include/unitree/hg_idl/HandState_.hpp</code>
+<code>/usr/local/include/unitree/hg_idl/HandCmd_.hpp</code>
+用户可以在该文件中查看结构体信息</p>
+<h3 id="_4">按消息结构排序</h3>
+<p>按照消息结构体排序，定义的是人类感知情况下的拇指、食指与中指。并按照顺序排序。
+<code>unitree_hg::msg::dds_::HandCmd_.motor_cmd</code> 与 <code>unitree_hg::msg::dds_::HandState_.motor_state</code> 两个消息结构体包含所有的灵巧手电机的信息，其电机顺序如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Hand Joint Index in IDL</th>
+<th style="text-align: center;">Hand Joint Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">thumb_0</td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">thumb_1</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">thumb_2</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">middle_0</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">middle_1</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">index_0</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">index_1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="urdf">按 URDF 排序</h3>
+<p>由于 urdf 版本的灵巧手是相同坐标系下产生的位置信息，所以这里左右手略有不同。URDF可以在<a href="https://github.com/unitreerobotics/unitree_ros/tree/master/robots/g1_description" rel="noopener noreferrer" target="_blank">开源平台</a>获取。
+<strong>左手</strong>
+<img alt="" src="../assets/images/7578e9c3e1ed3d12.webp"/></p>
+<table>
+<thead>
+<tr>
+<th>Hand Joint Index in URDF</th>
+<th style="text-align: center;">Hand Joint Index in IDL</th>
+<th style="text-align: center;">Hand Joint Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>left_hand_zero</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">thumb_0</td>
+</tr>
+<tr>
+<td>left_hand_one</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">thumb_1</td>
+</tr>
+<tr>
+<td>left_hand_two</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">thumb_2</td>
+</tr>
+<tr>
+<td>left_hand_three</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">middle_0</td>
+</tr>
+<tr>
+<td>left_hand_four</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">middle_1</td>
+</tr>
+<tr>
+<td>left_hand_five</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">index_0</td>
+</tr>
+<tr>
+<td>left_hand_six</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">index_1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>右手</strong>
+<img alt="" src="../assets/images/50c70815736f5088.webp"/></p>
+<table>
+<thead>
+<tr>
+<th>Hand Joint Index in URDF</th>
+<th style="text-align: center;">Hand Joint Index in IDL</th>
+<th style="text-align: center;">Hand Joint Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>right_hand_zero</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">thumb_0</td>
+</tr>
+<tr>
+<td>right_hand_one</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">thumb_1</td>
+</tr>
+<tr>
+<td>right_hand_two</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">thumb_2</td>
+</tr>
+<tr>
+<td>right_hand_three</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">middle_0</td>
+</tr>
+<tr>
+<td>right_hand_four</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">middle_1</td>
+</tr>
+<tr>
+<td>right_hand_five</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">index_0</td>
+</tr>
+<tr>
+<td>right_hand_six</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">index_1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">接口说明</h3>
+<p>用户向 <code>"rt/dex3/(left or right)/cmd"</code> 话题发送 <code>unitree_hg::msg::dds_::HandCmd_</code> 消息控制灵巧手。
+从 <code>"rt/dex3/(left or right)/state"</code> 话题接收 <code>unitree_hg::msg::dds_::HandState_</code> 消息获取灵巧手状态。</p>
+<h3 id="idl">IDL 数据格式</h3>
+<p>下面的 IDL为此次通信的控制结构体与状态结构体
+控制结构体 HandCmd_：</p>
+<pre><code class="language-CPP">
+struct HandCmd_ {
+    sequence&lt;unitree_hg::msg::dds_::MotorCmd_&gt; motor_cmd;
+    unsigned long reserve[4];
+};//struct HandCmd_ 
+</code></pre>
+<p>MotorCmd_结构体为：</p>
+<pre><code class="language-CPP">typedef struct {            // 电机控制命令数据包  20字节
+    uint8_t    head[2];     // 包头 0xFE 0xEE 参与CRC
+    RIS_Mode_t mode;        // 电机控制模式  1Byte
+    uint8_t    res;         // 保留
+    int16_t    tor_des;     // 期望关节输出扭矩  256表示1mNM
+    int16_t    spd_des;     // 期望关节输出速度  256/2π表示100rad/s
+    int32_t    pos_des;     // 期望关节输出位置  32768/2π表示1rad
+    int16_t    k_pos;       // 期望关节刚度系数 1280表示1mN.m/rad
+    int16_t    k_spd;       // 期望关节阻尼系数 1280表示1mN.m/100rad/s
+    uint32_t   CRC32;       // CRC32
+} MotorCmd_t;
+</code></pre>
+<p>其中 RIS_Mode_t 为：</p>
+<pre><code class="language-CPP">typedef struct {
+    uint8_t id     : 4;     // 电机ID: 0,1...,13,14 15表示向所有电机广播数据
+    uint8_t status : 3;     // 工作模式: 0.锁定 1.FOC 6
+    uint8_t timeout: 1;     // Master-&gt;Motor: 0.禁用超时保护 1.开启 （默认1s超时） 
+                            // Motor-&gt;Master: 0.没有超时 1.触发超时保护(需要控制位发0清除)
+} RIS_Mode_t;               // 控制模式 1Byte
+</code></pre>
+<p>电机与手部状态指令 HandState_：</p>
+<pre><code class="language-CPP">struct HandState_ {
+    sequence&lt;unitree_hg::msg::dds_::MotorState_&gt; motor_state;
+    sequence&lt;unitree_hg::msg::dds_::PressSensorState_&gt; press_sensor_state;
+    unitree_hg::msg::dds_::IMUState_ imu_state;
+    float power_v;
+    float power_a;
+    float system_v;
+    float device_v;
+    unsigned long error[2];
+    unsigned long reserve[2];
+};
+</code></pre>
+<p>其中  HandState_、IMUState_在H 1 SDK 开发指南中的 <a href="[宇树科技 文档中心](https://support.unitree.com/home/zh/H1_developer/H1-2_Basic_Services_Interface)" rel="noopener noreferrer" target="_blank">《H-2 底层服务接口章节》</a> 来了解 MotorState_等结构体中的数据填充规则。PressSensorState_ 结构体会在下面解释说明。
+power_v 表示灵巧手接入电源总电压。
+power_a 表示灵巧手接入电源总电流。system_v 表示灵巧手内部接入电源电压。
+device_v 表示灵巧手中降压模块输出电压。
+error 字段代表当前灵巧手输出的错误码，具体错误码的表达请参考 G 1 SDK 文档中<a href="common_istakes_and_definitions.html">电机状态信息错误</a>。
+reserve 字段暂时保留。</p>
+<p>手部传感器结构体 PressSensorState:</p>
+<pre><code class="language-CPP">struct PressSensorState {
+    float pressure[12];
+    float temperature[12];
+    unsigned long lost;
+    unsigned long reserve;
+};
+</code></pre>
+<p>其中 pressure 为单个传感器：
+<img alt="" src="../assets/images/054d358c03f86c4a.webp"/>
+<img alt="" src="../assets/images/98fdd00629a7c1b3.webp"/>
+图中 ID 表示一个传感器数据包PressSensorState_。数据包中pressure[12]数据索引对应的传感器位置已经在图中标识出。
+传感器数据&gt;= 10w 数值大小进行传输为有效值，数值= 3w 代表无数值，这里建议将 100000 降维至小数点 10.0000 进行显示运算。
+temperature 代表传感器的温度值。</p>
+<h3 id="cpp">CPP 控制接口函数示例</h3>
+<h4 id="_6">电机旋转示例</h4>
+<p>此函数可以控制灵巧手各个电机满行程运动。
+rotateMotors Demo</p>
+<pre><code class="language-cpp">
+void rotateMotors(bool isLeftHand) {
+    static int _count = 1; // 用来计数让手动起来
+    static int dir = 1;    // 控制抓握方向
+    const float* maxTorqueLimits = isLeftHand ? maxTorqueLimits_left : maxTorqueLimits_right;
+    const float* minTorqueLimits = isLeftHand ? minTorqueLimits_left : minTorqueLimits_right;
+
+    for (int i = 0; i &lt; MOTOR_MAX; i++) {
+        RIS_Mode_t ris_mode;
+        ris_mode.id = i;        // 设置 id
+        ris_mode.status = 0x01; // 设置 status 为 0x01
+        ris_mode.timeout = 0x01; // 设置 timeout 为 0x01
+
+        uint8_t mode = 0;
+        mode |= (ris_mode.id &amp; 0x0F);             // 取低 4 位 id
+        mode |= (ris_mode.status &amp; 0x07) &lt;&lt; 4;    // 取高 3 位 status 并左移 4 位
+        mode |= (ris_mode.timeout &amp; 0x01) &lt;&lt; 7;   // 取高 1 位 timeout 并左移 7 位
+        msg.motor_cmd()[i].mode(mode);
+        msg.motor_cmd()[i].tau(0);
+        msg.motor_cmd()[i].kp(0.5);      // 设置控制增益 kp
+        msg.motor_cmd()[i].kd(0.1);    // 设置控制增益 kd
+
+        // 计算目标位置 q
+        float range = maxTorqueLimits[i] - minTorqueLimits[i]; // 限位范围
+        float mid = (maxTorqueLimits[i] + minTorqueLimits[i]) / 2.0; // 中间值
+        float amplitude = range / 2.0; // 振幅
+
+        // 使用 _count 动态调整 q 值
+        float q = mid + amplitude * sin(_count / 20000.0 * M_PI); // 生成一个随时间变化的正弦波
+
+        // if(i == 0)std::cout &lt;&lt; q &lt;&lt; std::endl;
+        msg.motor_cmd()[i].q(q); // 设置目标位置 q
+    }
+
+    handcmd_publisher-&gt;Write(msg);
+    _count += dir;
+
+    // 控制抓握方向
+    if (_count &gt;= 10000) {
+        dir = -1;
+    }
+    if (_count &lt;= -10000) {
+        dir = 1;
+    }
+
+    usleep(100); // 控制循环频率，避免过快发送命令
+}
+</code></pre>
+<h4 id="_7">抓握示例</h4>
+<p>此例程可以控制灵巧手保持抓握
+gripHand Demo</p>
+<pre><code class="language-cpp">void gripHand(bool isLeftHand) {
+    // 定义左右手的限位值
+    const float* maxTorqueLimits = isLeftHand ? maxTorqueLimits_left : maxTorqueLimits_right;
+    const float* minTorqueLimits = isLeftHand ? minTorqueLimits_left : minTorqueLimits_right;
+
+    for (int i = 0; i &lt; MOTOR_MAX; i++) {
+        RIS_Mode_t ris_mode;
+        ris_mode.id = i;        // 设置 id
+        ris_mode.status = 0x01; // 设置 status 为 0x01
+        ris_mode.timeout = 0; // 设置 timeout 为 0x01
+
+        uint8_t mode = 0;
+        mode |= (ris_mode.id &amp; 0x0F);             // 取低 4 位 id
+        mode |= (ris_mode.status &amp; 0x07) &lt;&lt; 4;    // 取高 3 位 status 并左移 4 位
+        mode |= (ris_mode.timeout &amp; 0x01) &lt;&lt; 7;   // 取高 1 位 timeout 并左移 7 位
+        msg.motor_cmd()[i].mode(mode);
+        msg.motor_cmd()[i].tau(0);
+
+        // 计算中间位置
+        float mid = (maxTorqueLimits[i] + minTorqueLimits[i]) / 2.0; // 中间值
+
+        // 设置电机命令
+        msg.motor_cmd()[i].q(mid); // 设置目标位置为中间值
+        msg.motor_cmd()[i].dq(0);  // 设置速度为 0
+        msg.motor_cmd()[i].kp(1.5);      // 设置控制增益 kp
+        msg.motor_cmd()[i].kd(0.1);    // 设置控制增益 kd
+    }
+    msg.reserve()[0] = 0;
+    // 发布命令
+    handcmd_publisher-&gt;Write(msg);
+    usleep(1000000); // 每秒发送一次命令
+}
+</code></pre>
+<h4 id="_8">停止电机示例</h4>
+<p>stopMotors Demo</p>
+<pre><code class="language-cpp">void stopMotors() {
+    for (int i = 0; i &lt; MOTOR_MAX; i++) {
+        RIS_Mode_t ris_mode;
+        ris_mode.id = i;        // 设置 id
+        ris_mode.status = 0x01; // 设置 status 为 0x06
+        ris_mode.timeout = 0x01; // 设置 timeout 为 0x01
+
+        uint8_t mode = 0;
+        mode |= (ris_mode.id &amp; 0x0F);             // 取低 4 位 id
+        mode |= (ris_mode.status &amp; 0x07) &lt;&lt; 4;    // 取高 3 位 status 并左移 4 位
+        mode |= (ris_mode.timeout &amp; 0x01) &lt;&lt; 7;   // 取高 1 位 timeout 并左移 7 位
+        msg.motor_cmd()[i].mode(mode);
+        msg.motor_cmd()[i].tau(0);
+        msg.motor_cmd()[i].dq(0); 
+        msg.motor_cmd()[i].kp(0);
+        msg.motor_cmd()[i].kd(0);
+        msg.motor_cmd()[i].q(0); // 停止所有电机
+
+    }
+    handcmd_publisher-&gt;Write(msg);
+    usleep(1000000); // 每秒发送一次停止指令
+}
+</code></pre>
+<h4 id="_9">打印电机状态示例</h4>
+<p>printState Demo
+```cpp  </p>
+<p>void printState(bool isLeftHand){
+    Eigen::Matrix<float, 1="" 7,=""> q;
+    // 定义左右手的限位值
+    const float<em> maxTorqueLimits = isLeftHand ? maxTorqueLimits_left : maxTorqueLimits_right;
+    const float</em> minTorqueLimits = isLeftHand ? minTorqueLimits_left : minTorqueLimits_right;
+    for(int i = 0; i &lt; 7; i++) 
+    {
+        q(i) = state.motor_state()[i].q();
+        // Normalize q to [0, 1]
+        q(i) = (q(i) - minTorqueLimits[i] ) / (maxTorqueLimits[i] - minTorqueLimits[i]);
+        q(i) = std::clamp(q(i), 0.0f, 1.0f);
+    }
+    if(isLeftHand){
+        std::cout &lt;&lt; " L: " &lt;&lt; q.transpose() &lt;&lt; std::endl;
+    }else std::cout &lt;&lt; " R: " &lt;&lt; q.transpose() &lt;&lt; std::endl;
+    usleep(0.1 * 1e6);</float,></p>
+<p>}
+```</p>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

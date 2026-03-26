@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ROS2 通信例程 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link active" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>ROS2 通信例程</h1>
+          <div class="meta">更新时间：2025-11-17 20:29:24</div>
+        </header>
+        <section class="content">
+          <h1 id="_1">说明</h1>
+<p><a href="https://github.com/unitreerobotics/unitree_sdk2" rel="noopener noreferrer" target="_blank"><strong>unitree_sdk2</strong></a> 基于 cyclonedds 实现了一个易用的机器人数据通信机制，应用开发者可以利用这一接口实现机器人的数据通讯和指令控制(<strong>支持Go2、B2、H1和G1</strong>)。 
+ROS2 也使用 DDS 作为通讯工具，因此 Go2、B2 、H1和 G1 机器人的底层可以兼容 ROS2，使用 ROS2 自带的 msg 直接进行通讯和控制，而无需通过 SDK 接口转发。</p>
+<h1 id="_2">环境配置</h1>
+<h2 id="_3">系统要求</h2>
+<p>测试过的系统和ROS2版本
+|系统|ROS2 版本|
+|--|--|
+|Ubuntu 20.04|foxy|
+|Ubuntu 22.04|humble|</p>
+<p>下文以 ROS2 foxy 为例，如需使用其他版本的 ROS2，在相应的地方替换 foxy 为当前的 ROS2 版本名称即可。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ROS2 不同发行版的 API 可能存在差异，例如 rosbag 的调用方法等，仓库中的例程在 ROS2 foxy 下开发，如果使用的是其他 ROS2 发行版，请参考官方文档进行调整。</p>
+</div>
+<p>ROS2 foxy 的安装可参考: <a href="https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html" rel="noopener noreferrer" target="_blank">https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html</a></p>
+<p><code>ctrl+alt+T</code> 打开终端，克隆仓库：<a href="https://github.com/unitreerobotics/unitree_ros2" rel="noopener noreferrer" target="_blank">https://github.com/unitreerobotics/unitree_ros2</a></p>
+<pre><code class="language-bash">git clone https://github.com/unitreerobotics/unitree_ros2
+</code></pre>
+<p>其中
+- <strong>cyclonedds_ws</strong> 文件夹为编译和安装 Unitree 机器人 ROS2 msg 的工作空间，在子文件夹 <code>cyclonedds_ws/unitree/unitree_go</code>和<code>cyclonedds_ws/unitree/unitree_api</code>中定义了 Unitree 状态获取和控制相关的 ROS2 msg。</p>
+<h2 id="unitree-ros2">安装 Unitree ROS2 功能包</h2>
+<h3 id="1">1. 安装依赖</h3>
+<pre><code class="language-bash">sudo apt install ros-foxy-rmw-cyclonedds-cpp
+sudo apt install ros-foxy-rosidl-generator-dds-idl
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>为了方便接口的使用，推荐同时安装 <a href="https://github.com/unitreerobotics/unitree_sdk2" rel="noopener noreferrer" target="_blank">unitree_sdk2</a></p>
+</div>
+<h3 id="2-cyclone-dds">2. 编译 cyclone-dds</h3>
+<p>由于 G1 使用的是 <strong>cyclonedds 0.10.2</strong> 版本，因此需要先更改 ROS2 的 DDS 实现。详见：<a href="https://docs.ros.org/en/foxy/Concepts/About-Different-Middleware-Vendors.html" rel="noopener noreferrer" target="_blank">https://docs.ros.org/en/foxy/Concepts/About-Different-Middleware-Vendors.html</a></p>
+<p>编译 cyclonedds 前请确保在启动终端时<strong>没有</strong> source ros2 相关的环境变量，否则会导致 cyclonedds 编译报错。如果安装 ROS2 时在~/.bashrc中添加了 " <code>source /opt/ros/foxy/setup.bash</code> "，需要修改 ~/.bashrc 文件将其删除：</p>
+<pre><code class="language-bash">sudo apt install gedit
+sudo gedit ~/.bashrc
+</code></pre>
+<p>在弹出的窗口中，注释掉 ROS2 相关的环境变量，例如：</p>
+<pre><code class="language-bash"># source /opt/ros/foxy/setup.bash 
+</code></pre>
+<p>在终端中执行以下操作编译 cyclone-dds</p>
+<pre><code class="language-bash">cd ~/unitree_ros2/cyclonedds_ws/src
+#克隆cyclonedds仓库
+git clone https://github.com/ros2/rmw_cyclonedds -b foxy
+git clone https://github.com/eclipse-cyclonedds/cyclonedds -b releases/0.10.x 
+cd ..
+colcon build --packages-select cyclonedds #编译cyclonedds
+</code></pre>
+<h3 id="3-unitree_go-unitree_api">3. 编译 unitree_go 和 unitree_api 功能包</h3>
+<p>编译好 cyclone-dds 后就需要 Ros2 相关的依赖来完成 G1 功能包的编译，因此编译前需要先 source ROS2 的环境变量。</p>
+<pre><code class="language-bash">source /opt/ros/foxy/setup.bash #source ROS2 环境变量
+colcon build #编译工作空间下的所有功能包
+</code></pre>
+<h2 id="g1">连接到 G1</h2>
+<h3 id="1_1">1. 配置网络</h3>
+<p>使用网线连接 G1 和计算机，使用 <strong>ifconfig</strong> 查看网络信息，确认机器人连接到的以太网网卡。（例如如图中的enp3s0，以实际为准）
+<img alt="image" src="../assets/images/ebd2188d05271eec.webp"/></p>
+<p>接着打开网络设置，找到机器人所连接的网卡，进入 IPv4 ，将 IPv4 方式改为手动，地址设置为192.168.123.99，子网掩码设置为255.255.255.0，完成后点击应用，等待网络重新连接。
+<img alt="image" src="../assets/images/182e29694883f20b.webp"/></p>
+<p>打开 setup.sh 文件</p>
+<pre><code class="language-bash">sudo gedit ~/unitree_ros2/setup.sh
+</code></pre>
+<p>bash 的内容如下：</p>
+<pre><code class="language-bash">#!/bin/bash
+echo "Setup unitree ros2 environment"
+source /opt/ros/foxy/setup.bash
+source $HOME/unitree_ros2/cyclonedds_ws/install/setup.bash
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+export CYCLONEDDS_URI='&lt;CycloneDDS&gt;&lt;Domain&gt;&lt;General&gt;&lt;Interfaces&gt;
+                            &lt;NetworkInterface name="enp3s0" priority="default" multicast="default" /&gt;
+                        &lt;/Interfaces&gt;&lt;/General&gt;&lt;/Domain&gt;&lt;/CycloneDDS&gt;'
+</code></pre>
+<p>其中 "enp3s0" 为 G1 所连接的网卡名称，根据实际情况修改为对应的网卡名称。在终端中执行：</p>
+<pre><code class="language-bash">source ~/unitree_ros2/setup.sh
+</code></pre>
+<p>即可完成 G1 开发环境的设置。
+如果不希望每次打开新终端都执行一次 bash 脚本，也可将 setup.sh 中的内容写入到 ~/.bashrc中，但是当系统有多个 ROS 环境共存需要注意。</p>
+<h3 id="2">2. 连接测试</h3>
+<p>完成上述配置后，建议重启一下电脑再进行测试。
+确保机器人连接正确，打开终端输入 <code>ros2 topic list</code>，可以看见如下话题：
+<img alt="image" src="../assets/images/b07a95f7ce6a3683.webp"/></p>
+
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

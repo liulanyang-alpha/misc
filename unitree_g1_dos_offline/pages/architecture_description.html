@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>软件架构说明 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link active" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>软件架构说明</h1>
+          <div class="meta">更新时间：2025-02-08 18:09:45</div>
+        </header>
+        <section class="content">
+          <h1 id="_1">系统架构图</h1>
+<p><img alt="" src="../assets/images/ad28bb4f3b48e449.webp"/></p>
+<blockquote>
+<p>用户授权后，G1 才会连接云服务</p>
+</blockquote>
+<h1 id="_2">云服务</h1>
+<p><strong>云服务主要有几个功能</strong>：</p>
+<ol>
+<li>
+<p>收集 G1 运行数据（不涉及隐私），进行故障检测和统计。</p>
+</li>
+<li>
+<p>帮助用户实现远程操作，主要通过 WebRTC 实现。图像和控制流量可以点对点或通过 turn server 转发，服务器不会收集或分析这些流量。</p>
+</li>
+<li>
+<p>系统升级迭代。</p>
+</li>
+</ol>
+<p><strong>云服务的通信</strong>：</p>
+<ol>
+<li>
+<p>mqtt 用来建立与每台设备的物联网通信，负责监控故障、系统升级、传递 WebRTC 信令。</p>
+</li>
+<li>
+<p>http 服务连接 App 和 Web 前端，建立用户与机器人的绑定关系。</p>
+</li>
+<li>
+<p>turn/stun 服务器用来帮助 WebRTC 点对点连接，并在无法实现点对点连接时提供服务器数据转发。</p>
+</li>
+</ol>
+<h1 id="g1">G1</h1>
+<ol>
+<li>
+<p>OTA 模块通过 mqtt 与云服务器通信，负责上传故障信息、系统升级、并转发 WebRTC 信令。</p>
+</li>
+<li>
+<p>WebRTC  模块实现与 App 的主要数据管道，包括音视频流、雷达点云、运动状态及控制指令。</p>
+</li>
+<li>
+<p>蓝牙( BLE )部分用来和 App 建立联系，主要用于配置网络和安全验证。</p>
+</li>
+<li>
+<p>各个功能模块之间的通信主要采用DDS实现，DDS IDL 兼容 ROS2（需要选择适配的RMW），EDU 版本可以通过 DDS 或 ROS2 调用接口。</p>
+</li>
+<li>
+<p>电机、雷达 等传感器数据通过串口收集再转发到 DDS 中间层。</p>
+</li>
+<li>
+<p>G1-EDU版 内置 2 块计算单元，PC1 为 Unitree 运动控制程序专用，不对外开放。开发者仅可使用 PC2 进行二次开发。PC2的IP地址为192.168.123.164，初始用户名与密码请联系技术支持获取。</p>
+</li>
+</ol>
+<h1 id="app">App</h1>
+<ol>
+<li>
+<p>用户管理模块，通过 HTTP Web API 连接宇树管理平台。负责绑定机器人、 WebRTC 建连等功能。</p>
+</li>
+<li>
+<p>G1 的蓝牙模块，用来配置网络。</p>
+</li>
+<li>
+<p>WebRTC 模块，主要数据流量都是通过 WebRTC 实现，包括图传、点云、运动状态及控制指令下发。</p>
+</li>
+</ol>
+<h1 id="_3">开发接口</h1>
+<ol>
+<li>
+<p>DDS，支持C++ 以及 Python。</p>
+</li>
+<li>
+<p>ROS2 接口。</p>
+</li>
+<li>
+<p>GST，仅用于图传。</p>
+</li>
+</ol>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

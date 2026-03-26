@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>深度相机例程 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link active" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>深度相机例程</h1>
+          <div class="meta">更新时间：2025-11-17 20:06:00</div>
+        </header>
+        <section class="content">
+          <h1 id="g1">一、G1机器人深度相机介绍与官方资料获取</h1>
+<p>G1 机器人深度相机位于机器人头顶位置，型号为 <strong>realsense D435i</strong>。
+相机包含双目红外相机（global shutter）、激光发射器、RGB相机（rolling shutter）、6轴imu。
+<img alt="" src="../assets/images/1f19a9f4976c28f5.webp"/></p>
+<ul>
+<li>产品主页：<a href="https://www.intelrealsense.com/depth-camera-d435/realsense" rel="noopener noreferrer" target="_blank">https://www.intelrealsense.com/depth-camera-d435/realsense</a></li>
+<li>详细文档：<a href="https://dev.intelrealsense.com/docs/docs-get-started" rel="noopener noreferrer" target="_blank">https://dev.intelrealsense.com/docs/docs-get-started</a></li>
+<li>官方 github 地址：<a href="https://github.com/IntelRealSense" rel="noopener noreferrer" target="_blank">https://github.com/IntelRealSense</a></li>
+</ul>
+<p>深度相机坐标系、深度相机坐标系与机器人中心坐标系关系：
+<img alt="" src="../assets/images/c6b40f1cf8c88e67.webp"/>
+<img alt="" src="../assets/images/8b3968dbee7283f7.webp"/></p>
+<h1 id="_1">二、数据获取</h1>
+<h2 id="21-realsense-viewer">2.1 通过 RealSense Viewer 上位机查看数据</h2>
+<ul>
+<li>windows 端，直接下载<code>Intel.RealSense.Viewer.exe</code></li>
+<li>软件，链接：<a href="https://github.com/IntelRealSense/librealsense/releases" rel="noopener noreferrer" target="_blank">https://github.com/IntelRealSense/librealsense/releases</a></li>
+</ul>
+<p>linux 端，需要编译安装 SDK。
+- Ubuntu 18/20/22 LTS 安装参考：<a href="https://github.com/IntelRealSense/librealsense/blob/master/doc/installation.md" rel="noopener noreferrer" target="_blank">https://github.com/IntelRealSense/librealsense/blob/master/doc/installation.md</a>
+- NVIDIA Jetson 系统安装参考：<a href="https://github.com/IntelRealSense/librealsense/blob/master/doc/installation_jetson.md" rel="noopener noreferrer" target="_blank">https://github.com/IntelRealSense/librealsense/blob/master/doc/installation_jetson.md</a>
+- Raspberry Pi 系统安装参考：<a href="https://github.com/IntelRealSense/librealsense/blob/master/doc/RaspberryPi3.md" rel="noopener noreferrer" target="_blank">https://github.com/IntelRealSense/librealsense/blob/master/doc/RaspberryPi3.md</a></p>
+<p>使用前，需要您在机器人的NX计算机平台上，安装 librealsense。
+硬件连接正常的情况下，终端输入 <code>realsense-viewer</code> 打开软件，可以查看到：
+<img alt="" src="../assets/images/8a5d14fc4c53a7bd.webp"/></p>
+<h2 id="22-ros">2.2 通过 ros 获取数据</h2>
+<p>相机 ros 驱动代码仓库：<a href="https://github.com/IntelRealSense/realsense-ros" rel="noopener noreferrer" target="_blank">https://github.com/IntelRealSense/realsense-ros</a>
+详细使用说明参考代码仓库的 readme 文件。
+平时使用，建议直接通过 sdk 获取数据并处理。</p>
+<h2 id="23-sdk">2.3 通过 SDK 获取数据</h2>
+<p>相机 SDK 代码仓库：<a href="https://github.com/IntelRealSense/librealsense" rel="noopener noreferrer" target="_blank">https://github.com/IntelRealSense/librealsense</a></p>
+<p>SDK 的使用可以参考<code>../librealsense-2.54.1/examples</code> 下的代码内容。</p>
+<p>参考 demo：</p>
+<pre><code class="language-C++">/**
+ * @file test.cpp
+ * get_camera_imu_stream_test
+ *
+ */
+#include &lt;librealsense2/rs.hpp&gt;
+#include &lt;librealsense2/hpp/rs_internal.hpp&gt;
+#include &lt;unistd.h&gt;
+#include &lt;iostream&gt;
+
+#include &lt;mutex&gt;
+#include &lt;thread&gt;
+
+#include &lt;opencv2/core.hpp&gt;
+#include &lt;opencv2/imgproc.hpp&gt;
+#include &lt;opencv2/imgcodecs.hpp&gt;
+#include &lt;opencv2/highgui.hpp&gt;
+
+
+
+std::mutex mutex;
+rs2::frameset fs_frame = {};
+double fs_timestamp = 0.0;
+bool fs_flag = false;
+
+
+
+void stream_callback(const rs2::frame&amp; frame){ 
+    static double fs_last_timestamp = 0.0;
+    static double gyro_last_timestamp = 0.0;
+    static double accel_last_timestamp = 0.0;
+
+    if(rs2::frameset c_frame = frame.as&lt;rs2::frameset&gt;()){
+        // do not use
+        // // double f_timestamp = c_frame.get_timestamp()*1e-3;
+        // // printf("frame f_timestamp:   %.4f \n", f_timestamp);
+
+        double clc_timestamp;{
+            struct timespec time = {0};
+            clock_gettime(CLOCK_REALTIME, &amp;time);
+            clc_timestamp = time.tv_sec + time.tv_nsec*1e-9;
+        }
+
+        std::unique_lock&lt;std::mutex&gt; lock(mutex);
+        fs_frame = c_frame;
+        fs_timestamp = clc_timestamp;
+        fs_flag = true;
+        lock.unlock();
+
+
+        // printf("frame clc_timestamp:  %.4f \n", clc_timestamp);
+        // printf("frame fps:  %.4f \n", 1/(clc_timestamp - fs_last_timestamp));
+
+        fs_last_timestamp = clc_timestamp;
+    }else if(rs2::motion_frame m_frame = frame.as&lt;rs2::motion_frame&gt;()){
+
+        if (m_frame.get_profile().stream_name() == "Gyro"){
+            double clc_timestamp;{
+                struct timespec time = {0};
+                clock_gettime(CLOCK_REALTIME, &amp;time);
+                clc_timestamp = time.tv_sec + time.tv_nsec*1e-9;
+            }
+
+            // Get gyro measures
+            rs2_vector gyro_data = m_frame.get_motion_data();
+
+            // std::cout &lt;&lt; "gyro_data" &lt;&lt; gyro_data &lt;&lt; std::endl;
+
+            // printf("gyro clc_timestamp:  %.4f \n", clc_timestamp);
+            // printf("gyro fps:  %.4f \n", 1/(clc_timestamp - gyro_last_timestamp));
+
+            gyro_last_timestamp = clc_timestamp;
+        }else if (m_frame.get_profile().stream_name() == "Accel"){
+            double clc_timestamp;{
+                struct timespec time = {0};
+                clock_gettime(CLOCK_REALTIME, &amp;time);
+                clc_timestamp = time.tv_sec + time.tv_nsec*1e-9;
+            }
+
+            // Get accelerometer measures
+            rs2_vector accel_data = m_frame.as&lt;rs2::motion_frame&gt;().get_motion_data();
+            // std::cout &lt;&lt; "accel_data" &lt;&lt; accel_data &lt;&lt; std::endl;
+
+            // printf("accel clc_timestamp:  %.4f \n", clc_timestamp);
+            // printf("accel fps:  %.4f \n", 1/(clc_timestamp - accel_last_timestamp));
+
+            accel_last_timestamp = clc_timestamp;
+        }
+    }
+}
+
+
+
+rs2::device get_a_realsense_device()
+{
+    // Instantiate context
+    rs2::context ctx;
+
+    // The query_device method of the context retrieves a list of devices and returns a Device_List object
+    rs2::device_list devices = ctx.query_devices();
+
+    // Instantiate device
+    rs2::device selected_device;
+    if (devices.size() == 0){
+        std::cerr &lt;&lt; "No device connected!!!!!" &lt;&lt; std::endl;
+        exit(0);
+    }
+
+    // Printing device information
+    std::cout &lt;&lt;"get device num: "&lt;&lt;devices.size()&lt;&lt;std::endl;
+    for (int i = 0; i &lt; devices.size(); i++){
+        std::vector&lt;rs2::sensor&gt; sensors = devices[i].query_sensors();
+        std::string serial = devices[i].get_info(RS2_CAMERA_INFO_SERIAL_NUMBER);
+        std::string port = devices[i].get_info(RS2_CAMERA_INFO_PHYSICAL_PORT);
+
+        std::cout &lt;&lt; "get serial " &lt;&lt; i &lt;&lt; " : " &lt;&lt; serial &lt;&lt; std::endl;
+        std::cout &lt;&lt; "get port " &lt;&lt; i &lt;&lt; " : " &lt;&lt; port &lt;&lt; std::endl;
+    }
+
+    // Passing the first device to the selected_device obtained by device instantiation
+    selected_device = devices[0];
+
+    // At this point, selected_device represents our current device and returns it
+    return selected_device;
+}
+
+
+
+void  get_sensor_option(const rs2::sensor&amp; sensor)
+{
+    std::cout &lt;&lt; "Sensor name: " &lt;&lt; "&lt;"  &lt;&lt; sensor.get_info(RS2_CAMERA_INFO_NAME) &lt;&lt; "&gt;" &lt;&lt;std::endl;
+    std::cout &lt;&lt; "This sensor supports the following options:\n" &lt;&lt; std::endl;
+    // Cycle all parameters
+    for (int i = 0; i &lt; static_cast&lt;int&gt;(RS2_OPTION_COUNT); i++)
+    {
+        rs2_option option_type = static_cast&lt;rs2_option&gt;(i);
+
+        // Firstly, determine whether the sensor supports this option setting
+        if (sensor.supports(option_type))
+        {
+            // Retrieve and print a description of the current option
+            const char* description = sensor.get_option_description(option_type);
+
+            // Retrieve the value of the current option
+            float current_value = sensor.get_option(option_type);
+
+            // Get the value range, default value, and value step size of the option
+            rs2::option_range range = sensor.get_option_range(option_type);
+            float default_value = range.def;
+            float maximum_supported_value = range.max;
+            float minimum_supported_value = range.min;
+            float difference_to_next_value = range.step;
+
+            // print
+            std::cout &lt;&lt; "    " &lt;&lt; i &lt;&lt; ": "  &lt;&lt; "&lt;" &lt;&lt; option_type  &lt;&lt; "&gt;" &lt;&lt; std::endl;
+            std::cout &lt;&lt; "        Description   : " &lt;&lt; description &lt;&lt; std::endl;
+            std::cout &lt;&lt; "        Min Value     : " &lt;&lt; minimum_supported_value &lt;&lt; std::endl;
+            std::cout &lt;&lt; "        Max Value     : " &lt;&lt; maximum_supported_value &lt;&lt; std::endl;
+            std::cout &lt;&lt; "        Step          : " &lt;&lt; difference_to_next_value &lt;&lt; std::endl;
+            std::cout &lt;&lt; "        Default Value : " &lt;&lt; default_value &lt;&lt; std::endl;
+            std::cout &lt;&lt; "        Current Value : " &lt;&lt; current_value &lt;&lt; std::endl;
+            std::cout &lt;&lt; std::endl;
+        }
+        else
+        {
+            //std::cout &lt;&lt; "        is not supported by this sensor" &lt;&lt; std::endl;
+        }
+    }
+    std::cout &lt;&lt; std::endl;
+    std::cout &lt;&lt; std::endl;
+}
+
+
+
+void change_sensor_option(const rs2::sensor&amp; sensor, rs2_option option_type, float requested_value)
+{
+    // Firstly, determine whether the sensor supports this option setting
+    if (!sensor.supports(option_type))
+    {
+        std::cout &lt;&lt; "option is not supported by sensor " &lt;&lt; "&lt;"  &lt;&lt; sensor.get_info(RS2_CAMERA_INFO_NAME) &lt;&lt; "&gt;" &lt;&lt; std::endl;
+        return;
+    }
+    else
+    {
+        // Use the set_option function to assign new values to options
+        sensor.set_option(option_type, requested_value);
+        std::cout &lt;&lt; "&lt;"  &lt;&lt; sensor.get_info(RS2_CAMERA_INFO_NAME) &lt;&lt; "&gt; " &lt;&lt; "change " &lt;&lt; "&lt;" &lt;&lt; option_type  &lt;&lt; "&gt;" &lt;&lt; " to " &lt;&lt; ": " &lt;&lt; requested_value &lt;&lt; std::endl;
+    }
+
+}
+
+
+
+void l_get_intrinsics(const rs2::stream_profile&amp; stream, float &amp;_fx, float &amp;_fy, float &amp;_cx, float &amp;_cy)
+{
+
+    // A sensor's stream (rs2::stream_profile) is in general a stream of data with no specific type.
+    // For video streams (streams of images), the sensor that produces the data has a lens and thus has properties such
+    //  as a focal point, distortion, and principal point.
+    // To get these intrinsics parameters, we need to take a stream and first check if it is a video stream
+    if (rs2::video_stream_profile video_stream = stream.as&lt;rs2::video_stream_profile&gt;())
+    {
+        try
+        {
+            // Using the get_intriniscs method to obtain camera intrinsic parameters
+            rs2_intrinsics intrinsics = video_stream.get_intrinsics();
+            // Process some results
+            auto principal_point = std::make_pair(intrinsics.ppx, intrinsics.ppy);
+            auto focal_length = std::make_pair(intrinsics.fx, intrinsics.fy);
+            rs2_distortion model = intrinsics.model;
+
+            // 打印内参
+            /*std::cout &lt;&lt; "width*height         : " &lt;&lt; intrinsics.width &lt;&lt; " * " &lt;&lt; intrinsics.height &lt;&lt; std::endl;
+            std::cout &lt;&lt; "Principal Point         : " &lt;&lt; principal_point.first &lt;&lt; ", " &lt;&lt; principal_point.second &lt;&lt; std::endl;
+            std::cout &lt;&lt; "Focal Length            : " &lt;&lt; focal_length.first &lt;&lt; ", " &lt;&lt; focal_length.second &lt;&lt; std::endl;
+            std::cout &lt;&lt; "Distortion Model        : " &lt;&lt; model &lt;&lt; std::endl;
+            std::cout &lt;&lt; "Distortion Coefficients : [" &lt;&lt; intrinsics.coeffs[0] &lt;&lt; "," &lt;&lt; intrinsics.coeffs[1] &lt;&lt; "," &lt;&lt;
+            intrinsics.coeffs[2] &lt;&lt; "," &lt;&lt; intrinsics.coeffs[3] &lt;&lt; "," &lt;&lt; intrinsics.coeffs[4] &lt;&lt; "]" &lt;&lt; std::endl;*/
+            std::cout &lt;&lt; "\n\n--------------- intrinsics ---------------" &lt;&lt; std::endl;
+            std::cout &lt;&lt; "width*height         : " &lt;&lt; intrinsics.width &lt;&lt; " * " &lt;&lt; intrinsics.height &lt;&lt; std::endl;
+            std::cout &lt;&lt; "Camera.fx: " &lt;&lt; focal_length.first &lt;&lt; std::endl;
+            std::cout &lt;&lt; "Camera.fy: " &lt;&lt; focal_length.second &lt;&lt; std::endl;
+            std::cout &lt;&lt; "Camera.cx: " &lt;&lt; principal_point.first &lt;&lt; std::endl;
+            std::cout &lt;&lt; "Camera.cy: " &lt;&lt; principal_point.second &lt;&lt; std::endl;
+            std::cout &lt;&lt; "---------------  ---------------\n\n" &lt;&lt; std::endl;
+
+            _fx = focal_length.first; // 前相机内参
+            _fy = focal_length.second;
+            _cx = principal_point.first;
+            _cy = principal_point.second;
+        }
+        catch (const std::exception &amp;e)
+        {
+            std::cout &lt;&lt; "Failed to get intrinsics for the given stream. " &lt;&lt; e.what() &lt;&lt; std::endl;
+        }
+    }
+}
+
+
+
+int main()
+{    
+    rs2::device selected_device;
+    selected_device = get_a_realsense_device();
+
+    std::vector&lt;rs2::sensor&gt; sensors = selected_device.query_sensors();
+
+    // Print sensor parameters
+    for (rs2::sensor sensor : sensors){
+        get_sensor_option(sensor);
+    }
+
+    // Set sensor parameters
+    for (rs2::sensor sensor : sensors){
+        std::string sensor_name = sensor.get_info(RS2_CAMERA_INFO_NAME);
+        if(sensor_name == "Stereo Module"){ // Depth camera
+            change_sensor_option(sensor, RS2_OPTION_VISUAL_PRESET, rs2_rs400_visual_preset::RS2_RS400_VISUAL_PRESET_HIGH_ACCURACY);
+            change_sensor_option(sensor, RS2_OPTION_ENABLE_AUTO_EXPOSURE, 1);
+            change_sensor_option(sensor, RS2_OPTION_EMITTER_ENABLED, 1);
+            change_sensor_option(sensor, RS2_OPTION_LASER_POWER, 150);
+        }else if(sensor_name == "RGB Module"){
+            change_sensor_option(sensor, RS2_OPTION_ENABLE_AUTO_EXPOSURE, 1);
+        }else if(sensor_name == "Motion Module"){
+            // ...
+        }
+    }
+
+
+    // Instantiate pipeline and config
+    rs2::pipeline pipe;
+    rs2::config cfg;
+
+    // Depth stream
+    cfg.enable_stream(RS2_STREAM_DEPTH, 640, 480, RS2_FORMAT_Z16, 60);
+    // IR_left stream
+    cfg.enable_stream(RS2_STREAM_INFRARED, 1, 640, 480, RS2_FORMAT_Y8, 60);
+    // IR_right stream
+    cfg.enable_stream(RS2_STREAM_INFRARED, 2, 640, 480, RS2_FORMAT_Y8, 60);
+    // RGB stream
+    cfg.enable_stream(RS2_STREAM_COLOR, 848, 480, RS2_FORMAT_BGR8, 60);
+    // IMU GYRO stream
+    cfg.enable_stream(RS2_STREAM_GYRO , RS2_FORMAT_MOTION_XYZ32F, 400);
+    // IMU ACCEL stream
+    cfg.enable_stream(RS2_STREAM_ACCEL, RS2_FORMAT_MOTION_XYZ32F, 200);
+
+    rs2::pipeline_profile pipe_profile = pipe.start(cfg, stream_callback);
+
+    // get Depth(IR_left) intrinsics
+    float mCamera_fx, mCamera_fy, mCamera_cx, mCamera_cy;
+    l_get_intrinsics(pipe_profile.get_stream(RS2_STREAM_DEPTH), mCamera_fx, mCamera_fy, mCamera_cx, mCamera_cy);
+
+    // post process
+    rs2::temporal_filter temp_filter;  
+    temp_filter.set_option(rs2_option::RS2_OPTION_HOLES_FILL, 6);
+    temp_filter.set_option(rs2_option::RS2_OPTION_FILTER_SMOOTH_ALPHA, 0.4f);
+    temp_filter.set_option(rs2_option::RS2_OPTION_FILTER_SMOOTH_DELTA, 20);
+
+    double _timestamp_last = 0.0;
+    while (true){
+        rs2::frameset _frame = {};
+        double _timestamp = 0.0;
+        bool _flag = false;
+        std::unique_lock&lt;std::mutex&gt; lock(mutex);
+        _frame = fs_frame;
+        _timestamp = fs_timestamp;
+        _flag = fs_flag;
+        fs_flag = false;
+        lock.unlock();
+
+        if(_flag){
+            printf("_frame fps:  %.4f \n", 1/(_timestamp - _timestamp_last));
+
+            // Obtain data for each image
+            rs2::depth_frame depth_frame = _frame.get_depth_frame();
+            rs2::video_frame color_frame = _frame.get_color_frame();
+            rs2::frame irL_frame = _frame.get_infrared_frame(1);
+            rs2::frame irR_frame = _frame.get_infrared_frame(2);
+
+
+            rs2::depth_frame depth_frame_filtered = temp_filter.process(depth_frame);
+
+            // Convert image data to OpenCV format
+            cv::Mat depth_image(cv::Size(640, 480), CV_16U , (void*)depth_frame.get_data(), cv::Mat::AUTO_STEP); // Depth
+            cv::Mat color_image(cv::Size(848, 480), CV_8UC3, (void*)color_frame.get_data(), cv::Mat::AUTO_STEP); // RGB
+            cv::Mat irL_image  (cv::Size(640, 480), CV_8UC1, (void*)irL_frame.get_data()  , cv::Mat::AUTO_STEP); // IR_left
+            cv::Mat irR_image  (cv::Size(640, 480), CV_8UC1, (void*)irR_frame.get_data()  , cv::Mat::AUTO_STEP); // IR_right
+
+            cv::Mat p_depth_image(cv::Size(640, 480), CV_16U , (void*)depth_frame.get_data(), cv::Mat::AUTO_STEP); // post processed Depth
+
+            // show pictures
+            if (color_image.empty() || depth_image.empty() || irL_image.empty() || irR_image.empty()) {
+                std::cerr &lt;&lt; "One or more images are empty." &lt;&lt; std::endl;
+                continue;
+            }
+            cv::imshow("depth", depth_image);
+            cv::imshow("color", color_image);
+            cv::imshow("irL", irL_image);
+            cv::imshow("irR", irR_image);
+            cv::imshow("p_depth", depth_image);
+            cv::waitKey(1);
+
+            _timestamp_last = _timestamp;
+        }else{
+            usleep(2000);
+        }
+
+    }
+    return 0;
+}
+</code></pre>
+<pre><code class="language-txt">cmake_minimum_required(VERSION 3.1.0)
+
+project(get_camera_imu_stream_test)
+
+
+set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -w")
+set(CMAKE_C_FLAGS_RELEASE "-O3 -w")
+
+# Find librealsense2 installed package
+find_package(realsense2 REQUIRED)
+find_package(OpenCV REQUIRED)
+
+# Enable C++11
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+
+# Add the application sources to the target
+add_executable(${PROJECT_NAME} test.cpp)
+
+# Link librealsense2 to the target
+target_link_libraries(${PROJECT_NAME} ${realsense2_LIBRARY} ${OpenCV_LIBS})
+</code></pre>
+<h2 id="24-realsenseusb20usb30">2.4 关于realsense深度相机的usb2.0、usb3.0连接问题</h2>
+<p>在深度相机连接到usb3.0的情况下， <code>realsense-viewer</code> 软件内可以看到其支持的分辨率和帧率：
+<img alt="" src="../assets/images/cc99cb4a944c975a.jpg"/>
+在深度相机连接到usb2.0的情况下，需要通过hub转接才能正常使用SDK获取数据。G1的NX处理器上也可以直接使用。usb2.0连接下，能获得的帧率和分辨率与usb3.0连接下会有所不同， <code>realsense-viewer</code> 软件内可以看到其支持的分辨率和帧率：
+<img alt="" src="../assets/images/0d97233efcb0238f.jpg"/></p>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

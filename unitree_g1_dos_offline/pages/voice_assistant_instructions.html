@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>语音助手使用说明 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link active" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>语音助手使用说明</h1>
+          <div class="meta">更新时间：2025-03-10 18:05:59</div>
+        </header>
+        <section class="content">
+          <p>G1设备已经接入GPT模型（固件版本≥1.3.0）。<code>连接互联网后</code>，开启语音助手对话模式，设备可支持基于GPT模型的语音对话（例如聊天、动作、音乐播放等）。</p>
+<div class="center-block">
+<p><img alt="1" src="../assets/images/638a665eb471726b.webp" title="部件位置"/></p>
+</div>
+<h2 id="_1">模式说明</h2>
+<p>G1支持两种对话模式：<code>唤醒对话模式</code>和<code>按键对话模式</code>。</p>
+<h4 id="_2">切换方式：</h4>
+<ul>
+<li>遥控器：同时按<code>L1+L2</code></li>
+<li>APP: 【设备】-【数据】-【音频】-【语音助手】</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注意！！！</p>
+<ul>
+<li>所有模式都支持 <code>L2+Select</code> 按键唤醒，<code>L1+Select</code>强制打断 。</li>
+<li>未唤醒时听到人声会蓝灯呼吸，唤醒后收到指令会绿灯呼吸</li>
+</ul>
+</div>
+<h3 id="_3">唤醒对话模式:</h3>
+<p><strong>唤醒词</strong>："<code>笨笨同学</code>"</p>
+<p><strong>特点</strong>：唤醒后可进行多轮自然对话。适用于较为安静的普通对话场景。</p>
+<p><strong>介绍</strong>：用"<code>笨笨同学</code>"进行唤醒，唤醒成功后，机器人会回复，随后可以进行多轮无限制的自由对话，超时15秒没声音后对话结束，需要重新唤醒。</p>
+<h3 id="_4">按对话音模式:</h3>
+<p><strong>特点</strong>：强制进行一次语音识别，适用于嘈杂环境。
+<strong>介绍</strong>：无需唤醒词，同时长按<code>L2+Select</code>后开始录音, 松开<code>L2+Select</code>后结束录音。此阶段产生的声音会被强行识别并送给语音识别框架。</p>
+<h2 id="_5">关闭交互</h2>
+<p>程序休眠，停止录音，关闭后即不会产生隐私问题。</p>
+<h3 id="_6">提高识别成功率方法:</h3>
+<p>● <strong>重要</strong>：麦克风正常收音会有呼吸灯闪烁，请善于利用此指示灯辅助。(如果说话的时候灯不闪烁，就是没录到音。此时需要靠近一点+检查模式+排查硬件)。</p>
+<p>● 站在正前方(麦克风开孔方向)，距离1m内进行尝试。</p>
+<p>● 扬声器在播放声音时，例如讲故事，放音乐。此时语音交互效果不佳，需要等待播放完成后才能进行下一指令，或者同时按<code>L1+Select</code> 进行打断。</p>
+<h3 id="_7">问题排查:</h3>
+<h4 id="1-gpt">1. 检查GPT是否可用</h4>
+<p>可按L2+Select进行一次唤醒，如果GPT未联网，会回复"你好，我在呢"，即进入离线语音交互模式。</p>
+<h4 id="2">2. 部分问题没反应或者有延迟。</h4>
+<p>检查GPT是否可用或者部分问题触发了联网搜索（例如问"今天天气如何"），跟网络环境有关系。</p>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

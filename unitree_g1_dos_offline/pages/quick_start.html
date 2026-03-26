@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>快速开始 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link active" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>快速开始</h1>
+          <div class="meta">更新时间：2025-11-12 20:15:20</div>
+        </header>
+        <section class="content">
+          <style>
+    img[alt="1"]{
+      height:300px;
+    }
+</style>
+<h1 id="_1">教学视频</h1>
+<h3 id="_2">开关机教学</h3>
+<video autoplay="" controls="" loop="loop" src="https://oss-global-cdn.unitree.com/static/e777ec43b5e14ef5861456f11dfec58e.mp4" style="width: 100%"></video>
+<h3 id="_3">网络连接教学</h3>
+<video autoplay="" controls="" loop="loop" src="https://oss-global-cdn.unitree.com/static/1466690f1e78491eacf495030815d48d.mp4" style="width: 100%"></video>
+<h3 id="_4">遥控器绑定教学</h3>
+<video autoplay="" controls="" loop="loop" src="https://oss-global-cdn.unitree.com/static/ffe5de6f56e74f158cbd556ac457cfb3.mp4" style="width: 100%"></video>
+<h3 id="_5">姿态和动作教学</h3>
+<video autoplay="" controls="" loop="loop" src="https://oss-global-cdn.unitree.com/static/bf198ec1a3514de884d8d6256fa0acac.mp4" style="width: 100%"></video>
+<h3 id="23">关节标定(23自由度)教学</h3>
+<video autoplay="" controls="" loop="loop" src="https://oss-global-cdn.unitree.com/static/4a78d8bbd9b148a7b308c7b4a311620a.mp4" style="width: 100%"></video>
+<h3 id="29">关节标定(29自由度)教学</h3>
+<video autoplay="" controls="" loop="loop" src="https://oss-global-cdn.unitree.com/static/6c75862d766a4e5fb2d34f6b08ccb0c7.mp4" style="width: 100%"></video>
+<h3 id="_6">开发调试教学</h3>
+<video autoplay="" controls="" loop="loop" src="https://oss-global-cdn.unitree.com/static/cfb402afd21c409f87465c46eb5a96fb.mp4" style="width: 100%"></video>
+<h1 id="_7">开机流程</h1>
+<h2 id="_8">坐立开机</h2>
+<p><strong>Step1：机身摆放</strong>
+在条件允许的情况下，G1支持坐在椅子上开机。首先确保G1端坐在椅子上，手臂和腿部保持自然摆放。</p>
+<p><img alt="" src="../assets/images/08f2adbe74a0a6b2.webp"/></p>
+<p><strong>Step2： 安装电池包</strong> </p>
+<p>将 电池从机身侧面插入电池槽，注意安装方向,不要强行按压，以免损坏电池接口和卡扣，当听到“咔哒~”声，电池包安装完成。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">插入电池</th>
+<th style="text-align: center;">开机启动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="1" src="../assets/images/b45fb0a04491f2a9.webp"/></td>
+<td style="text-align: center;"><img alt="1" src="../assets/images/7a9db4eacdc13907.webp"/></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step3： 启动成功</strong> </p>
+<p>短按+长按电源开机后，等待1分钟左右，待G1进入零力矩状态，按下 L1 + A 进入阻尼状态，此时拉住G1肩部后把手，同时按下 L1 + UP 键，帮助G1进入预备状态，如下图所示。当 G1 被扶直站立后，可以按下 <strong>R1 + X（单自由度腰）</strong> 或者 <strong>R1 + Y（三自由度腰）</strong> 进入运控状态。</p>
+<p><img alt="" src="../assets/images/22fe7a5db55e8e51.webp"/></p>
+<h2 id="_9">悬挂开机</h2>
+<p><strong>Step1：悬挂 G1</strong></p>
+<p>请使用保护架悬挂 G1 以确保安全。</p>
+<p><img alt="" src="../assets/images/b90bcff18707c062.webp"/></p>
+<p><strong>Step2： 安装电池包</strong> </p>
+<p>将电池从机身侧面插入电池槽，注意安装方向,不要强行按压，以免损坏电池接口和卡扣，当听到“咔哒~”声，电池包安装完成。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">插入电池</th>
+<th style="text-align: center;">开机启动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="1" src="../assets/images/b45fb0a04491f2a9.webp"/></td>
+<td style="text-align: center;"><img alt="1" src="../assets/images/7a9db4eacdc13907.webp"/></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step3：机身摆放</strong></p>
+<p>将 G1 悬挂起来后，按自然位置摆放。</p>
+<p><img alt="" src="../assets/images/a5e7bd20957c447c.webp"/></p>
+<p><strong>Step4：开机启动</strong></p>
+<p>短按电池的电源开关键 1 次，再长按电源开关键 2 秒 以上，电池上电。</p>
+<p><strong>Step5：成功开机</strong></p>
+<p>开机全过程大概持续1分钟，请耐心等待。当所有关节处于零力矩状态，表示初始化成功。按下遥控器 <strong>L2 + B</strong> 进入阻尼以解锁控制，再按  <strong>L2 + UP</strong> 进入预备状态。此时 G1 姿态如下图所示。</p>
+<p><img alt="" src="../assets/images/2c064012bf8f499d.webp"/></p>
+<p><strong>Step6：下降悬挂绳</strong></p>
+<p>下降悬挂绳后，使 G1 双足触地。再次按下遥控器的 <strong>R2 + A</strong>，此时控制程序启动，G1 从预备状态进入运动状态，G1 开始调整步态后站立。</p>
+<p><img alt="" src="../assets/images/322b3595b14fbc6d.webp"/></p>
+<p><strong>Step7：解开悬挂绳</strong></p>
+<p>待 G1 运动稳定后，可以完全释放挂钩。此时可操作遥控器的左右摇杆控制 G1 移动。</p>
+<p>按下遥控器上的 <strong>START</strong> 可控制 G1 在站立状态和行走状态之间切换。</p>
+<p><img alt="" src="../assets/images/22fe7a5db55e8e51.webp"/></p>
+<div class="admonition note">
+<p class="admonition-title">注意:</p>
+<p><strong>急停</strong>：当 G1 出现意外状态时，按下 <strong>L2 + B</strong>，G1 进入<strong>阻尼模式</strong>，此模式下，设备将会因为失去平衡控制而摔倒。</p>
+</div>
+<h1 id="_10">调试模式</h1>
+<p>当 G1 处于悬挂状态下，并且处于阻尼状态，同时按下遥控器 <strong>L2 + R2</strong> 组合键，G1 进入调试模式。此时按下 <strong>L2 + A</strong> ，G1 会进入位置模式，摆出特定诊断姿势。</p>
+<p><img alt="" src="../assets/images/5755463d85da26d5.webp"/></p>
+<p>再按 <strong>L2 + B</strong>，G1 进入阻尼状态。此过程可以用于确认 G1 是否成功进入调试模式，或者用于硬件故障排查。此时可以开始使用 SDK 进行开发调试。</p>
+<p><img alt="" src="../assets/images/fe0db04e5927c021.webp"/></p>
+<div class="admonition note">
+<p class="admonition-title">注意:</p>
+<p>在当前系统版本下，一旦 G1 开机，内置的运动控制程序会自动启动，即使您没有操作遥控器。该程序会定期发送速度为 0 的指令。然而，如果您在这种状态下使用 SDK 进行底层开发，可能会导致指令冲突，从而使 G1 出现抖动的情况。</p>
+<p>因此，在需要使用 SDK 进行开发调试时，请务必确保 G1 已经进入调试模式，以停止运动控制程序发送指令，这样可以避免潜在的指令冲突问题。您可以按下 <strong>L2 + A</strong> 来确认是否进入了调试模式。</p>
+<p>如果按下 <strong>L2 + A</strong> 后行为与教学视频不相符，可多次按下 <strong>L2 + R2</strong>，确保进入调试模式。</p>
+</div>
+<h1 id="_11">关机流程</h1>
+<h2 id="_12">坐立关机</h2>
+<p>关机前，请先操控 G1 背向站立在椅子前，确保机器人处于静止状态，手扶肩部后把手，按下L1+LEFT，顺势搀扶G1落座，落座后，按下 <strong>L1 + A</strong>，G1 再次进入<strong>阻尼模式</strong>。</p>
+<p><img alt="" src="../assets/images/7ccdf2d2c9dc5d28.webp"/></p>
+<p>当 G1 处于阻尼模式后，您可以短按加长按电池开关键来安全关机。</p>
+<h2 id="_13">悬挂关机</h2>
+<p>重新将 G1 连接挂钩，在绳子对 G1 有拉力后，按下 <strong>L2 + B</strong>，G1 再次进入<strong>阻尼模式</strong>。</p>
+<p>当 G1 处于阻尼模式后，您可以短按加长按电池开关键来安全关机、或按下 <strong>L2 + R2</strong> 进入调试模式，或按下 <strong>L2 + UP</strong> 重新进入预备状态。</p>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

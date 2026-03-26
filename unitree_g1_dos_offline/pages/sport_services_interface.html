@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>高层运动服务接口 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link active" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>高层运动服务接口</h1>
+          <div class="meta">更新时间：2026-03-13 18:02:09</div>
+        </header>
+        <section class="content">
+          <h1 id="_1">高层运动服务接口</h1>
+<p>高层运动服务接口的主要功能为机器人整机控制和上肢控制。整机控制可以控制机器人的模式切换与移动，提供 RPC 接口；上肢控制可以在运行机器人内置移动控制器的同时，单独控制上肢电机完成操作任务，提供 DDS 接口。</p>
+<div class="admonition note">
+<p class="admonition-title">注意：</p>
+<p>高层运动服务依赖于内置运控，进入调试模式后内置运控完全退出，高层运动服务失效。</p>
+</div>
+<h1 id="rpc">RPC接口</h1>
+<h2 id="_2">调用方式</h2>
+<p>用户可以创建 unitree::robot::g1::LocoClient 对象，通过成员函数发送请求，内置的高层运动服务响应请求，执行操作。</p>
+<pre><code class="language-C++">#include &lt;unitree/robot/g1/loco/g1_loco_client.hpp&gt;
+#include &lt;unitree/robot/g1/loco/g1_loco_api.hpp&gt;
+
+unitree::robot::g1::LocoClient client;
+</code></pre>
+<h2 id="_3">接口介绍</h2>
+<h3 id="_4">普通接口</h3>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>Damp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td>int32_t Damp()</td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>机器人进入阻尼模式。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>无。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>最终状态切换是否成功取决于内置运控的状态切换逻辑，请参考前文《模式切换》。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>Start</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td>int32_t Start()</td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>通过模式切换，进入主运控。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>无。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>最终状态切换是否成功取决于内置运控的状态切换逻辑，请参考前文《模式切换》。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>Squat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td>int32_t Squat()</td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>通过模式切换，进入下蹲模式。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>无。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>最终状态切换是否成功取决于内置运控的状态切换逻辑，请参考前文《模式切换》。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>Sit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td>int32_t Sit()</td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>通过模式切换，进入落座模式。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>无。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>最终状态切换是否成功取决于内置运控的状态切换逻辑，请参考前文《模式切换》。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>StandUp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td>int32_t StandUp()</td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>通过模式切换，进入站立模式。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>无。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>最终状态切换是否成功取决于内置运控的状态切换逻辑，请参考前文《模式切换》。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>ZeroTorque</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td>int32_t ZeroTorque()</td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>通过模式切换，进入零力矩模式。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>无。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>最终状态切换是否成功取决于内置运控的状态切换逻辑，请参考前文《模式切换》。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>Move</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td>int32_t Move(float vx, float vy, float vyaw)</td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>发送速度指令。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>vx: 前进速度； vy: 水平速度； vyaw：旋转速度。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>速度指令默认生效 1 秒，可通过ContinuousGait函数修改行为。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>Move</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td>int32_t Move(float vx, float vy, float vyaw, bool continous_move)</td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>发送速度指令。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>vx: 前进速度； vy: 水平速度； vyaw：旋转速度； continous_move：是否持续生效。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>continous_move=true时，速度指令长期生效；反之仅生效1秒。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>StopMove</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td>int32_t StopMove()</td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>将速度指令置零。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>无。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>无。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>SwitchMoveMode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td>int32_t ContinuousGait(bool flag)</td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>修改 Move(float vx, float vy, float vyaw)的行为。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>flag：设置 true  开启Move()持续响应模式，在运动模式下，会一直响应最新的Move指令。false  为关闭Move()持续响应模式，如果未收到新的Move指令，会延迟1s后自动停止。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>默认为关闭持续响应模式，为了安全，建议谨慎开启持续响应模式。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>BalanceStand</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td>int32_t BalanceStand()</td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>进入主运控的平衡站立模式。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>无。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>平衡站立模式下，速度指令为 0 且机器人平稳时，机器人停止踏步，仅在必要时踏步。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>ContinuousGait</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td>int32_t ContinuousGait(bool flag)</td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>持续移动。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>flag：设置 true  为开启，false  为关闭。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>启动连续步态后，机器人会不断保持踏步状态，即使当前速度为 0。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">专家接口</h3>
+<p>模式ID说明
+|ID|模式|备注|
+|---|---|---|
+|0|零力矩|  无平衡控制 |
+|1|阻尼|   无平衡控制 |
+|2|位控下蹲|  无平衡控制  |<br/>
+|3|位控落座| 无平衡控制  |
+|4|锁定站立| 无平衡控制  |
+|706| 平衡下蹲、蹲起|  \  |
+|702| 躺起|  \  |
+|500|常规运控| \ |
+|501|常规运控-3Dof-waist| \ |<br/>
+|801| 走跑运控| 29dof设备ai_sport 8.6.x.x版本后更新为802 |</p>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>GetFsmId</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td>int32_t GetFsmId(int&amp; fsm_id)</td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>获取运控所在模式。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>fsm_id：用于接收当前模式id。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>详见模式ID说明。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>SetFsmId</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td>int32_t SetFsmId(int fsm_id)</td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>设置运控模式。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>fsm_id：目标模式id。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>详见模式ID说明以及模式切换说明。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>GetFsmMode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td>int32_t GetFsmMode(int&amp; fsm_mode)</td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>获取主运控是否处于站立状态。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>fsm_mode：用于接收状态。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>0：站立状态；1：移动状态。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>SetVelocity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td>int32_t SetVelocity(float vx, float vy, float omega, float duration = 1.f)</td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>设置速度。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>vx: 前进速度；vy：水平速度；omega: 旋转速度；duration：速度指令持续时间。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>程序会自动设置裁剪到允许范围。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>SetSpeedMode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td>int32_t SetSpeedMode(int speed_mode)</td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>走跑模式下调整最高速度。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>speed_mode: 速度模式，0:1.0m/s;1:2.0m/s;2:2.7m/s;3:3.0m/s</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<h1 id="dds">DDS 接口</h1>
+<p>DDS 接口支持上肢控制，仅能在锁定站立、运控 1 与运控 2 中使用。</p>
+<h2 id="_6">调用方式</h2>
+<p>用户可以根据<a href="dds_services_interface.html">《DDS 通信接口》</a>与底层服务<a href="basic_services_interface.html">《底层服务接口》</a>，向 rt/arm_sdk 话题发送 LowCmd 类型的消息。参照<a href="joint_motor_sequence.html">《关节电机顺序》</a>，为上肢设置电机指令。</p>
+<h2 id="_7">接口介绍</h2>
+<p>下表为 <code>LowCmd_.motor_cmd_</code>中每个有效元素的含义，其余元素均无效。</p>
+<table>
+<thead>
+<tr>
+<th>索引</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>29</td>
+<td>MotorCmd_.q 表示权重，取值范围为 [0.0, 1.0]。</td>
+</tr>
+<tr>
+<td>12 - 28</td>
+<td>腰部与上肢电机控制参数。</td>
+</tr>
+</tbody>
+</table>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

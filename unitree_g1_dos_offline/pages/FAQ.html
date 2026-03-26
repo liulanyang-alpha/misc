@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>常见问题 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link active" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>常见问题</h1>
+          <div class="meta">更新时间：2026-03-17 17:47:26</div>
+        </header>
+        <section class="content">
+          <h2 id="g1">G1 是否支持拓展坞？</h2>
+<blockquote>
+<p>不支持，edu版本会内置Jetson ORIN NX</p>
+</blockquote>
+<h2 id="jetson-orin-nx-wifi">Jetson Orin Nx WIFI 配置方法</h2>
+<blockquote>
+<h3 id="ap">AP模式：</h3>
+<p>1.借助create_ap进行ap模式的创建,仓库地址：<a href="https://gitcode.com/gh_mirrors/cr/create_ap.git" rel="noopener noreferrer" target="_blank">https://gitcode.com/gh_mirrors/cr/create_ap.git</a></p>
+<pre><code class="language-bash">git clone https://gitcode.com/gh_mirrors/cr/create_ap.git
+cd ./create_ap/
+make install
+</code></pre>
+<p>2.安装必要的软件</p>
+<pre><code class="language-bash">sudo apt install -y hostapd dnsmasq network-manager
+</code></pre>
+<p>3.连接该wifi，wifi的名字是MyAccessPoint</p>
+<pre><code class="language-bash">create_ap wlan0 eth0 MyAccessPoint 
+</code></pre>
+<p>具体的其他使用方式方法参考：
+<a href="https://gitcode.com/gh_mirrors/cr/create_ap/overview?utm_source=csdn_github_accelerator&amp;isLogin=1" rel="noopener noreferrer" target="_blank">https://gitcode.com/gh_mirrors/cr/create_ap/overview?utm_source=csdn_github_accelerator&amp;isLogin=1</a></p>
+<h3 id="sta">STA模式：</h3>
+<h4 id="wap_cliwifi">wap_cli配置WIFI方式</h4>
+<p>STA模式是常见的配置WIFI的方式，网上的教程很多，下面以wpa_cli为例
+进入专用控制台,默认选择wlan0</p>
+<pre><code class="language-bash"> wpa_cli
+</code></pre>
+<p>1.添加网络，获取网络的ID号</p>
+<pre><code class="language-bash">    add_network
+</code></pre>
+<p>2.经过第（1）后得到一个ID号，假设ID号是1,然后连接你的wifi</p>
+<pre><code class="language-bash"> set_network  1  ssid  “your wifi name”
+ ```
+3.设置连接的WIFI的密码
+```bash
+    set_network  1  psk  “your wifi key”
+ ```
+4.使能WIFI
+```bash
+enable_network 1
+</code></pre>
+<p>5.保存WIFI信息</p>
+<pre><code class="language-bash">save_config
+</code></pre>
+<p>6.查看wifi连接状态</p>
+<pre><code class="language-bash">status
+</code></pre>
+<p>7.退出</p>
+<pre><code class="language-bash">quit
+</code></pre>
+<h4 id="nmcliwifi">nmcli配置WIFI方式</h4>
+<p>部分用户发现wpa_cli无法使用，可以使用nmcli方式配置WIFI上网。</p>
+<ol>
+<li>使能 waln0</li>
+</ol>
+<pre><code>sudo ifconfig wlan0 up
+</code></pre>
+<ol start="2">
+<li>打开无线网卡</li>
+</ol>
+<pre><code>sudo nmcli radio wifi on
+</code></pre>
+<ol start="3">
+<li>查看wifi是否使能</li>
+</ol>
+<pre><code>nmcli radio wifi
+</code></pre>
+<ol start="4">
+<li>链接wifi</li>
+</ol>
+<pre><code>nmcli device wifi connect &lt;SSID&gt; password &lt;password&gt;
+</code></pre>
+</blockquote>
+<h2 id="g1130joint-limttransient-over-voltage">G1设备升级最新的固件≥1.3.0后，报关节限位异常，瞬间过压（Joint limt/Transient Over Voltage）</h2>
+<blockquote>
+<p>新的固件版本优化了关节标定精度，之前的标定有概率精度不满足要求，需要重新标定。</p>
+</blockquote>
+<h3 id="wifi">设备配置网络时，出现网络WiFi配置失败。</h3>
+<blockquote>
+<p>此问题多跟无线环境有关，尤其时展会等场所，无线环境比较复杂，干扰比较多。可以将G1设备带到干扰少一点的地方，尝试网络配置。</p>
+</blockquote>
+<h3 id="g1-29app">G1-29自由度设备，解锁腰部固定件(APP同步关闭锁腰开关)之后，报关节超限位错误。</h3>
+<blockquote>
+<p>原因：腰部两个关节电机没有标定。<br/>
+解决方法：重新标定 ，可参考标定视频教程 </p>
+<p><a href="https://www.unitree.com/cn/app/g1" rel="noopener noreferrer" target="_blank">关节标定(29 自由度)</a></p>
+<p>标定时，需要借助<code>腰部固定件</code>给腰部电机卡限位。同时APP端，<strong>腰部电机锁定开关</strong>一定要设置为<code>关闭</code>状态</p>
+</blockquote>
+<h3 id="jetson-orin-nx">Jetson Orin NX系统恢复方法</h3>
+<blockquote>
+<p>镜像恢复流程可参考：</p>
+<p><a href="https://support.unitree.com/home/zh/developer/module_update" rel="noopener noreferrer" target="_blank">Go2 NX镜像恢复</a></p>
+<pre><code class="language-bash"># G1 NX出厂镜像名称：g1_nx_Jetpack5.1.1_20250930.img.bz2
+链接: https://pan.baidu.com/s/1GMs-DE8SSHYTSNIVKsoktw?pwd=7riu 提取码: 7riu
+
+# G1 NX出厂镜像历史版本(不推荐)
+链接: https://pan.baidu.com/s/1yPnZ6hCGSEAlpht3YvNzAQ?pwd=1221 提取码：1221
+</code></pre>
+<ol>
+<li>把镜像烧写到第一步的NVME存储设备中，执行如下命令：</li>
+</ol>
+<pre><code class="language-bash"># g1_nx_Jetpack5.1.1_20250930.img.bz2 为镜像名称
+bzip2 -dc g1_nx_Jetpack5.1.1_20250930.img.bz2 | sudo dd of=/dev/sdc status=progress
+</code></pre>
+</blockquote>
+<h3 id="jetson-orin-nx_1">Jetson Orin NX系统恢复后磁盘扩容方法</h3>
+<blockquote>
+<p>烧录系统后，存在识别到的磁盘容量变小的情况，可以使用如下方法进行扩容。</p>
+<h4 id="_1">前期准备</h4>
+<h5 id="_2">所需设备</h5>
+<ol>
+<li>安装有 Ubuntu 系统的电脑</li>
+<li>NVME M.2移动硬盘盒</li>
+</ol>
+<p>后续所有操作均在安装有 Ubuntu 系统的电脑上进行。</p>
+<h5 id="_3">软件安装</h5>
+<p>使用以下命令安装所需软件：</p>
+<pre><code>sudo apt update
+sudo apt-get install gparted
+</code></pre>
+<h4 id="_4">操作流程</h4>
+<ol>
+<li>启动 gparted 工具，执行如下命令：</li>
+</ol>
+<pre><code>sudo gparted
+</code></pre>
+<ol start="2">
+<li>弹出对话框后，选择<code>fix</code>选项，操作如下图所示：
+<img alt="" src="../assets/images/28998d000fb5f192.webp"/></li>
+<li>进入 Gparted 界面后，点击右上角区域，切换至需要进行设置的磁盘（选择已烧录 G1 系统的磁盘），操作如下所示：
+<img alt="" src="../assets/images/a6cae21f78844241.webp"/></li>
+<li>
+<p>完成磁盘切换后，可查看磁盘中剩余的未使用空间，如下图所示：
+<img alt="" src="../assets/images/75ec99d4b77e9239.webp"/></p>
+</li>
+<li>
+<p>在<code>/dev/sdb1</code>上点击鼠标右键，选择<code>Resize/Move</code>选项，如下图所示：
+<img alt="" src="../assets/images/d1c12f77c55ee47b.webp"/></p>
+</li>
+<li>
+<p>使用鼠标左键拖动对应下图红色区域至底部，操作如下图所示：
+<img alt="" src="../assets/images/d7f63e89679eb646.webp"/></p>
+</li>
+<li>
+<p>拖动完成后，界面状态如下图所示：
+<img alt="" src="../assets/images/d8ba7adfa3f6762a.webp"/></p>
+</li>
+<li>
+<p>点击<code>Resize/Move</code>按钮，如下图所示：
+<img alt="" src="../assets/images/3e3e295d21a5d96f.webp"/></p>
+</li>
+<li>
+<p>出现如下界面后，点击对号进行应用，如下图所示：
+<img alt="" src="../assets/images/6085a1f18862de38.webp"/></p>
+</li>
+<li>
+<p>在弹出的界面中，点击<code>Apply</code>按钮，如下图所示：
+<img alt="" src="../assets/images/ab3d92c26a50b21e.webp"/></p>
+</li>
+<li>
+<p>等待操作完成，如下图所示：
+  <img alt="" src="../assets/images/5721277f8e9f07de.webp"/></p>
+</li>
+<li>
+<p>操作完成后，点击<code>Close</code>按钮，如下图所示：
+<img alt="" src="../assets/images/b267c15fc1f67474.webp"/></p>
+</li>
+</ol>
+<p>此时，G1 磁盘扩容操作已完成，可在电脑端弹出该磁盘，随后将其安装到 G1 设备上即可使用。</p>
+</blockquote>
+<h3 id="jetson-orin-nxwifi">Jetson Orin NX系统恢复后wifi启用方法</h3>
+<p>注：<code>g1_nx_Jetpack5.1.1_20250930.img.bz2</code>镜像已经自带wifi，烧录后不需要使用该方法进行wifi启用。</p>
+<blockquote>
+<p>使用以下命令安装所需软件工具：</p>
+<pre><code>sudo apt update
+sudo apt install dkms debhelper build-essential devscripts libncurses-dev flex bison libssl-dev
+</code></pre>
+<p>下载wifi驱动deb安装包：
+<a href="../assets/files/3941fb7026df4a1d.zip">wifi驱动安装包</a>
+下载完成解压后，可以看到<code>rtl8852bu-dkms_1.19.14_arm64.deb</code>文件。
+执行如下命令进行安装：</p>
+<pre><code>sudo dpkg -i ./rtl8852bu-dkms_1.19.14_arm64.deb 
+</code></pre>
+<p><strong>注意：wifi驱动的安装过程较长，请耐心等待，大概20~30分钟左右，查看是否在运行，可以通过如下命令：</strong></p>
+<pre><code class="language-bash">sudo tail -f /var/lib/dkms/rtl8852bu/1.19.14/build/make.log
+</code></pre>
+<p>安装完成后，使用如下命令进行重启：</p>
+<pre><code>sudo reboot
+</code></pre>
+<p>重启后，可以通过以下命令查看wifi驱动是否正常：</p>
+<pre><code>ifconfig -a
+</code></pre>
+<p>运行上面命令，出现以下内容，表明驱动安装成功。</p>
+<pre><code>unitree@ubuntu:~$ ifconfig -a
+...
+...
+wlan0: flags=4098&lt;BROADCAST,MULTICAST&gt;  mtu 1500
+        ether fc:23:cd:8f:6f:f3  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+</code></pre>
+</blockquote>
+<h3 id="nxedugo">对于深度相机接入NX开发版的EDU+设备，Go界面无法预览视频流问题</h3>
+<div class="admonition warning">
+<p class="admonition-title">检查接线</p>
+<p>目前发货版本的G1 EDU+机器人默认已安装相关服务，若看不到画面，请确认脖子后方的USB-C线插入到肩部的Type-C接口上了。</p>
+</div>
+<blockquote>
+<p>是由于NX版缺少必要的补丁文件，需要将NX板升级必要的补丁文件，方法如下：</p>
+<h4 id="_5">下载补丁文件</h4>
+<p><a href="https://oss-global-cdn.unitree.com/static/ad3297c5c9bb40368c3e0c9febefa375.zip" rel="noopener noreferrer" target="_blank">NX系统补丁</a></p>
+<p>1、将压缩包文件拷贝到Nx板，IP:192.168.123.164    用户名：unitree   密码：123</p>
+<p>```
+  scp ./g1plus_pc4_unitree_install.zip unitree@192.168.123.164:~/</p>
+<pre><code>
+2、ssh 登陆Nx板，IP:192.168.123.164    用户名：unitree   密码：123
+
+</code></pre>
+<p>ssh unitree@192.168.123.164</p>
+<pre><code>
+3、切换到root权限，密码123
+
+</code></pre>
+<p>sudo su root</p>
+<pre><code>
+4、解压g1plus_pc4_unitree_install.zip文件
+
+</code></pre>
+<p>unzip g1plus_pc4_unitree_install.zip</p>
+<pre><code>
+
+5、进入g1plus_pc4_unitree_install目录，并执行install脚本
+
+</code></pre>
+<p>chmod -R 777 /home/unitree/g1plus_pc4_unitree_install
+cd /home/unitree/g1plus_pc4_unitree_install/
+rm /unitree/ -rf
+ ./install</p>
+<pre><code>
+6、验证是否安装成功，通过PS命令查看master_service进程是否在线
+
+</code></pre>
+<p>ps -ef | grep "master_service" | grep -v grep</p>
+<p>以上操作完成之后，可以联系技术支持同事升级
+- Patch PC4和Video Hub PC4组件更新到最新
+- 重启设备</p>
+
+<h2 id="g1io">G1肩部板IO使用方法说明</h2>
+<h3 id="g1-nxio">G1-NX肩部板IO引脚说明</h3>
+<p><img alt="" src="../assets/images/f71dce50e05f86ae.webp"/></p>
+<table>
+<thead>
+<tr>
+<th>GPIO编号</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPIO1</td>
+<td>UART_TXD</td>
+</tr>
+<tr>
+<td>GPIO2</td>
+<td>UART_RXD</td>
+</tr>
+<tr>
+<td>GPIO3</td>
+<td>I2C_SCL</td>
+</tr>
+<tr>
+<td>GPIO4</td>
+<td>I2C_SDA</td>
+</tr>
+<tr>
+<td>GPIO5</td>
+<td>GPIO</td>
+</tr>
+<tr>
+<td>GPIO6</td>
+<td>GPIO</td>
+</tr>
+</tbody>
+</table>
+<h3 id="uart">UART使用说明</h3>
+<p>串口参数：波特率9600，数据位8位，无校验，停止位1位。
+G1系统启动后，GPIO1和GPIO2被配置为UART功能，可通过以下方法进行简单使用：
+```bash</p>
+<h1 id="test">串口输出 test</h1>
+<p>echo "test" &gt; /dev/ttyTHS0</p>
+<h1 id="_1">查看串口接收到的数据</h1>
+<p>cat /dev/ttyTHS0</p>
+<h3 id="i2c">I2C使用说明</h3>
+<p>G1系统启动后，GPIO3和GPIO4被配置为I2C功能。
+当I2C设备连接对应引脚后，可以使用如下命令探测设备：</p>
+<pre><code class="language-bash">root@ubuntu:/home/unitree# i2cdetect -y -r 0
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: 50 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --  
+</code></pre>
+<h3 id="gpio">GPIO使用说明</h3>
+<p>G1-NX系统启动后，GPIO5和GPIO6被配置为GPIO功能，可通过以下方法进行使用：
+<img alt="" src="../assets/images/fd2f06c3abbd56ba.webp"/></p>
+<h4 id="sysfsgpio">Sysfs接口控制GPIO</h4>
+<p><strong>注意：</strong> 使用时，使用以下命令切换到root:</p>
+<pre><code class="language-bash">su root
+</code></pre>
+<h5 id="gpio_1">初始化使用GPIO</h5>
+<p>将GPIO从内核空间暴露到用户空间：</p>
+<pre><code class="language-bash"># 导出GPIO5（编号330）
+echo 330 &gt; /sys/class/gpio/export
+
+# 导出GPIO6（编号331）
+echo 331 &gt; /sys/class/gpio/export
+</code></pre>
+<h5 id="gpio_2">设置GPIO为输出模式</h5>
+<p>用于控制外部设备，如LED、继电器等：</p>
+<pre><code class="language-bash"># GPIO5设为输出
+echo out &gt; /sys/class/gpio/PCC.02/direction
+
+# GPIO6设为输出
+echo out &gt; /sys/class/gpio/PCC.03/direction
+</code></pre>
+<h5 id="gpio_3">输出模式下设置GPIO电平值</h5>
+<p>控制 GPIO 输出高电平（3.3V）或低电平（0V）：</p>
+<pre><code class="language-bash"># GPIO5输出高电平
+echo 1 &gt; /sys/class/gpio/PCC.02/value
+
+# GPIO5输出低电平
+echo 0 &gt; /sys/class/gpio/PCC.02/value
+
+# GPIO6输出高电平
+echo 1 &gt; /sys/class/gpio/PCC.03/value
+
+# GPIO6输出低电平
+echo 0 &gt; /sys/class/gpio/PCC.03/value
+</code></pre>
+<h5 id="gpio_4">设置GPIO为输入模式</h5>
+<p>如果需要将 GPIO 作为输入使用，使用如下方法：</p>
+<pre><code class="language-bash"># 设置GPIO5为输入模式
+echo in &gt; /sys/class/gpio/PCC.02/direction
+
+# 设置GPIO6为输入模式
+echo in &gt; /sys/class/gpio/PCC.03/direction
+</code></pre>
+<h5 id="gpio_5">读取输入模式下的 GPIO 值</h5>
+<p>当 GPIO 设为输入模式后，可读取外部输入的电平：</p>
+<pre><code class="language-bash"># 读取GPIO5的输入电平（0为低电平，1为高电平） 
+cat /sys/class/gpio/PCC.02/value 
+
+# 读取GPIO6的输入电平 
+cat /sys/class/gpio/PCC.03/value
+</code></pre>
+<h5 id="gpio_6">查看 GPIO 当前方向（输入 / 输出）</h5>
+<p>检查 GPIO 当前是输入还是输出模式：</p>
+<pre><code class="language-bash"># 查看GPIO5的方向 
+cat /sys/class/gpio/PCC.02/direction 
+
+# 查看GPIO6的方向 
+cat /sys/class/gpio/PCC.03/direction
+</code></pre>
+<h5 id="gpio_7">释放GPIO</h5>
+<p>当不再使用GPIO时，需要取消导出以释放资源：</p>
+<pre><code class="language-bash"># 取消导出GPIO5（对应编号330） 
+echo 330 &gt; /sys/class/gpio/unexport 
+
+# 取消导出GPIO6（对应编号331） 
+echo 331 &gt; /sys/class/gpio/unexport
+</code></pre>
+<h4 id="libgpiodgpio">Libgpiod控制GPIO</h4>
+<p>需要先连接网络，并安装gpiod。该方法不需要登录root。</p>
+<h5 id="_6">准备工作</h5>
+<pre><code class="language-bash">sudo apt install gpiod
+</code></pre>
+<h4 id="_7">映射关系</h4>
+<p>G1的GPIO对应Libgpio中的映射关系为：</p>
+<table>
+<thead>
+<tr>
+<th>GPIO</th>
+<th>sysfs</th>
+<th>Libgpiod</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPIO5</td>
+<td>PCC.02</td>
+<td>gpiochip 1 14</td>
+</tr>
+<tr>
+<td>GPIO6</td>
+<td>PCC.03</td>
+<td>gpiochip 1 15</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>G1一共有两块GPIO芯片，其中GPIO5、GPIO6在1号芯片上，其余在0号芯片上。可以通过<code>gpiodetect</code>查看当前有几块芯片及其名称，通过<code>gpioinfo [芯片号]</code>来查看对应芯片下的IO口映射名称和状态。</p>
+</blockquote>
+<h5 id="_8">输出电平</h5>
+<p>Libgpiod会自动处理使能状态，通过命令<code>gpioset gpiochip[芯片号] [引脚映射号]=[电平]</code>可以将GPIO引脚设置为输出模式，并指定电平。</p>
+<pre><code class="language-bash">gpioset gpiochip1 14=0
+gpioset gpiochip1 14=1
+</code></pre>
+<h5 id="_9">读取电平</h5>
+<p>Libgpiod会自动处理使能状态，通过命令<code>gpioget gpiochip[芯片号] [引脚映射号]</code>可以将GPIO引脚设置为输入模式，并读取电平。</p>
+<pre><code class="language-bash">gpioget gpiochip1 14
+</code></pre>
+<p>效果：</p>
+<p><img alt="" src="../assets/images/437280d8a7ca516d.webp"/></p>
+</blockquote>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RPC例程 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link active" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>RPC例程</h1>
+          <div class="meta">更新时间：2025-09-15 12:36:13</div>
+        </header>
+        <section class="content">
+          <h1 id="rpc">RPC例程</h1>
+<p>本例程通过高层运控的 RPC 接口，实现了机器人的模式切换，以及站立，运动等的控制。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ai_sport &gt;= 8.2.0.0版本为LOCO_SERVICE_NAME = "sport";
+低于该版本 LOCO_SERVICE_NAME = "loco"。</p>
+</div>
+<p>程序源代码可以位于 <code>unitree_sdk2/example/g1/high_level/g1_loco_client_example.cpp</code> ，也可通过 <a href="https://github.com/unitreerobotics/unitree_sdk2" rel="noopener noreferrer" target="_blank">此处</a> 访问。运行方式与<a href="quick_development.html">《快速开发》</a>类似，但无需进入调试模式。</p>
+<h1 id="_1">例程解析</h1>
+<h2 id="_2">主要逻辑</h2>
+<p>通过在启动的时候指定启动参数，可以实现不同的控制效果。</p>
+<h2 id="_3">参数说明</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th style="text-align: center;">赋值示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--network_interface</code></td>
+<td>指定通信的网卡名</td>
+<td style="text-align: center;"><code>enp3s0</code></td>
+</tr>
+<tr>
+<td><code>--get_fsm_id</code></td>
+<td>获取机器人上层控制器的状态机id</td>
+<td style="text-align: center;">/</td>
+</tr>
+<tr>
+<td><code>--get_fsm_mode</code></td>
+<td>获取机器人上层控制器的状态机模式</td>
+<td style="text-align: center;">/</td>
+</tr>
+<tr>
+<td><code>--get_phase</code></td>
+<td>获取机器人的相位</td>
+<td style="text-align: center;">/</td>
+</tr>
+<tr>
+<td><code>--set_fsm_id</code></td>
+<td>设置状态机的id</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td><code>--set_velocity</code></td>
+<td>设置运动速度[vx vy omega duration(可选)]</td>
+<td style="text-align: center;">"0.5 0 0 1"</td>
+</tr>
+<tr>
+<td><code>--damp</code></td>
+<td>进入阻尼模式</td>
+<td style="text-align: center;">/</td>
+</tr>
+<tr>
+<td><code>--start</code></td>
+<td>进入主运控</td>
+<td style="text-align: center;">/</td>
+</tr>
+<tr>
+<td><code>--squat</code></td>
+<td>蹲下</td>
+<td style="text-align: center;">/</td>
+</tr>
+<tr>
+<td><code>--sit</code></td>
+<td>落座</td>
+<td style="text-align: center;">/</td>
+</tr>
+<tr>
+<td><code>--stand_up</code></td>
+<td>站立</td>
+<td style="text-align: center;">/</td>
+</tr>
+<tr>
+<td><code>--zero_torque</code></td>
+<td>零力矩模式</td>
+<td style="text-align: center;">/</td>
+</tr>
+<tr>
+<td><code>--stop_move</code></td>
+<td>停止运动</td>
+<td style="text-align: center;">/</td>
+</tr>
+<tr>
+<td><code>--balance_stand</code></td>
+<td>平衡站立</td>
+<td style="text-align: center;">/</td>
+</tr>
+<tr>
+<td><code>--continous_gait</code></td>
+<td>连续步态</td>
+<td style="text-align: center;">true</td>
+</tr>
+<tr>
+<td><code>--switch_move_mode</code></td>
+<td>切换运动模式</td>
+<td style="text-align: center;">true</td>
+</tr>
+<tr>
+<td><code>--move</code></td>
+<td>以一定的速度运动[vx vy omega]</td>
+<td style="text-align: center;">"0.5 0 0"</td>
+</tr>
+<tr>
+<td><code>--set_speed_mode</code></td>
+<td>设置走跑运控下的最高速度</td>
+<td style="text-align: center;">0/1/2/3</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">启动示例</h2>
+<p>在$x$方向以$0.5m/s$的速度运动$1s$</p>
+<pre><code class="language-bash">./g1_loco_client --network_interface=enp3s0 --set_velocity="0.5 0 0 1"
+</code></pre>
+<h2 id="_5">代码解析</h2>
+<h3 id="_6">解析参数</h3>
+<p>如果参数带有值，格式为<code>--${key}=${value}</code> 或者<code>--${key}="${value}"</code>；</p>
+<p>如果参数没有值，格式为<code>--${key}</code></p>
+<pre><code class="language-C++">  std::map&lt;std::string, std::string&gt; args = {{"network_interface", "lo"}};
+
+  std::map&lt;std::string, std::string&gt; values;
+  for (int i = 1; i &lt; argc; ++i) {
+    std::string arg = argv[i];
+    if (arg.substr(0, 2) == "--") {
+      size_t pos = arg.find("=");
+      std::string key, value;
+      if (pos != std::string::npos) {
+        key = arg.substr(2, pos - 2);
+        value = arg.substr(pos + 1);
+
+        if (value.front() == '"' &amp;&amp; value.back() == '"') {
+          value = value.substr(1, value.length() - 2);
+        }
+      } else {
+        key = arg.substr(2);
+        value = "";
+      }
+      if (args.find(key) != args.end()) {
+        args[key] = value;
+      } else {
+        args.insert({{key, value}});
+      }
+    }
+  }
+</code></pre>
+<h3 id="dds">初始化dds通信实例</h3>
+<pre><code class="language-c++">  unitree::robot::ChannelFactory::Instance()-&gt;Init(0, args["network_interface"]);
+</code></pre>
+<h3 id="_7">初始化上层控制的客户端</h3>
+<pre><code class="language-C++">
+  unitree::robot::g1::LocoClient client;
+
+  client.Init();
+  client.SetTimeout(10.f);
+
+</code></pre>
+<h3 id="_8">响应命令</h3>
+<p>逐个解析命令行参数，并通过调用相应的API实现对机器人的上层控制。</p>
+<pre><code class="language-C++">  for (const auto &amp;arg_pair : args) {
+    std::cout &lt;&lt; "Processing command: [" &lt;&lt; arg_pair.first &lt;&lt; "] with param: ["
+              &lt;&lt; arg_pair.second &lt;&lt; "] ..." &lt;&lt; std::endl;
+    if (arg_pair.first == "network_interface") {
+      continue;
+    }
+
+    if (arg_pair.first == "get_fsm_id") {
+      int fsm_id;
+      client.GetFsmId(fsm_id);
+      std::cout &lt;&lt; "current fsm_id: " &lt;&lt; fsm_id &lt;&lt; std::endl;
+    }
+
+    if (arg_pair.first == "get_fsm_mode") {
+      int fsm_mode;
+      client.GetFsmMode(fsm_mode);
+      std::cout &lt;&lt; "current fsm_mode: " &lt;&lt; fsm_mode &lt;&lt; std::endl;
+    }
+
+    if (arg_pair.first == "get_balance_mode") {
+      int balance_mode;
+      client.GetBalanceMode(balance_mode);
+      std::cout &lt;&lt; "current balance_mode: " &lt;&lt; balance_mode &lt;&lt; std::endl;
+    }
+
+    if (arg_pair.first == "get_swing_height") {
+      float swing_height;
+      client.GetSwingHeight(swing_height);
+      std::cout &lt;&lt; "current swing_height: " &lt;&lt; swing_height &lt;&lt; std::endl;
+    }
+
+    if (arg_pair.first == "get_stand_height") {
+      float stand_height;
+      client.GetStandHeight(stand_height);
+      std::cout &lt;&lt; "current stand_height: " &lt;&lt; stand_height &lt;&lt; std::endl;
+    }
+
+    if (arg_pair.first == "get_phase") {
+      std::vector&lt;float&gt; phase;
+      client.GetPhase(phase);
+      std::cout &lt;&lt; "current phase: (";
+      for (const auto &amp;p : phase) {
+        std::cout &lt;&lt; p &lt;&lt; ", ";
+      }
+      std::cout &lt;&lt; ")" &lt;&lt; std::endl;
+    }
+
+    if (arg_pair.first == "set_fsm_id") {
+      int fsm_id = std::stoi(arg_pair.second);
+      client.SetFsmId(fsm_id);
+      std::cout &lt;&lt; "set fsm_id to " &lt;&lt; fsm_id &lt;&lt; std::endl;
+    }
+
+    if (arg_pair.first == "set_balance_mode") {
+      int balance_mode = std::stoi(arg_pair.second);
+      client.SetBalanceMode(balance_mode);
+      std::cout &lt;&lt; "set balance_mode to " &lt;&lt; balance_mode &lt;&lt; std::endl;
+    }
+
+    if (arg_pair.first == "set_swing_height") {
+      float swing_height = std::stof(arg_pair.second);
+      client.SetSwingHeight(swing_height);
+      std::cout &lt;&lt; "set swing_height to " &lt;&lt; swing_height &lt;&lt; std::endl;
+    }
+
+    if (arg_pair.first == "set_stand_height") {
+      float stand_height = std::stof(arg_pair.second);
+      client.SetStandHeight(stand_height);
+      std::cout &lt;&lt; "set stand_height to " &lt;&lt; stand_height &lt;&lt; std::endl;
+    }
+
+    if (arg_pair.first == "set_velocity") {
+      std::vector&lt;float&gt; param = stringToFloatVector(arg_pair.second);
+      auto param_size = param.size();
+      float vx, vy, omega, duration;
+      if (param_size == 3) {
+        vx = param.at(0);
+        vy = param.at(1);
+        omega = param.at(2);
+        duration = 1.f;
+      } else if (param_size == 4) {
+        vx = param.at(0);
+        vy = param.at(1);
+        omega = param.at(2);
+        duration = param.at(3);
+      } else {
+        std::cerr &lt;&lt; "Invalid param size for method SetVelocity: " &lt;&lt; param_size
+                  &lt;&lt; std::endl;
+        return 1;
+      }
+
+      client.SetVelocity(vx, vy, omega, duration);
+      std::cout &lt;&lt; "set velocity to " &lt;&lt; arg_pair.second &lt;&lt; std::endl;
+    }
+
+    if (arg_pair.first == "damp") {
+      client.Damp();
+    }
+
+    if (arg_pair.first == "start") {
+      client.Start();
+    }
+
+    if (arg_pair.first == "squat") {
+      client.Squat();
+    }
+
+    if (arg_pair.first == "sit") {
+      client.Sit();
+    }
+
+    if (arg_pair.first == "stand_up") {
+      client.StandUp();
+    }
+
+    if (arg_pair.first == "zero_torque") {
+      client.ZeroTorque();
+    }
+
+    if (arg_pair.first == "stop_move") {
+      client.StopMove();
+    }
+
+    if (arg_pair.first == "high_stand") {
+      client.HighStand();
+    }
+
+    if (arg_pair.first == "low_stand") {
+      client.LowStand();
+    }
+
+    if (arg_pair.first == "balance_stand") {
+      client.BalanceStand();
+    }
+
+    if (arg_pair.first == "continous_gait") {
+      bool flag;
+      if (arg_pair.second == "true") {
+        flag = true;
+      } else if (arg_pair.second == "false") {
+        flag = false;
+      } else {
+        std::cerr &lt;&lt; "invalid argument: " &lt;&lt; arg_pair.second &lt;&lt; std::endl;
+        return 1;
+      }
+      client.ContinuousGait(flag);
+    }
+
+    if (arg_pair.first == "switch_move_mode") {
+      bool flag;
+      if (arg_pair.second == "true") {
+        flag = true;
+      } else if (arg_pair.second == "false") {
+        flag = false;
+      } else {
+        std::cerr &lt;&lt; "invalid argument: " &lt;&lt; arg_pair.second &lt;&lt; std::endl;
+        return 1;
+      }
+      client.SwitchMoveMode(flag);
+    }
+
+    if (arg_pair.first == "move") {
+      std::vector&lt;float&gt; param = stringToFloatVector(arg_pair.second);
+      auto param_size = param.size();
+      float vx, vy, omega;
+      if (param_size == 3) {
+        vx = param.at(0);
+        vy = param.at(1);
+        omega = param.at(2);
+      } else {
+        std::cerr &lt;&lt; "Invalid param size for method SetVelocity: " &lt;&lt; param_size
+                  &lt;&lt; std::endl;
+        return 1;
+      }
+      client.Move(vx, vy, omega);
+    }
+  }
+
+</code></pre>
+
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

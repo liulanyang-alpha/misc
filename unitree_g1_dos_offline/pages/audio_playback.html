@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>音频播放 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link active" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>音频播放</h1>
+          <div class="meta">更新时间：2025-09-28 10:45:00</div>
+        </header>
+        <section class="content">
+          <h1 id="g1-">G1-音频播放使用方法</h1>
+<p>G1音频播放功能，音频来源支持<code>手机APP端自录音</code>或者<code>外部音频导入</code>，本文主要介绍<code>外部音频导入</code>的使用方法。</p>
+<h2 id="_1">功能位置</h2>
+<p>[Unitree Explore APP] → [go] → [更多功能] → [播放器]</p>
+<h2 id="_2">版本信息</h2>
+<h3 id="app">APP版本</h3>
+<ul>
+<li>Android：V1.6.1 及以上 </li>
+<li>IOS：V1.6.1 及以上</li>
+</ul>
+<h3 id="_3">固件版本</h3>
+<p>升级以下三个组件：
+- Vul Service：2.0.4.4及以上版本
+- Webrtc Bridge：1.0.7.5及以上版本
+- Audio Hub：1.0.1.0 及以上版本</p>
+<hr/>
+<h2 id="_4">语音合成配置</h2>
+<h3 id="_5">推荐平台</h3>
+<p>建议使用阿里云语音合成服务：<br/>
+🔗 <a href="https://nls-portal.console.aiiyun.com/app/567093/%E8%BF%90%E6%8E%A7%E5%88%87%E6%8D%A2%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%907" rel="noopener noreferrer" target="_blank">阿里云语音合成控制台</a> </p>
+<h2 id="_6">音频文件规范</h2>
+<h3 id="_7">格式要求</h3>
+<ul>
+<li><strong>格式</strong>：WAV  </li>
+<li><strong>采样率</strong>：16kHz  </li>
+<li><strong>声道</strong>：<code>单声道</code>（设备仅支持单声道，双声道会导致播放异常）  </li>
+<li><strong>发音人</strong>：Stanley（所有设备音频统一使用该发音人）</li>
+</ul>
+<h3 id="_8">使用建议</h3>
+<ul>
+<li>音频合成时，音量需设置为100%，以确保播放音量最大化。</li>
+</ul>
+<h3 id="_9">约束条件</h3>
+<ul>
+<li>音频文件大小不得超过 10MB  </li>
+<li>录音时长不得超过 3分钟</li>
+</ul>
+<hr/>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

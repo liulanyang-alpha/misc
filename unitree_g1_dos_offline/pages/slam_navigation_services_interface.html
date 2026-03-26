@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SLAM导航服务接口 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link active" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>SLAM导航服务接口</h1>
+          <div class="meta">更新时间：2025-11-25 14:33:22</div>
+        </header>
+        <section class="content">
+          <style>
+table th:first-of-type {
+    width: 20pt;
+}
+table th:nth-of-type(2) {
+    width: 60pt;
+}
+table th:nth-of-type(3) {
+    width: 120pt;
+}
+</style>
+<h1 id="slam">SLAM 导航服务接口</h1>
+<h2 id="_1">一、介绍</h2>
+<p>SLAM与导航服务的接口基于unitree sdk2进行接口调用，使用前请保证与机器人在<code>同一局域网网段下</code>，并通过App确认G1的<code>unitree_slam</code>和<code>lidar_driver</code>服务开启。在使用接口调用时，请勿同时使用APP上的导航功能。客户端通过配置不同的api-id、订阅不同的话题数据，即可实现基础的SLAM与导航功能。</p>
+<p>slam输出的点云与定位信息的坐标系原点为<code>Mid360-IMU坐标系的原点</code>，X轴正方向为机器人<code>正前方</code>，Z轴正方向为<code>竖直向上</code>，Mid360坐标系详情请查看LIDAR服务接口。</p>
+<p>适用场景与范围：<code>X轴/Y轴小于45m</code>且<code>特征丰富</code>的<code>静态室内平地</code>场景。(大范围地图计算资源占用较多，为了不影响基础运控服务，请<code>勿超过</code>建议范围！！！)，剧烈动作可能导致定位丢失，请在使用该接口时<code>避免机器人剧烈运动</code>！</p>
+<p>该部分功能适用于<code>教育科研</code>行业，不建议用于行业应用，行业应用请联系销售！</p>
+<p><code>注意</code>：在使用前请检查雷达原始点云和imu数据是否异常，且头部正常<code>竖直向上</code>固定<code>无松动</code>。若在静止状态下，雷达照射同一静止竖平面时，<code>前后点云数据帧出现明显分层</code>或<code>IMU线速度和加速度值明显异常</code>，请联系销售进行雷达维修。
+  原始点云数据话题名为：rt/utlidar/cloud_livox_mid360
+  原始IMU数据话题名为：rt/utlidar/imu_livox_mid360
+<img alt="" src="../assets/images/9361f0011bd50cc0.webp"/></p>
+<h2 id="nx">二、NX开发板网络配置</h2>
+<p>NX开发板的IP地址默认为<code>192.168.123.164</code>，用户可通过网线直连的方式接入到该局域网内，本服务使用的雷达IP地址为：<code>192.168.123.120</code>，在使用前请确定雷达IP地址正确。网络检查步骤如下：</p>
+<p><strong>1</strong>. 用户PC通过网线直连G1内部交换机后，将本机地址IP修改为<code>192.168.123.XXX</code>（XXX设置值请勿与已有IP冲突）。
+<img alt="" src="../assets/images/60d829129bf097c9.webp"/></p>
+<p><strong>2</strong>.打开终端，分别输入如下指令检查通信是否连接成功。</p>
+<pre><code>ssh unitree@192.168.123.164 # G1 进入NX开发板，初始密码为：123
+
+ping 192.168.123.120 #雷达IP
+
+ping 192.168.123.161 #运控PC IP
+</code></pre>
+<h2 id="_2">三、服务数据说明</h2>
+<p>服务名称与版本：SERVICE_NAME = "slam_operate"、VERSION = "1.0.0.1"
+当前已开放接口api-id:1801开始建图、1802结束建图、1804初始化位姿、1102位姿导航、1201暂停导航、1202恢复导航、1901关闭slam。服务请求参数与反馈数据格式<code>均为Json</code>，具体参数如下：
+1.开始建图</p>
+<pre><code>api id: 1801
+
+输入参数：
+{
+  "data": {
+      "slam_type": "indoor" #固定值
+    }
+}
+
+反馈响应：
+{
+    "succeed":true, #是否实行执行成功
+    "errorCode":0,  #错误码，0为正常
+    "info":"",      #描述信息
+    "data":{}       #其余数据
+}
+</code></pre>
+<p>2.结束建图</p>
+<pre><code>api id: 1802
+
+输入参数：
+{
+  "data": {
+      "address": "/home/unitree/test.pcd" #pcd保存地址
+    }
+}
+
+反馈响应：
+{
+    "succeed":true, #是否实行执行成功
+    "errorCode":0,  #错误码，0为正常
+    "info":"",      #描述信息
+    "data":{}       #其余数据
+}
+</code></pre>
+<p><code>注意</code>：
+为防止多个pcd地图文件数据占用过多的磁盘空间，建议文件名统一为<code>test1.pcd ~ test10.pcd</code>，覆盖式保存地图pcd数据。</p>
+<p>3.初始化位姿</p>
+<pre><code>api id: 1804
+
+输入参数：
+{
+  "data": {
+        "x": 0.0, #初始化平移信息
+        "y": 0.0,
+        "z": 0.0,
+        "q_x": 0.0, #初始化旋转信息
+        "q_y": 0.0,
+        "q_z": 0.0,
+        "q_w": 1.0,
+        "address": "/home/unitree/test.pcd" #pcd加载地址
+    }
+}
+
+反馈响应：
+{
+    "succeed":true, #是否实行执行成功
+    "errorCode":0,  #错误码，0为正常
+    "info":"",      #描述信息
+    "data":{}       #其余数据
+}
+</code></pre>
+<p>4.位姿导航</p>
+<pre><code>api id: 1102
+
+输入参数：
+{
+  "data": {
+       "targetPose": {  
+          "x": 2.0,    #目标位姿信息
+          "y": 0.0,
+          "z": 0.0,
+          "q_x": 0.0,
+          "q_y": 0.0,
+          "q_z": 0.0,
+          "q_w": 1.0
+        },
+        "mode":1      #固定值
+    }
+}
+
+反馈响应：
+{
+    "succeed":true, #是否实行执行成功
+    "errorCode":0,  #错误码，0为正常
+    "info":"",      #描述信息
+    "data":{}       #其余数据
+}
+
+
+</code></pre>
+<p><code>注意</code>：
+目标点与当前位置之间的距离不超过<code>10m</code>，机器人会沿直线行走，受雷达视角限制，障碍物高度不要低于<code>50cm</code>
+5.暂停导航</p>
+<pre><code>api id: 1201
+
+输入参数：
+{
+  "data": {
+    }
+}
+
+反馈响应：
+{
+    "succeed":true, #是否实行执行成功
+    "errorCode":0,  #错误码，0为正常
+    "info":"",      #描述信息
+    "data":{}       #其余数据
+}
+</code></pre>
+<p>6.恢复导航</p>
+<pre><code>api id: 1202
+
+输入参数：
+{
+  "data": {
+    }
+}
+
+反馈响应：
+{
+    "succeed":true, #是否实行执行成功
+    "errorCode":0,  #错误码，0为正常
+    "info":"",      #描述信息
+    "data":{}       #其余数据
+}
+</code></pre>
+<p>7.关闭slam</p>
+<pre><code>api id: 1901
+
+输入参数：
+{
+  "data": {
+    }
+}
+
+反馈响应：
+{
+    "succeed":true, #是否实行执行成功
+    "errorCode":0,  #错误码，0为正常
+    "info":"",      #描述信息
+    "data":{}       #其余数据
+}
+</code></pre>
+<h2 id="_3">四、话题数据说明</h2>
+<p>1.建图实时点云数据话题：rt/unitree/slam_mapping/points  数据类型：sensor_msgs::msg::dds_::PointCloud2_</p>
+<p>2.建图实时里程计数据话题：rt/unitree/slam_mapping/odom  数据类型：nav_msgs::msg::dds_::Odometry_</p>
+<p>3.定位实时点云数据话题：rt/unitree/slam_relocation/points  数据类型：sensor_msgs::msg::dds_::PointCloud2_</p>
+<p>4.定位实时里程计数据话题：rt/unitree/slam_relocation/odom 数据类型：nav_msgs::msg::dds_::Odometry_</p>
+<p>5.实时广播类信息话题：rt/slam_info 数据类型:std_msgs::msg::dds_::String_</p>
+<p>6.执行情况信息反馈话题：rt/slam_key_info 数据类型:std_msgs::msg::dds_::String_</p>
+<p>7.全局地图点云数据话题(仅在开始定位后发送一次，用户可通过订阅该话题获取地图数据)：rt/unitree/slam_relocation/global_map  数据类型：sensor_msgs::msg::dds_::PointCloud2_</p>
+<p>其中，实时广播类信息和执行情况反馈信息中的数据均为Json格式，可通过不同的字段判断和获取，具体如下：
+①实时广播类信息类型(rt/slam_info)：基础状态信息</p>
+<pre><code>{
+    "type": "robot_data",  #数据类型
+    "errorCode":0,         #错误码，0为正常
+    "sec": 123456789,      #时间戳
+    "nanosec": 987654321,
+    "info":XXX,            #描述信息
+    "data":{
+        "motorTemp": [30.5,30.5,...],   #电机温度(单位°C)
+        "motorError": [0,0,0,...],      #电机错误码
+        "batteryAmp": 1000.5,           #实时电池电流值(单位mA)
+        "batteryPower":10.0,            #实时电池百分比电量(单位%)
+        "batteryTemp":30.5,             #实时电池温度值(单位°C)
+        "batteryVol":1000.5,            #实时电池电压值(单位mV)
+        "sportMode":-1,                 #运动模式,暂无
+        "gaitType":-1,                  #步态，暂无
+        "cpuTemp":30.5,                 #CPU核心平均温度(单位°C)
+        "cpuUsage":30.5,                #CPU核心占用率(单位%)
+        "cpuMemory":30.5,               #CPU内存使用率(单位%)
+        "cpuFrequency":100.5            #CPU平均核心频率(单位MHz)
+    }
+}
+
+</code></pre>
+<p>②实时广播类信息类型(rt/slam_info)：定位信息</p>
+<pre><code>{
+    "type": "pos_info",  #数据类型 pos_info(定位过程)/mapping_info(建图过程)
+    "errorCode":0,       #错误码，0为正常
+    "sec": 123456789,    #时间戳
+    "nanosec": 987654321,
+    "info":XXX,          #描述信息
+    "data":
+      {
+        "currentPose": { #当前位姿
+          "x": 1.5,      
+          "y": 1.5,
+          "z": 1.5,
+          "q_x": 0.0,
+          "q_y": 0.0,
+          "q_z": 0.0,
+          "q_w": 1.0
+          },
+         "pcdName": "test"                    #当前定位使用的地图名
+         "address": "/home/unitree/test.pcd"  #当前定位使用的地图地址
+      }
+}
+</code></pre>
+<p>③实时广播类信息类型(rt/slam_info)：控制信息</p>
+<pre><code>{
+   "type": "ctrl_info", #数据类型
+    "errorCode":0,      #错误码，0为正常
+    "sec": 123456789,   #时间戳
+    "nanosec": 987654321,
+    "info":"XXX",       #描述信息
+    "data":
+    {
+      "targetNodeName": 9999,
+      "is_arrived": false,
+      "startPose": {
+        "x": 1.1,
+        "y": 1.2,
+        "z": 1.3,
+        "roll": 0.0,
+        "pitch": 0.0,
+        "yaw": 1.2
+      },
+      "targetPose": {
+        "x": 1.1,
+        "y": 1.2,
+        "z": 1.3,
+        "roll": 0.0,
+        "pitch": 0.0,
+        "yaw": 1.2
+      },
+      "stateMachine": {
+        "state":"follow",      # 当前状态机
+        "isOpenPlan":false,    
+        "isBack":false,       
+        "isClimbStairs":false, 
+        "isRotate":false,      
+        "isPause":false,       # 是否时暂停控制状态
+        "ctrName":"pid",       # 当前控制器
+        "vx": 1.1,
+        "vy": 1.2,
+        "vyaw": 1.3
+      },
+      "obsInfo":{
+        "state":false,         # 有无遇到障碍
+        "time":0,              # 遇到障碍的时间 单位 s
+      },
+      "progress": {
+        "used_time": 12.3,
+        "last_time": 23.3,
+        "completion_percentage": 0.12
+      }
+    }
+}
+
+</code></pre>
+<p>④执行情况反馈信息(rt/slam_key_info)：单次任务执行反馈</p>
+<pre><code>{
+   "type": "task_result",     #数据类型
+    "errorCode":0,            #错误码，0为正常
+    "sec": 123456789,         #时间戳
+    "nanosec": 987654321,
+    "info":"XXX",             #描述信息
+    "data":
+    {
+      "targetNodeName": 9999, #任务目标点
+      "is_arrived": false     #是否完成执行
+    }
+}
+
+</code></pre>
+<h2 id="demo">五、按键例程demo功能测试</h2>
+<p>准备工作：
+(1)在NX或个人PC中安装unitree sdk2，下载地址：
+<a href="https://github.com/unitreerobotics/unitree_sdk2" rel="noopener noreferrer" target="_blank">unitree_sdk2 </a></p>
+<p>(2)下载并编译例程，下载地址：
+<a href="https://oss-global-cdn.unitree.com/static/dd442abf94ec44f599095cb15c3e298b.zip" rel="noopener noreferrer" target="_blank">unitree_slam_example </a></p>
+<pre><code>#编译测试例程
+cd /youFileAddress
+mkdir build
+cd build
+cmake ..
+make
+
+./keyDemo eth0  #网卡名称
+</code></pre>
+<p><img alt="" src="../assets/images/24dae454884264b3.webp"/></p>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>激光雷达例程 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link active" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>激光雷达例程</h1>
+          <div class="meta">更新时间：2024-10-31 16:10:08</div>
+        </header>
+        <section class="content">
+          <h1 id="g1">一、G1机器人雷达介绍与官方资料获取</h1>
+<p>G1 机器人雷达位于头部位置，雷达型号为 <strong>livox Mid-360</strong>。</p>
+<p>Livox Mid-360 是一款高性价比、安全可靠的激光探测测距仪传感器，可广泛应用于物流机器人、工业机器人、智慧城市等领域，支持建图、定位、识别、避障等功能的实现。</p>
+<p>雷达详情页：<a href="https://www.livoxtech.com/mid-360" rel="noopener noreferrer" target="_blank">https://www.livoxtech.com/mid-360</a>
+雷达资料页：<a href="https://www.livoxtech.com/mid-360/downloads" rel="noopener noreferrer" target="_blank">https://www.livoxtech.com/mid-360/downloads</a>
+雷达官方 github 地址：<a href="https://github.com/Livox-SDK" rel="noopener noreferrer" target="_blank">https://github.com/Livox-SDK</a></p>
+<p>雷达坐标系、雷达坐标系与机器人中心坐标系关系：
+<img alt="" src="../assets/images/341d0f9f8a0e7c2c.webp"/>
+<img alt="" src="../assets/images/b6e7e690771fcac0.webp"/>
+<img alt="" src="../assets/images/e667c35b33c41e6c.webp"/></p>
+<h1 id="_1">二、雷达数据获取</h1>
+<h2 id="21">2.1 通信连接</h2>
+<p>雷达随机器人出厂的 ip 地址设置为 <code>192.168.123.120</code>。
+将电脑与机器人通过网线连接，设置电脑 ip address 在 <code>192.168.123</code> 网段下、netmsak 为 <code>255.255.255.0</code>、gateway 为 <code>192.168.123.1</code>，可以通过 <code>ping 192.168.123.120</code> 查看是否与雷达 ip 有效连接。</p>
+<p>若为 ubuntu 系统，设置连接网口的 ip 配置参考：
+<img alt="" src="../assets/images/d7a20e0cc90ac476.webp"/></p>
+<p>若为windows系统，设置连接网口的ip配置参考：
+<img alt="" src="../assets/images/24bcf9cb54d2c22d.webp"/>
+<img alt="" src="../assets/images/86047439f3483890.webp"/></p>
+<h2 id="22-livox-viewer-2">2.2 Livox Viewer 2上位机获取数据</h2>
+<p>livox提供上位机可以直接查看雷达数据、配置雷达参数。
+相关资料下载地址：<a href="https://www.livoxtech.com/mid-360/downloads" rel="noopener noreferrer" target="_blank">https://www.livoxtech.com/mid-360/downloads</a>
+<img alt="" src="../assets/images/9ea918bb11618999.webp"/></p>
+<p>若硬件连接正常，打开 Livox Viewer 2 上位机可以看到：
+<img alt="" src="../assets/images/14e67a1b72c0f716.webp"/></p>
+<p>上位机详细使用方法，参考《<code>Livox Viewer 2 User Manual</code>》。</p>
+<div class="admonition note">
+<p class="admonition-title">注意</p>
+<p>直接在PC2（Jetson Orin Nx）Ubuntu系统上运行<code>LivoxViewer2.sh</code>会报错<code>Exec format error</code>, 建议您使用自己PC连接G1肩部网口配置雷达IP及相关参数。</p>
+</div>
+<h2 id="23-livox-sdk2">2.3 通过 Livox-SDK2 获取数据</h2>
+<p>Livox SDK2 是一个软件开发工具包，专为 HAP 和 Mid-360 等所有 Livox 激光雷达设计。它基于 C/C++ 开发，遵循 Livox SDK2 通信协议，并提供易于使用的 C 风格 API。借助 Livox SDK2，用户可以快速连接到 Livox 激光雷达并接收点云数据。</p>
+<p>Livox-SDK2 代码仓库地址：<a href="https://github.com/Livox-SDK/Livox-SDK2" rel="noopener noreferrer" target="_blank">https://github.com/Livox-SDK/Livox-SDK2</a></p>
+<p>编译安装步骤：</p>
+<pre><code class="language-shell">git clone https://github.com/Livox-SDK/Livox-SDK2.git
+cd ./Livox-SDK2/
+mkdir build
+cd build
+cmake .. &amp;&amp; make -j
+sudo make install
+</code></pre>
+<p>卸载/删除步骤：</p>
+<pre><code class="language-shell">sudo rm -rf /usr/local/lib/liblivox_lidar_sdk_*
+sudo rm -rf /usr/local/include/livox_lidar_*
+</code></pre>
+<p>代码例程参考 <code>.../Livox-SDK2/samples</code> 文件夹下的代码示例，注意修改<code>mid360_config.json</code> 文件里 "lidar_ip" 为 <code>192.168.123.120</code>、"host_ip" 为主机 ip。</p>
+<h2 id="24-livox_ros_driver2">2.4 通过 livox_ros_driver2 获取数据</h2>
+<p>Livox ROS Driver 2 是用于连接 Livox 产品的 LiDAR 产品的第二代驱动程序包，适用于ROS（推荐使用 noetic）和 ROS2（推荐使用 foxy 或 humble）。</p>
+<p>livox_ros_driver2 代码仓库地址：<a href="https://github.com/Livox-SDK/livox_ros_driver2" rel="noopener noreferrer" target="_blank">https://github.com/Livox-SDK/livox_ros_driver2</a>
+编译、使用参照代码的 readme 文件说明。</p>
+<p>针对 G1 机器人雷达，需要修改<code>.../livox_ros_driver2/config/MID360_config.json</code> 文件内的 "lidar_configs" "ip" 为 "192.168.123.120"、"host_net_info" 下的 ip 为主机 ip。
+参考配置文件内容：</p>
+<pre><code class="language-json">{
+  "lidar_summary_info" : {
+    "lidar_type": 8
+  },
+  "MID360": {
+    "lidar_net_info" : {
+      "cmd_data_port": 56100,
+      "push_msg_port": 56200,
+      "point_data_port": 56300,
+      "imu_data_port": 56400,
+      "log_data_port": 56500
+    },
+    "host_net_info" : {
+      "cmd_data_ip" : "192.168.123.123",
+      "cmd_data_port": 56101,
+      "push_msg_ip": "192.168.123.123",
+      "push_msg_port": 56201,
+      "point_data_ip": "192.168.123.123",
+      "point_data_port": 56301,
+      "imu_data_ip" : "192.168.123.123",
+      "imu_data_port": 56401,
+      "log_data_ip" : "",
+      "log_data_port": 56501
+    }
+  },
+  "lidar_configs" : [
+    {
+      "ip" : "192.168.123.120",
+      "pcl_data_type" : 1,
+      "pattern_mode" : 0,
+      "extrinsic_parameter" : {
+        "roll": 0.0,
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  ]
+}
+</code></pre>
+<p>在 launch 文件内修改<code>user_config_path</code> 参数为配置文件 MID360_config.json 的路径。
+以 <code>.../livox_ros_driver2/launch_ROS1</code>文件内容为例子，参考其内容为：</p>
+<pre><code class="language-launch">&lt;launch&gt;
+
+    &lt;!--user configure parameters for ros start--&gt;
+    &lt;arg name="lvx_file_path" default="livox_test.lvx"/&gt;
+    &lt;arg name="bd_list" default="100000000000000"/&gt;
+    &lt;arg name="xfer_format" default="1"/&gt;
+    &lt;arg name="multi_topic" default="0"/&gt;
+    &lt;arg name="data_src" default="0"/&gt;
+    &lt;arg name="publish_freq" default="10.0"/&gt;
+    &lt;arg name="output_type" default="0"/&gt;
+    &lt;arg name="rviz_enable" default="false"/&gt;
+    &lt;arg name="rosbag_enable" default="false"/&gt;
+    &lt;arg name="cmdline_arg" default="$(arg bd_list)"/&gt;
+    &lt;arg name="msg_frame_id" default="livox_frame"/&gt;
+    &lt;arg name="lidar_bag" default="false"/&gt;
+    &lt;arg name="imu_bag" default="false"/&gt;
+    &lt;!--user configure parameters for ros end--&gt; 
+
+    &lt;param name="xfer_format" value="$(arg xfer_format)"/&gt;
+    &lt;param name="multi_topic" value="$(arg multi_topic)"/&gt;
+    &lt;param name="data_src" value="$(arg data_src)"/&gt;
+    &lt;param name="publish_freq" type="double" value="$(arg publish_freq)"/&gt;
+    &lt;param name="output_data_type" value="$(arg output_type)"/&gt;
+    &lt;param name="cmdline_str" type="string" value="$(arg bd_list)"/&gt;
+    &lt;param name="cmdline_file_path" type="string" value="$(arg lvx_file_path)"/&gt;
+    &lt;param name="user_config_path" type="string" value="$(find livox_ros_driver2)/config/MID360_config.json"/&gt;
+    &lt;param name="frame_id" type="string" value="$(arg msg_frame_id)"/&gt;
+    &lt;param name="enable_lidar_bag" type="bool" value="$(arg lidar_bag)"/&gt;
+    &lt;param name="enable_imu_bag" type="bool" value="$(arg imu_bag)"/&gt;
+
+    &lt;node name="livox_lidar_publisher2" pkg="livox_ros_driver2"
+          type="livox_ros_driver2_node" required="true"
+          output="screen" args="$(arg cmdline_arg)"/&gt;
+
+    &lt;group if="$(arg rosbag_enable)"&gt;
+        &lt;node pkg="rosbag" type="record" name="record" output="screen"
+                args="-a"/&gt;
+    &lt;/group&gt;
+
+&lt;/launch&gt;
+</code></pre>
+<p>若硬件连接正常，在<code>roslaunch livox_ros_driver2 msg_MID360.launch</code> 后即可订阅到 <code>/livox/lidar、/livox/imu</code> 话题。</p>
+<p>需额外注意的是，<code>/livox/lidar</code> 话题的格式受 launch 文件的 xfer_format 参数控制，参考代码的 readme 文件说明：
+<img alt="" src="../assets/images/5f55cb6a45a4f5a6.webp"/></p>
+<h1 id="_2">三、噪点处理</h1>
+<p>参考：<a href="https://www.livoxtech.com/showcase/livox-tag" rel="noopener noreferrer" target="_blank">https://www.livoxtech.com/showcase/livox-tag</a></p>
+<p>从激光雷达底层信息出发，Livox 在雷达输出的点云数据中内置标识点云多回波及噪点信息数据的 Tag 信息，帮助用户更高效地应对点云噪声。
+<img alt="" src="../assets/images/a36726c75d263617.webp"/></p>
+<p>参考代码：</p>
+<pre><code class="language-c++">// Only when all the lower four digits are 0 can it be used
+if(_Lidar_1_pcl.points[i].tag &gt; 0 &amp;&amp; _Lidar_1_pcl.points[i].tag &lt; 16){
+    // std::cout &lt;&lt; "tag: " &lt;&lt; static_cast&lt;int&gt;(_Lidar_1_pcl.points[i].tag) &lt;&lt; std::endl;
+
+    // std::vector&lt;bool&gt; bit_values(8);
+    // // Extract each bit and store it as a Boolean value
+    // for (int k = 0; k &lt; 8; ++k) {
+    //     bit_values[k] = (_Lidar_1_pcl.points[i].tag &gt;&gt; k) &amp; 0x01;
+    // }
+
+    // // Output the Boolean value of each bit
+    // for (int k = 0; k &lt; 8; ++k) {
+    //     std::cout &lt;&lt; "Bit " &lt;&lt; k &lt;&lt; ": " &lt;&lt; static_cast&lt;bool&gt;(bit_values[k]) &lt;&lt; std::endl;
+    // }
+    continue;
+}
+</code></pre>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

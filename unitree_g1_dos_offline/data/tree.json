@@ -1,0 +1,309 @@
+[
+  {
+    "name": "关于G1",
+    "path": "about_G1",
+    "update_time": "2025-09-15 12:09:10",
+    "url": "https://doc-cdn.unitree.com/11/223/zh/11_223_zh",
+    "children": []
+  },
+  {
+    "name": "操作指南",
+    "path": "Operational_guidance",
+    "update_time": "2024-09-24 09:57:07",
+    "url": "https://doc-cdn.unitree.com/11/226/zh/11_226_zh",
+    "children": [
+      {
+        "name": "快速开始",
+        "path": "quick_start",
+        "update_time": "2025-11-12 20:15:20",
+        "url": "https://doc-cdn.unitree.com/11/227/zh/11_227_zh",
+        "children": []
+      },
+      {
+        "name": "遥控说明",
+        "path": "remote_control",
+        "update_time": "2026-03-13 12:17:12",
+        "url": "https://doc-cdn.unitree.com/11/228/zh/11_228_zh",
+        "children": []
+      },
+      {
+        "name": "腰部固定件使用说明",
+        "path": "waist_fastener",
+        "update_time": "2024-10-24 17:57:32",
+        "url": "https://doc-cdn.unitree.com/11/300/zh/11_300_zh",
+        "children": []
+      },
+      {
+        "name": "语音助手使用说明",
+        "path": "voice_assistant_instructions",
+        "update_time": "2025-03-10 18:05:59",
+        "url": "https://doc-cdn.unitree.com/11/786/zh/11_786_zh",
+        "children": []
+      },
+      {
+        "name": "音频播放",
+        "path": "audio_playback",
+        "update_time": "2025-09-28 10:45:00",
+        "url": "https://doc-cdn.unitree.com/11/955/zh/11_955_zh",
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "应用开发",
+    "path": "application_development",
+    "update_time": "2024-09-27 14:27:23",
+    "url": "https://doc-cdn.unitree.com/11/231/zh/11_231_zh",
+    "children": [
+      {
+        "name": "SDK概述",
+        "path": "sdk_overview",
+        "update_time": "2024-09-20 20:54:14",
+        "url": "https://doc-cdn.unitree.com/11/232/zh/11_232_zh",
+        "children": []
+      },
+      {
+        "name": "软件架构说明",
+        "path": "architecture_description",
+        "update_time": "2025-02-08 18:09:45",
+        "url": "https://doc-cdn.unitree.com/11/233/zh/11_233_zh",
+        "children": []
+      },
+      {
+        "name": "获取SDK",
+        "path": "get_sdk",
+        "update_time": "2025-09-03 20:00:40",
+        "url": "https://doc-cdn.unitree.com/11/235/zh/11_235_zh",
+        "children": []
+      },
+      {
+        "name": "快速开发",
+        "path": "quick_development",
+        "update_time": "2024-12-27 21:54:54",
+        "url": "https://doc-cdn.unitree.com/11/236/zh/11_236_zh",
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "底层运动开发",
+    "path": "basic_motion_development",
+    "update_time": "2024-09-29 14:21:54",
+    "url": "https://doc-cdn.unitree.com/11/238/zh/11_238_zh",
+    "children": [
+      {
+        "name": "底层运动参考例程",
+        "path": "basic_motion_routine",
+        "update_time": "2025-11-12 14:23:37",
+        "url": "https://doc-cdn.unitree.com/11/248/zh/11_248_zh",
+        "children": []
+      },
+      {
+        "name": "关节电机顺序",
+        "path": "joint_motor_sequence",
+        "update_time": "2025-03-17 16:04:13",
+        "url": "https://doc-cdn.unitree.com/11/249/zh/11_249_zh",
+        "children": []
+      },
+      {
+        "name": "遥控器数据结构",
+        "path": "remote_control_data",
+        "update_time": "2024-09-20 20:54:29",
+        "url": "https://doc-cdn.unitree.com/11/250/zh/11_250_zh",
+        "children": []
+      },
+      {
+        "name": "Dex3-1 灵巧手开发",
+        "path": "dexterous_hand",
+        "update_time": "2025-02-10 11:56:16",
+        "url": "https://doc-cdn.unitree.com/11/251/zh/11_251_zh",
+        "children": []
+      },
+      {
+        "name": "因时FTP灵巧手",
+        "path": "inspire_ftp_dexterity_hand",
+        "update_time": "2025-05-16 21:07:16",
+        "url": "https://doc-cdn.unitree.com/11/306/zh/11_306_zh",
+        "children": []
+      },
+      {
+        "name": "因时DFX灵巧手开发",
+        "path": "inspire_dfx_dexterous_hand",
+        "update_time": "2025-08-28 16:37:33",
+        "url": "https://doc-cdn.unitree.com/11/768/zh/11_768_zh",
+        "children": []
+      },
+      {
+        "name": "强脑灵巧手",
+        "path": "brainco_hand",
+        "update_time": "2026-03-25 14:46:09",
+        "url": "https://doc-cdn.unitree.com/11/815/zh/11_815_zh",
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "软件服务接口",
+    "path": "services_interface",
+    "update_time": "2024-09-27 14:26:12",
+    "url": "https://doc-cdn.unitree.com/11/237/zh/11_237_zh",
+    "children": [
+      {
+        "name": "DDS通信接口",
+        "path": "dds_services_interface",
+        "update_time": "2025-11-24 16:24:27",
+        "url": "https://doc-cdn.unitree.com/11/252/zh/11_252_zh",
+        "children": []
+      },
+      {
+        "name": "设备状态服务接口",
+        "path": "robot_state_client_interface",
+        "update_time": "2025-11-19 14:49:50",
+        "url": "https://doc-cdn.unitree.com/11/253/zh/11_253_zh",
+        "children": []
+      },
+      {
+        "name": "底层服务接口",
+        "path": "basic_services_interface",
+        "update_time": "2025-10-21 14:45:50",
+        "url": "https://doc-cdn.unitree.com/11/254/zh/11_254_zh",
+        "children": []
+      },
+      {
+        "name": "高层运动服务接口",
+        "path": "sport_services_interface",
+        "update_time": "2026-03-13 18:02:09",
+        "url": "https://doc-cdn.unitree.com/11/255/zh/11_255_zh",
+        "children": []
+      },
+      {
+        "name": "里程计服务接口",
+        "path": "odometer_service_interface",
+        "update_time": "2025-01-06 10:35:07",
+        "url": "https://doc-cdn.unitree.com/11/709/zh/11_709_zh",
+        "children": []
+      },
+      {
+        "name": "音频灯光服务接口",
+        "path": "VuiClient_Service",
+        "update_time": "2025-10-22 11:10:09",
+        "url": "https://doc-cdn.unitree.com/11/731/zh/11_731_zh",
+        "children": []
+      },
+      {
+        "name": "LiDAR服务接口",
+        "path": "lidar_services_interface",
+        "update_time": "2025-09-28 10:45:12",
+        "url": "https://doc-cdn.unitree.com/11/733/zh/11_733_zh",
+        "children": []
+      },
+      {
+        "name": "SLAM导航服务接口",
+        "path": "slam_navigation_services_interface",
+        "update_time": "2025-11-25 14:33:22",
+        "url": "https://doc-cdn.unitree.com/11/734/zh/11_734_zh",
+        "children": []
+      },
+      {
+        "name": "运控切换接口",
+        "path": "motion_witcher_service_interface",
+        "update_time": "2025-11-12 21:44:50",
+        "url": "https://doc-cdn.unitree.com/11/993/zh/11_993_zh",
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "高层运动开发",
+    "path": "high_motion_development",
+    "update_time": "2024-09-20 20:53:36",
+    "url": "https://doc-cdn.unitree.com/11/239/zh/11_239_zh",
+    "children": [
+      {
+        "name": "RPC例程",
+        "path": "rpc_routine",
+        "update_time": "2025-09-15 12:36:13",
+        "url": "https://doc-cdn.unitree.com/11/246/zh/11_246_zh",
+        "children": []
+      },
+      {
+        "name": "手臂控制例程",
+        "path": "arm_control_routine",
+        "update_time": "2024-09-27 14:11:51",
+        "url": "https://doc-cdn.unitree.com/11/247/zh/11_247_zh",
+        "children": []
+      },
+      {
+        "name": "手臂动作服务接口",
+        "path": "arm_action_interface",
+        "update_time": "2025-11-17 21:11:04",
+        "url": "https://doc-cdn.unitree.com/11/1004/zh/11_1004_zh",
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "更多例程",
+    "path": "more_cases",
+    "update_time": "2024-09-27 14:38:59",
+    "url": "https://doc-cdn.unitree.com/11/240/zh/11_240_zh",
+    "children": [
+      {
+        "name": "RL例程",
+        "path": "rl_control_routine",
+        "update_time": "2024-09-20 20:54:39",
+        "url": "https://doc-cdn.unitree.com/11/243/zh/11_243_zh",
+        "children": []
+      },
+      {
+        "name": "ROS2 通信例程",
+        "path": "ros2_communication_routine",
+        "update_time": "2025-11-17 20:29:24",
+        "url": "https://doc-cdn.unitree.com/11/244/zh/11_244_zh",
+        "children": []
+      },
+      {
+        "name": "DDS通信例程",
+        "path": "dds_communication_routine",
+        "update_time": "2024-09-26 11:37:38",
+        "url": "https://doc-cdn.unitree.com/11/245/zh/11_245_zh",
+        "children": []
+      },
+      {
+        "name": "激光雷达例程",
+        "path": "lidar_Instructions",
+        "update_time": "2024-10-31 16:10:08",
+        "url": "https://doc-cdn.unitree.com/11/266/zh/11_266_zh",
+        "children": []
+      },
+      {
+        "name": "深度相机例程",
+        "path": "depth_camera_instruction",
+        "update_time": "2025-11-17 20:06:00",
+        "url": "https://doc-cdn.unitree.com/11/267/zh/11_267_zh",
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "调试说明",
+    "path": "debugging_specification",
+    "update_time": "2024-12-05 18:34:58",
+    "url": "https://doc-cdn.unitree.com/11/241/zh/11_241_zh",
+    "children": []
+  },
+  {
+    "name": "常见问题",
+    "path": "FAQ",
+    "update_time": "2026-03-17 17:47:26",
+    "url": "https://doc-cdn.unitree.com/11/242/zh/11_242_zh",
+    "children": []
+  },
+  {
+    "name": "常见错误及释义",
+    "path": "common_istakes_and_definitions",
+    "update_time": "2024-10-25 20:20:02",
+    "url": "https://doc-cdn.unitree.com/11/308/zh/11_308_zh",
+    "children": []
+  }
+]

@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>手臂动作服务接口 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link active" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>手臂动作服务接口</h1>
+          <div class="meta">更新时间：2025-11-17 21:11:04</div>
+        </header>
+        <section class="content">
+          <h2 id="_1">手臂动作服务接口</h2>
+<p>宇树为G1添加了许多基于上肢动作的互动功能，由手臂动作服务管理。手臂动作服务（Arm Action Client）即为调用这些上肢的互动功能提供接口。</p>
+<div class="admonition note">
+<p class="admonition-title">注意</p>
+<p>手臂动作服务接口依赖于内置运控，进入调试模式后内置运控完全退出，手臂动作服务失效。
+    请在确保周围安全的情况下使用手臂动作服务接口，特别是触发示教动作的播放，预留足够的展示空间。</p>
+</div>
+<h2 id="rpc">RPC接口调用方式</h2>
+<p>用户可以创建unitree::robot::g1::ArmAction 对象，通过成员函数发送请求，内置的手臂动作服务响应请求，执行操作。</p>
+<pre><code class="language-text">#include &lt;unitree/robot/g1/arm/g1_arm_action_client.hpp&gt;
+#include &lt;unitree/robot/g1/arm/g1_arm_action_api.hpp&gt;
+</code></pre>
+<h2 id="">动作ID</h2>
+<p>动作ID随时更新，使用Get Action List可看见当前固件版本可使用的动作。</p>
+<table>
+<thead>
+<tr>
+<th><strong>动作</strong></th>
+<th><strong>ID</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>恢复初始手臂位姿</td>
+<td>99</td>
+</tr>
+<tr>
+<td>双手飞吻</td>
+<td>11</td>
+</tr>
+<tr>
+<td>单手飞吻</td>
+<td>12</td>
+</tr>
+<tr>
+<td>平举</td>
+<td>15</td>
+</tr>
+<tr>
+<td>鼓掌</td>
+<td>17</td>
+</tr>
+<tr>
+<td>击掌</td>
+<td>18</td>
+</tr>
+<tr>
+<td>拥抱</td>
+<td>19</td>
+</tr>
+<tr>
+<td>双手比心</td>
+<td>20</td>
+</tr>
+<tr>
+<td>右手比心</td>
+<td>21</td>
+</tr>
+<tr>
+<td>双手打X</td>
+<td>22</td>
+</tr>
+<tr>
+<td>右手平举</td>
+<td>23</td>
+</tr>
+<tr>
+<td>动感光波</td>
+<td>24</td>
+</tr>
+<tr>
+<td>胸前挥手</td>
+<td>25</td>
+</tr>
+<tr>
+<td>高举挥手</td>
+<td>26</td>
+</tr>
+<tr>
+<td>握手</td>
+<td>27</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">接口介绍</h2>
+<table>
+<thead>
+<tr>
+<th><strong>函数名</strong></th>
+<th><strong>Execute Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td><code>int32_t ExecuteAction(int32_t action_id)</code></td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>执行预设的手臂交互动作。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>id：手臂动作ID。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>阻塞执行。手臂动作ID见前文《动作ID》。此描述适用于传入参数格式为int时。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>函数名</strong></th>
+<th><strong>Execute Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td><code>int32_t ExecuteAction(const std::string &amp;action_name)</code></td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>执行预录制完毕的示教动作。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>action_name：示教动作的保存名称。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>非阻塞执行。用户使用App中的示教功能录制的动作名称，区分大小写。此描述适用于传入参数格式为string时。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>函数名</strong></th>
+<th><strong>Stop Custom Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td><code>int32_t StopCustomAction()</code></td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>停止执行示教动作。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>无</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回  0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>停止后手臂回到初始位置。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>函数名</strong></th>
+<th><strong>Get Action List</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数原型</td>
+<td><code>int32_t GetActionList(std::string &amp;data)</code></td>
+</tr>
+<tr>
+<td>功能概述</td>
+<td>列出当前可用的动作列表。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>data：动作列表（包含可使用的动作、特殊动作对FsmID的要求、示教动作的名称和时间）</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>调用成功返回可调用动作列表，调用失败返回错误码。</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>以服务端返回的为准。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">错误码</h2>
+<table>
+<thead>
+<tr>
+<th><strong>错误码</strong></th>
+<th><strong>含义</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7400</td>
+<td>话题被占用</td>
+<td>有动作正在执行</td>
+</tr>
+<tr>
+<td>7401</td>
+<td>手臂正举起，请使用动作ID99或之前使用的相同ID来恢复手臂到初始状态。</td>
+<td>适用于平局、比心等持续动作</td>
+</tr>
+<tr>
+<td>7402</td>
+<td>动作ID不存在</td>
+<td></td>
+</tr>
+<tr>
+<td>7404</td>
+<td>当前FsmID不可触发此动作。</td>
+<td>部分动作在走跑运控下不可触发</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">关闭手臂动作服务</h2>
+<p>如需通过 <code>/arm_sdk</code>话题自主开发上肢动作，必须先关闭宇树内置的手臂控制服务。</p>
+<p>通过<a href="robot_state_client_interface.html">设备状态服务接口</a>可以关闭宇树内置的手臂控制服务。手臂动作服务的服务名称为：<code>g1_arm_example</code>。</p>
+<p>示例：</p>
+<pre><code class="language-cpp">#include &lt;unitree/robot/b2/robot_state/robot_state_client.hpp&gt;
+#include &lt;unitree/common/time/time_tool.hpp&gt;
+
+using namespace unitree::common;
+using namespace unitree::robot;
+using namespace unitree::robot::b2;
+
+int main(int32_t argc, const char** argv)
+{
+    if (argc &lt; 2)
+    {
+        std::cout &lt;&lt; "Usage: turn_off_arm_example [NetWorkInterface(eth0)]" &lt;&lt; std::endl;
+        exit(0);
+    }
+
+    std::string networkInterface = "eth0", serviceName = "g1_arm_example";
+
+    if (argc &gt; 1)
+    {
+        networkInterface = argv[1];
+    }
+
+    std::cout &lt;&lt; "NetWorkInterface:" &lt;&lt; networkInterface &lt;&lt; std::endl;
+    std::cout &lt;&lt; "Switch ServiceName:" &lt;&lt; serviceName &lt;&lt; std::endl; 
+
+    ChannelFactory::Instance()-&gt;Init(0, networkInterface);
+
+    RobotStateClient rsc;
+    rsc.SetTimeout(10.0f);
+    rsc.Init();
+
+    std::string clientApiVersion = rsc.GetApiVersion();
+    std::string serverApiVersion = rsc.GetServerApiVersion();
+
+    if (clientApiVersion != serverApiVersion)
+    {
+        std::cout &lt;&lt; "client and server api versions are not equal." &lt;&lt; std::endl;
+    }
+    int status = 0;
+    while (1)
+    {
+        int ret = rsc.ServiceSwitch(serviceName, 0, status);
+        if (ret == 0 &amp;&amp; status != 0)
+        {
+            std::cout &lt;&lt; "Call ServiceSwitch[" &lt;&lt; serviceName &lt;&lt; ",0] ret:" &lt;&lt; ret &lt;&lt; ", status:" &lt;&lt; status &lt;&lt; std::endl;
+            break;
+        }
+    }
+    ChannelFactory::Instance()-&gt;Release();
+    return 0;
+}
+</code></pre>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

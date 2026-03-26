@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>底层运动参考例程 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link active" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>底层运动参考例程</h1>
+          <div class="meta">更新时间：2025-11-12 14:23:37</div>
+        </header>
+        <section class="content">
+          <p>底层运动开发例程实现了将机器人从任意初始关节位置，复位至零位，然后用两种不同模式控制 G1 机器人踝关节摆动，并且以一定频率打印欧拉角数据。例程源代码位于 <code>unitree_sdk2/example/g1/low_level/g1_ankle_swing_example.cpp</code>，可从 <a href="get_sdk.html">此处</a> 访问，运行方式详见 <a href="quick_development.html">《快速开发》</a>。</p>
+<h1 id="g1">G1 机器人踝关节控制模式</h1>
+<p align="center">
+<img src="../assets/images/d23f851b1b572216.webp" width="50%"/>
+</p>
+<p>并联结构模型：<a href="https://oss-global-cdn.unitree.com/static/6b15e9e64db64c57970f9fbd6e51c60f.zip" rel="noopener noreferrer" target="_blank">G1脚踝并联结构</a></p>
+<p>G1 踝关节采用并联机构，为用户提供了两种控制模式：</p>
+<ul>
+<li><code>PR 模式</code>：控制踝关节的 Pitch(P) 和 Roll(R) 电机 (默认模式，对应 URDF 模型)</li>
+<li><code>AB 模式</code>：直接控制踝关节的 A 和 B 电机 (需要用户自己计算并联机构运动学)</li>
+</ul>
+<p>因为 G1 机器人踝关节并联机构的 PR 与 AB 关节运动存在两组约束关系，所以踝关节实际只有两个自由度。硬件实现上，AB 关节处于<strong>主动</strong>控制 (电机直接驱动)，而 PR 关节处于<strong>从动</strong>状态。为实现<code>PR 模式</code>，我们采用间接调节 AB 关节从而实现对 PR 关节的控制。</p>
+<div style="display: flex; justify-content: center;">
+<video autoplay="" controls="" loop="loop" src="../assets/files/fd9a1321dec93e83.mp4" style="width: 80%"></video>
+</div>
+<p>G1 机器人腰部 Pitch 和 Roll 关节同样采用了并联机构，也提供了<code>PR 模式</code>和<code>AB 模式</code>两种控制模式。</p>
+<h1 id="_1">代码解析</h1>
+<p>以下代码针对 G1 29dof 版本机型，其他版本机型的例程均在 <code>unitree_sdk2</code> 仓库。</p>
+<h2 id="_2">核心类型与功能介绍</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">类型名称</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>DataBuffer</code></td>
+<td style="text-align: left;">多线程数据缓存工具类</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>ImuState</code></td>
+<td style="text-align: left;">IMU 相关结构体</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>MotorCommand</code></td>
+<td style="text-align: left;">电机指令相关结构体</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>MotorState</code></td>
+<td style="text-align: left;">电机状态相关结构体</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>Mode</code></td>
+<td style="text-align: left;">G1 踝关节控制模式</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>G1JointIndex</code></td>
+<td style="text-align: left;">所有关节按名称排序索引</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>G1Example</code></td>
+<td style="text-align: left;">核心控制逻辑类</td>
+</tr>
+</tbody>
+</table>
+<p>例程的主程序定义在 <code>g1_ankle_swing_example.cpp</code> 中，主程序实例化 <code>G1Example</code> 类。</p>
+<p>在 <code>G1Example</code> 的构造函数中创建了两个线程和一个回调：</p>
+<ul>
+<li>周期执行的底层指令发送线程，默认按照 500Hz 调用函数 <code>G1Example::LowCommandWriter</code></li>
+<li>用户定义的控制逻辑线程，电机控线程，默认按照 500Hz 调用函数 <code>G1Example::Control</code></li>
+<li>底层状态接收回调，调用函数 <code>G1Example::LowStateHandler</code></li>
+</ul>
+<p>具体如下代码所示：</p>
+<pre><code class="language-c++">G1Example(std::string networkInterface)
+    : time_(0.0),
+      control_dt_(0.002),
+      duration_(3.0),
+      mode_pr_(Mode::PR),
+      mode_machine_(0) {
+  ChannelFactory::Instance()-&gt;Init(0, networkInterface);
+  // create publisher
+  lowcmd_publisher_.reset(new ChannelPublisher&lt;LowCmd_&gt;(HG_CMD_TOPIC));
+  lowcmd_publisher_-&gt;InitChannel();
+  // create subscriber
+  lowstate_subscriber_.reset(new ChannelSubscriber&lt;LowState_&gt;(HG_STATE_TOPIC));
+  lowstate_subscriber_-&gt;InitChannel(std::bind(&amp;G1Example::LowStateHandler, this, std::placeholders::_1), 1);
+  // create threads
+  command_writer_ptr_ = CreateRecurrentThreadEx("command_writer", UT_CPU_ID_NONE, 2000, &amp;G1Example::LowCommandWriter, this);
+  control_thread_ptr_ = CreateRecurrentThreadEx("control", UT_CPU_ID_NONE, 2000, &amp;G1Example::Control, this);
+}
+</code></pre>
+<h2 id="_3">底层指令发送函数</h2>
+<p><code>G1Example::LowCommandWriter</code> 用于周期性发送底层指令</p>
+<pre><code class="language-c++">void LowCommandWriter() {
+  LowCmd_ dds_low_command;
+  dds_low_command.mode_pr() = static_cast&lt;uint8_t&gt;(mode_pr_);
+  dds_low_command.mode_machine() = mode_machine_;
+  const std::shared_ptr&lt;const MotorCommand&gt; mc = motor_command_buffer_.GetData();
+  if (mc) {
+    for (size_t i = 0; i &lt; G1_NUM_MOTOR; i++) {
+      dds_low_command.motor_cmd().at(i).mode() = 1;  // 1:Enable, 0:Disable
+      dds_low_command.motor_cmd().at(i).tau() = mc-&gt;tau_ff.at(i);
+      dds_low_command.motor_cmd().at(i).q() = mc-&gt;q_target.at(i);
+      dds_low_command.motor_cmd().at(i).dq() = mc-&gt;dq_target.at(i);
+      dds_low_command.motor_cmd().at(i).kp() = mc-&gt;kp.at(i);
+      dds_low_command.motor_cmd().at(i).kd() = mc-&gt;kd.at(i);
+    }
+    dds_low_command.crc() = Crc32Core((uint32_t *)&amp;dds_low_command, (sizeof(dds_low_command) &gt;&gt; 2) - 1);
+    lowcmd_publisher_-&gt;Write(dds_low_command);
+  }
+}
+</code></pre>
+<h2 id="_4">底层状态接收回调函数</h2>
+<p>当接收到话题 <code>rt/lowstate</code> 的底层状态消息时，程序会自动回调 <code>G1Example::LowStateHandler</code> 函数。在回调函数中提取了电机的状态和 IMU 的状态。底层状态的结构体定义可参考 <a href="basic_services_interface.html">《底层服务接口》</a>。</p>
+<pre><code class="language-c++">void LowStateHandler(const void *message) {
+  LowState_ low_state = *(const LowState_ *)message;
+  if (low_state.crc() != Crc32Core((uint32_t *)&amp;low_state, (sizeof(LowState_) &gt;&gt; 2) - 1)) {
+    std::cout &lt;&lt; "[ERROR] CRC Error" &lt;&lt; std::endl;
+    return;
+  }
+  // get motor state
+  MotorState ms_tmp;
+  for (int i = 0; i &lt; G1_NUM_MOTOR; ++i) {
+    ms_tmp.q.at(i) = low_state.motor_state()[i].q();
+    ms_tmp.dq.at(i) = low_state.motor_state()[i].dq();
+    if (low_state.motor_state()[i].motorstate() &amp;&amp; i &lt;= RightAnkleRoll)
+      std::cout &lt;&lt; "[ERROR] motor " &lt;&lt; i &lt;&lt; " with code " &lt;&lt; low_state.motor_state()[i].motorstate() &lt;&lt; "\n";
+  }
+  motor_state_buffer_.SetData(ms_tmp);
+  // get imu state
+  ImuState imu_tmp;
+  imu_tmp.omega = low_state.imu_state().gyroscope();
+  imu_tmp.rpy = low_state.imu_state().rpy();
+  imu_state_buffer_.SetData(imu_tmp);
+  // update mode machine
+  if (mode_machine_ != low_state.mode_machine()) {
+    if (mode_machine_ == 0) std::cout &lt;&lt; "G1 type: " &lt;&lt; unsigned(low_state.mode_machine()) &lt;&lt; std::endl;
+    mode_machine_ = low_state.mode_machine();
+  }
+}
+</code></pre>
+<h2 id="_5">用户定义控制逻辑函数</h2>
+<p><code>G1Example::Control</code> 实现了：</p>
+<ul>
+<li>阶段 1：将 G1 机器人从任意初始关节位置，复位至零位 (程序启动的前 3秒)；</li>
+<li>阶段 2：采用踝关节 PR控制模式控制踝关节持续摆动 3秒；</li>
+<li>阶段 3：采用踝关节 AB控制模式控制踝关节持续摆动，一直到程序运行终止。</li>
+</ul>
+<pre><code class="language-c++">void Control() {
+  ReportRPY();
+  MotorCommand motor_command_tmp;
+  const std::shared_ptr&lt;const MotorState&gt; ms = motor_state_buffer_.GetData();
+  for (int i = 0; i &lt; G1_NUM_MOTOR; ++i) {
+    motor_command_tmp.tau_ff.at(i) = 0.0;
+    motor_command_tmp.q_target.at(i) = 0.0;
+    motor_command_tmp.dq_target.at(i) = 0.0;
+    motor_command_tmp.kp.at(i) = Kp[i];
+    motor_command_tmp.kd.at(i) = Kd[i];
+  }
+  if (ms) {
+    time_ += control_dt_;
+    if (time_ &lt; duration_) {
+      // [Stage 1]: set robot to zero posture
+      for (int i = 0; i &lt; G1_NUM_MOTOR; ++i) {
+        double ratio = std::clamp(time_ / duration_, 0.0, 1.0);
+        motor_command_tmp.q_target.at(i) = (1.0 - ratio) * ms-&gt;q.at(i);
+      }
+    } else if (time_ &lt; duration_ * 2) {
+      // [Stage 2]: swing ankle using PR mode
+      mode_pr_ = Mode::PR;
+      double max_P = M_PI * 30.0 / 180.0;
+      double max_R = M_PI * 10.0 / 180.0;
+      double t = time_ - duration_;
+      double L_P_des = max_P * std::sin(2.0 * M_PI * t);
+      double L_R_des = max_R * std::sin(2.0 * M_PI * t);
+      double R_P_des = max_P * std::sin(2.0 * M_PI * t);
+      double R_R_des = -max_R * std::sin(2.0 * M_PI * t);
+      motor_command_tmp.q_target.at(LeftAnklePitch) = L_P_des;
+      motor_command_tmp.q_target.at(LeftAnkleRoll) = L_R_des;
+      motor_command_tmp.q_target.at(RightAnklePitch) = R_P_des;
+      motor_command_tmp.q_target.at(RightAnkleRoll) = R_R_des;
+    } else {
+      // [Stage 3]: swing ankle using AB mode
+      mode_pr_ = Mode::AB;
+      double max_A = M_PI * 30.0 / 180.0;
+      double max_B = M_PI * 10.0 / 180.0;
+      double t = time_ - duration_ * 2;
+      double L_A_des = +max_A * std::sin(M_PI * t);
+      double L_B_des = +max_B * std::sin(M_PI * t + M_PI);
+      double R_A_des = -max_A * std::sin(M_PI * t);
+      double R_B_des = -max_B * std::sin(M_PI * t + M_PI);
+      motor_command_tmp.q_target.at(LeftAnkleA) = L_A_des;
+      motor_command_tmp.q_target.at(LeftAnkleB) = L_B_des;
+      motor_command_tmp.q_target.at(RightAnkleA) = R_A_des;
+      motor_command_tmp.q_target.at(RightAnkleB) = R_B_des;
+    }
+    motor_command_buffer_.SetData(motor_command_tmp);
+  }
+}
+</code></pre>
+<h2 id="_6">欧拉角状态打印函数</h2>
+<p><code>G1Example::ReportRPY</code> 用于周期性输出欧拉角数据。</p>
+<pre><code class="language-c++">void ReportRPY() {
+  const std::shared_ptr&lt;const ImuState&gt; imu = imu_state_buffer_.GetData();
+  if (imu) std::cout &lt;&lt; "rpy: [" &lt;&lt; imu-&gt;rpy.at(0) &lt;&lt; ", " &lt;&lt; imu-&gt;rpy.at(1) &lt;&lt; ", " &lt;&lt; imu-&gt;rpy.at(2) &lt;&lt; "]" &lt;&lt; std::endl;
+}
+</code></pre>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

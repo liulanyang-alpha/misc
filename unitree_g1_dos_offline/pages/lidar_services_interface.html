@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LiDAR服务接口 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link active" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>LiDAR服务接口</h1>
+          <div class="meta">更新时间：2025-09-28 10:45:12</div>
+        </header>
+        <section class="content">
+          <h1 id="_1">雷达服务接口</h1>
+<h2 id="_2">软件服务版本要求</h2>
+<p>Lidar Driver &gt;= 1.0.0.5，若内置服务版本低，请联系技术支持升级至正确版本。</p>
+<h2 id="_3">基本信息</h2>
+<p>Mid-360雷达位于G1机器人的头部中间，Mid-360内部的IMU与雷达的坐标关系<code>（0.011, 0.02329, -0.04412）</code>（单位：米），没有旋转变换的关系。可以用以下变换矩阵表示
+$$
+\begin{bmatrix}1 &amp; 0 &amp; 0 &amp; 0.011\ 0 &amp; 1 &amp; 0 &amp; 0.02329 \ 0 &amp; 0 &amp; 1 &amp; -0.04412\ 0 &amp; 0 &amp; 0 &amp; 1 \end{bmatrix}
+$$</p>
+<p align="center">
+<img src="../assets/images/9aa4bbe952416c2d.webp" width="400"/>
+
+Mid360雷达在G1上的安装方式如上图所示，其中，雷达坐标系相对于机器人坐标的位置关系`（-0.0, 0.0, -0.47618）`，采用倒置方式安装，Mid-360雷达pitch轴倾角是`-2.3`°（单位：度），yaw轴和roll轴无倾斜。
+
+</p>
+<h2 id="_4">数据接口</h2>
+<p>发出的数据分别为点云和IMU的DDS格式数据；点云话题为<code>rt/utlidar/cloud_livox_mid360</code>，输出频率10HZ,frame_id为<code>"livox_frame"</code>;IMU话题为<code>rt/utlidar/imu_livox_mid360</code>，输出频率为200HZ。</p>
+<h2 id="_5">订阅案例</h2>
+<pre><code class="language-C++">#include &lt;unitree/robot/channel/channel_subscriber.hpp&gt;
+#include &lt;unitree/idl/ros2/PointCloud2_.hpp&gt;
+#include &lt;unitree/idl/ros2/Imu_.hpp&gt;
+
+#define LIDAR_TOPIC "rt/utlidar/cloud_livox_mid360"
+#define IMU_TOPIC "rt/utlidar/imu_livox_mid360"
+
+using namespace unitree::robot;
+using namespace unitree::common;
+
+void LidarHandler(const void* msg)
+{
+    const sensor_msgs::msg::dds_::PointCloud2_* pc_data = (const sensor_msgs::msg::dds_::PointCloud2_*)msg;
+    std::cout &lt;&lt; "Lidar data received" &lt;&lt; std::endl;
+}
+
+void ImuHandler(const void* msg)
+{
+    const sensor_msgs::msg::dds_::Imu_* imu_data = (const sensor_msgs::msg::dds_::Imu_*)msg;
+    std::cout &lt;&lt; "Imu data received" &lt;&lt; std::endl;
+}
+
+int main()
+{
+    ChannelFactory::Instance()-&gt;Init(0);
+
+
+    ChannelSubscriberPtr&lt;sensor_msgs::msg::dds_::PointCloud2_&gt; lidar_sub_ = ChannelSubscriberPtr&lt;sensor_msgs::msg::dds_::PointCloud2_&gt;(new ChannelSubscriber&lt;sensor_msgs::msg::dds_::PointCloud2_&gt;(LIDAR_TOPIC));
+    ChannelSubscriberPtr&lt;sensor_msgs::msg::dds_::Imu_&gt; imu_sub_ = ChannelSubscriberPtr&lt;sensor_msgs::msg::dds_::Imu_&gt;(new ChannelSubscriber&lt;sensor_msgs::msg::dds_::Imu_&gt;(IMU_TOPIC));
+
+
+    lidar_sub_-&gt;InitChannel(std::bind(LidarHandler, std::placeholders::_1), 1);
+    imu_sub_-&gt;InitChannel(std::bind(ImuHandler, std::placeholders::_1), 1);
+
+
+    while (true)
+    {
+        sleep(10);
+    }
+
+    return 0;
+}
+</code></pre>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>关于G1 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link active" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>关于G1</h1>
+          <div class="meta">更新时间：2025-09-15 12:09:10</div>
+        </header>
+        <section class="content">
+          <style>
+    img[alt="1"]{
+        width:500px;
+    }
+  </style>
+<style>
+    img[alt="2"]{
+        width:700px;
+    }
+    </style>
+<style>
+    img[alt="3"]{
+        width:800px;
+    }
+    </style>
+<style>
+    img[alt="4"]{
+        width:200px;
+    }
+      </style>
+<style>
+    img[alt="5"]{
+       height:500px;
+    }
+  </style>
+<div class="admonition note">
+<p class="admonition-title">宇树人形机器人开发使用温馨提示:</p>
+<p>由于普通大众，都比较喜欢和真人运动更加接近和自然的动作，所以以下几点人形机器人使用事项，还请大家重视，尤其是在拍摄机器人视频的时候：
+1. 开发的腿部运动程序，尽可能使膝关节到直立，或者接近直立状态；
+2. 尽可能降低步频，并且尽可能避免原地踏步；
+3. 双脚略微靠拢，行走的时候尽可能避免撇开双脚；</p>
+<p>希望以上内容能对您有所帮助。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">成果视频署名建议</p>
+<p><strong>尊敬的开发者您好，我们建议您在发布自己的研究成果视频时，可以在视频中的显著位置全视频添加您实验室的名称或标志（Logo）。以免后续视频传播的时候，普通群众不清楚视频实际的出处。在此感谢您对宇树科技的支持。</strong></p>
+</div>
+<h1 id="_1">部件名称</h1>
+<p>G1 整机分为上半身和下半身，具备多个自由度。单手臂拥有 5 个自由度和 7 个自由度两个版本，包括肩身关节、上臂关节、手肘关节和腕关节（选配）。单腿拥有 6 个自由度，包括胯关节、腿关节、髋关节、膝关节和踝关节。腰部具备 1自由度和3自由度两个版本，即腰关节。整机根据版本不同，可以分为 G1 基础版本 23 自由度，G1-EDU可选23~43 自由度，拥有多个关节电机自由度，使得机器人能够实现精确的运动和姿态控制。</p>
+<table>
+<thead>
+<tr>
+<th>类型<div style="width: 100pt"> </div></th>
+<th>G1</th>
+<th>G1-EDU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总自由度</td>
+<td>23</td>
+<td>23~43</td>
+</tr>
+<tr>
+<td>单腿自由度</td>
+<td> 6</td>
+<td>6</td>
+</tr>
+<tr>
+<td>腰部自由度</td>
+<td>1</td>
+<td>1+（可加选2个腰部自由度）</td>
+</tr>
+<tr>
+<td>单手臂自由度</td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>单手自由度</td>
+<td>/</td>
+<td><strong>7</strong>（可加选力控3指灵巧手Dex3-1）+ <strong>2</strong>（可加选 2 个手腕自由度）</td>
+</tr>
+<tr>
+<td>部件说明</td>
+<td><img alt="" src="../assets/images/5011825c7e08c234.webp"/></td>
+<td><img alt="" src="../assets/images/c42204e62ad32234.webp"/></td>
+</tr>
+</tbody>
+</table>
+<h2 id="dex3-1">灵巧手 Dex3-1</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">灵巧手 Dex3-1 电气参数</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">渲染图</td>
+<td><img alt="" src="../assets/images/934ff66c16e4682a.webp"/></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">工作电压</td>
+<td>12-58V</td>
+</tr>
+<tr>
+<td style="text-align: center;">感知范围</td>
+<td>10g-2500g</td>
+</tr>
+<tr>
+<td style="text-align: center;">自由度</td>
+<td>总自由度：7<br/>  1.大拇指 3 个主动自由度;<br/>  2.食指 2 个主动自由度;<br/>   3.中指 2 个主动自由度。</td>
+</tr>
+<tr>
+<td style="text-align: center;">关节角度</td>
+<td>大拇指：0°~+100°, -35°~+60°, -60°~+60°；<br/>食指、中指：0°~+90°，0°~+100°</td>
+</tr>
+<tr>
+<td style="text-align: center;">阵列传感器数量</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">灵巧手使用提示</p>
+<p>在使用灵巧手时，务必确保机器人动作不会使灵巧手对机体产生干涉。您可以增加一些肩部电机的向外偏置，避免灵巧手与机体产生碰撞。开发时，不建议带着灵巧手做过于剧烈的动作，如奔跑、平衡性测试等。</p>
+</div>
+<h2 id="mm">安装孔位：单位mm</h2>
+<p>如果需要使用G1安装孔，请先取下孔位上的标贴。</p>
+<div class="center-block">
+<p><img alt="5" src="../assets/images/98503e6ff3ae2326.webp" title="正面"/></p>
+<p><img alt="5" src="../assets/images/1c2cb2480338e5f2.webp" title="背面"/></p>
+</div>
+<h2 id="_2">电气接口</h2>
+<p>G1 的顶部配备了电气接口，这些接口用于连接各个机身关节电机、传感器外设、网口等。这样的设计使您能够方便地进行调试、排查问题以及进行二次开发。</p>
+<div class="center-block">
+<p><img alt="2" src="../assets/images/e44e5edf8caa8721.webp" title="G1 顶部视图"/></p>
+</div>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>接口类型</th>
+<th>接口简称</th>
+<th>接口说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>XT30UPB-F</td>
+<td>VBAT</td>
+<td>58V/5A 电池电源输出（此处直连电池电源）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>XT30UPB-F</td>
+<td>24V</td>
+<td>24V/5A电源输出</td>
+</tr>
+<tr>
+<td>3</td>
+<td>XT30UPB-F</td>
+<td>12V</td>
+<td>12V/5A电源输出</td>
+</tr>
+<tr>
+<td>4</td>
+<td>RJ45</td>
+<td>1000 BASE-T</td>
+<td>千兆以太网</td>
+</tr>
+<tr>
+<td>5</td>
+<td>RJ45</td>
+<td>1000 BASE-T</td>
+<td>千兆以太网</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Type-C</td>
+<td>Type-C</td>
+<td>支持USB3.0 host，5V/1.5A电源输出</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Type-C</td>
+<td>Type-C</td>
+<td>支持USB3.0 host，5V/1.5A电源输出</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Type-C</td>
+<td>Type-C</td>
+<td>支持USB3.0 host，5V/1.5A电源输出</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Type-C</td>
+<td>Alt Mode Type-C</td>
+<td>支持USB3.2 host，支持DP1.4</td>
+</tr>
+<tr>
+<td>10</td>
+<td>I/O</td>
+<td>I/O OUT</td>
+<td>12V: 12V/3A电源输出 <br/>GPIO详见下表</td>
+</tr>
+</tbody>
+</table>
+<div class="center-block">
+<p><img alt="1" src="../assets/images/32bc60d5619b8345.webp" title="RJ45及IO列表"/></p>
+</div>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">GPIO编号</th>
+<th style="text-align: left;">NX引脚号</th>
+<th style="text-align: left;">复用关系</th>
+<th style="text-align: left;">debugfs文件系统的引脚名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">GPIO1</td>
+<td style="text-align: left;">203</td>
+<td style="text-align: left;">UART1_TXD</td>
+<td style="text-align: left;">GPIO3_PR.02</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPIO2</td>
+<td style="text-align: left;">205</td>
+<td style="text-align: left;">UART1_RXD</td>
+<td style="text-align: left;">GPIO3_PR.03</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPIO3</td>
+<td style="text-align: left;">232</td>
+<td style="text-align: left;">I2C2_SCL</td>
+<td style="text-align: left;">GPIO3_PI.03</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPIO4</td>
+<td style="text-align: left;">234</td>
+<td style="text-align: left;">I2C2_SDA</td>
+<td style="text-align: left;">GPIO3_PI.04</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPIO5</td>
+<td style="text-align: left;">128</td>
+<td style="text-align: left;">GPIO</td>
+<td style="text-align: left;">GPIO3_PCC.02</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPIO6</td>
+<td style="text-align: left;">130</td>
+<td style="text-align: left;">GPIO</td>
+<td style="text-align: left;">GPIO3_PCC.03</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">注意：</p>
+<p>NVIDIA的GPIO的操作方式有很多种，NVIDIA的GPIO定义可以参考如下链接：
+<a href="https://docs.nvidia.com/jetson/archives/r35.2.1/DeveloperGuide/text/HR/JetsonModuleAdaptationAndBringUp/JetsonOrinNxSeries.html#identifying-the-gpio-number" rel="noopener noreferrer" target="_blank">https://docs.nvidia.com/jetson/archives/r35.2.1/DeveloperGuide/text/HR/JetsonModuleAdaptationAndBringUp/JetsonOrinNxSeries.html#identifying-the-gpio-number</a></p>
+</div>
+<p>使用说明请参考：</p>
+<h2 id="_3">调试接口</h2>
+<div class="center-block">
+<p><img alt="2" src="../assets/images/145c4826cacbaa4a.webp" title="G1 背部视图"/></p>
+</div>
+<p>运控计算单元以太网调试接口及开发计算单元以太网调试接口相同，线序如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">PIN</th>
+<th style="text-align: center;">引脚描述</th>
+<th style="text-align: center;">RJ45线序</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0P</td>
+<td style="text-align: center;">橙白</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">0N</td>
+<td style="text-align: center;">橙</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">1P</td>
+<td style="text-align: center;">绿白</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">1N</td>
+<td style="text-align: center;">绿</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">2P</td>
+<td style="text-align: center;">蓝白</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">2N</td>
+<td style="text-align: center;">蓝</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">3P</td>
+<td style="text-align: center;">棕白</td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">3N</td>
+<td style="text-align: center;">棕</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">机载计算机</h2>
+<p>G1-EDU 机载标配 1 块【运控计算单元】，并且标配一块【开发计算单元】。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">参数</th>
+<th style="text-align: center;">开发计算单元（ PC2 )</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">型号</td>
+<td style="text-align: center;">Jetson Orin NX</td>
+</tr>
+<tr>
+<td style="text-align: center;">CPU</td>
+<td style="text-align: center;">Arm® Cortex®-A78AE</td>
+</tr>
+<tr>
+<td style="text-align: center;">内核数</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr>
+<td style="text-align: center;">线程数</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr>
+<td style="text-align: center;">最大睿频频率 </td>
+<td style="text-align: center;">2GHz </td>
+</tr>
+<tr>
+<td style="text-align: center;">显存</td>
+<td style="text-align: center;">16G </td>
+</tr>
+<tr>
+<td style="text-align: center;">内存</td>
+<td style="text-align: center;">16G</td>
+</tr>
+<tr>
+<td style="text-align: center;">缓存</td>
+<td style="text-align: center;">2MB L2 + 4MB L3</td>
+</tr>
+<tr>
+<td style="text-align: center;">存储</td>
+<td style="text-align: center;">2T</td>
+</tr>
+<tr>
+<td style="text-align: center;">英特尔® 图像处理单元</td>
+<td style="text-align: center;">6.0</td>
+</tr>
+<tr>
+<td style="text-align: center;">GPU</td>
+<td style="text-align: center;">搭载 32 个 Tensor Core 的 1024 核 NVIDIA Ampere 架构 GPU</td>
+</tr>
+<tr>
+<td style="text-align: center;">显卡最大动态频率</td>
+<td style="text-align: center;"> 918MHz</td>
+</tr>
+<tr>
+<td style="text-align: center;">高斯和神经加速器</td>
+<td style="text-align: center;">3.0</td>
+</tr>
+<tr>
+<td style="text-align: center;">英特尔®深度学习提升</td>
+<td style="text-align: center;">是</td>
+</tr>
+<tr>
+<td style="text-align: center;">英特尔®Adaptix™ 技术</td>
+<td style="text-align: center;">是</td>
+</tr>
+<tr>
+<td style="text-align: center;">英特尔®超线程技术</td>
+<td style="text-align: center;">是</td>
+</tr>
+<tr>
+<td style="text-align: center;">指令集</td>
+<td style="text-align: center;">64bit</td>
+</tr>
+<tr>
+<td style="text-align: center;">OpenGL</td>
+<td style="text-align: center;">4.6</td>
+</tr>
+<tr>
+<td style="text-align: center;">OpenCL</td>
+<td style="text-align: center;">3.0</td>
+</tr>
+<tr>
+<td style="text-align: center;">DirectX</td>
+<td style="text-align: center;">12.1</td>
+</tr>
+<tr>
+<td style="text-align: center;">IP 地址</td>
+<td style="text-align: center;">192.168.123.164</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<ul>
+<li>【运控计算单元】为 Unitree 运动控制程序专用，不对外开放。开发者仅可使用【开发计算单元】进行二次开发。初始用户名：<code>unitree</code>, 密码:<code>123</code>。</li>
+<li>表中PC2【开发计算单元】，地址为192.168.123.164。</li>
+<li>CPU 模块发货时可能变更为不低于上述的性能的更先进版本。</li>
+</ul>
+</blockquote>
+<h2 id="g1">G1雷达与相机的视场角</h2>
+<p>G1头部搭载LIVOX-MID360激光雷达，为机器人提供了卓越的环境感知能力。激光雷达采用全方位、全角度的扫描技术，FOV水平可达360°，竖直最大59°，能够实时获取精准的环境数据。它能够快速识别和测量周围的物体，提供高分辨率的点云数据。</p>
+<div class="center-block">
+<p><img alt="5" src="../assets/images/940de62449c0b06f.webp" title="MID360激光雷达FOV"/></p>
+<p><img alt="5" src="../assets/images/6f0f12887fa6a81b.webp" title="D435i深度相机FOV"/></p>
+</div>
+<p>G1头部搭载D435i深度相机，为机器人提供了卓越的视觉感知能力，能够更准确地感知和理解周围环境，实现精确的空间感知和障碍物检测，使机器人能够更智能、灵活地与环境进行交互和应对各种场景。</p>
+<p><img alt="" src="../assets/images/c341243ae5e121ab.webp" title="MID360+D435i合并的FOV"/></p>
+<h2 id="_5">关节电机</h2>
+<p>G1 关节采用了 Unitree 自研电机，具备出色的性能和特点。电机的最大扭矩为 120N.m，采用了中空轴线的设计，使得电机在结构上更加轻量化、紧凑化。电机还配备了双编码器，提供更准确的位置和速度反馈，以满足高精度控制的需求。</p>
+<h2 id="_6">关节顺序名称与关节限位</h2>
+<table>
+<thead>
+<tr>
+<th>关节序号</th>
+<th>关节名称</th>
+<th>限位(弧度)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>L_LEG_HIP_PITCH</td>
+<td>-2.5307~2.8798</td>
+</tr>
+<tr>
+<td>1</td>
+<td>L_LEG_HIP_ROLL</td>
+<td>-0.5236~2.9671</td>
+</tr>
+<tr>
+<td>2</td>
+<td>L_LEG_HIP_YAW</td>
+<td>-2.7576~2.7576</td>
+</tr>
+<tr>
+<td>3</td>
+<td>L_LEG_KNEE</td>
+<td>-0.087267~2.8798</td>
+</tr>
+<tr>
+<td>4</td>
+<td>L_LEG_ANKLE_PITCH</td>
+<td>-0.87267~0.5236</td>
+</tr>
+<tr>
+<td>5</td>
+<td>L_LEG_ANKLE_ROLL</td>
+<td>-0.2618~0.2618</td>
+</tr>
+<tr>
+<td>6</td>
+<td>R_LEG_HIP_PITCH</td>
+<td>-2.5307~2.8798</td>
+</tr>
+<tr>
+<td>7</td>
+<td>R_LEG_HIP_ROLL</td>
+<td>-2.9671~0.5236</td>
+</tr>
+<tr>
+<td>8</td>
+<td>R_LEG_HIP_YAW</td>
+<td>-2.7576~2.7576</td>
+</tr>
+<tr>
+<td>9</td>
+<td>R_LEG_KNEE</td>
+<td>-0.087267~2.8798</td>
+</tr>
+<tr>
+<td>10</td>
+<td>R_LEG_ANKLE_PITCH</td>
+<td>-0.87267~0.5236</td>
+</tr>
+<tr>
+<td>11</td>
+<td>R_LEG_ANKLE_ROLL</td>
+<td>-0.2618~0.2618</td>
+</tr>
+<tr>
+<td>12</td>
+<td>WAIST_YAW</td>
+<td>-2.618~2.618</td>
+</tr>
+<tr>
+<td>13</td>
+<td>WAIST_ROLL</td>
+<td>-0.52~0.52</td>
+</tr>
+<tr>
+<td>14</td>
+<td>WAIST_PITCH</td>
+<td>-0.52~0.52</td>
+</tr>
+<tr>
+<td>15</td>
+<td>L_SHOULDER_PITCH</td>
+<td>-3.0892~2.6704</td>
+</tr>
+<tr>
+<td>16</td>
+<td>L_SHOULDER_ROLL</td>
+<td>-1.5882~2.2515</td>
+</tr>
+<tr>
+<td>17</td>
+<td>L_SHOULDER_YAW</td>
+<td>-2.618~2.618</td>
+</tr>
+<tr>
+<td>18</td>
+<td>L_ELBOW</td>
+<td>-1.0472~2.0944</td>
+</tr>
+<tr>
+<td>19</td>
+<td>L_WRIST_ROLL</td>
+<td>-1.972222054~1.972222054</td>
+</tr>
+<tr>
+<td>20</td>
+<td>L_WRIST_PITCH</td>
+<td>-1.614429558~1.614429558</td>
+</tr>
+<tr>
+<td>21</td>
+<td>L_WRIST_YAW</td>
+<td>-1.614429558~1.614429558</td>
+</tr>
+<tr>
+<td>22</td>
+<td>R_SHOULDER_PITCH</td>
+<td>-3.0892~2.6704</td>
+</tr>
+<tr>
+<td>23</td>
+<td>R_SHOULDER_ROLL</td>
+<td>-2.2515~1.5882</td>
+</tr>
+<tr>
+<td>24</td>
+<td>R_SHOULDER_YAW</td>
+<td>-2.618~2.618</td>
+</tr>
+<tr>
+<td>25</td>
+<td>R_ELBOW</td>
+<td>-1.0472~2.0944</td>
+</tr>
+<tr>
+<td>26</td>
+<td>R_WRIST_ROLL</td>
+<td>-1.972222054~1.972222054</td>
+</tr>
+<tr>
+<td>27</td>
+<td>R_WRIST_PITCH</td>
+<td>-1.614429558~1.614429558</td>
+</tr>
+<tr>
+<td>28</td>
+<td>R_WRIST_YAW</td>
+<td>-1.614429558~1.614429558</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">坐标系，关节旋转轴与关节零点</h2>
+<p>当各个关节均为零度时，各坐标系如下图。红色为 x 轴，绿色为 y 轴，蓝色为 z 轴。
+| 23 dof |  29dof|
+|-------| ------|
+|   <img alt="" src="../assets/images/0f581e80a7f45b84.webp"/> | <img alt="" src="../assets/images/5fa7c7461e6ad77e.webp"/> |</p>
+<h1 id="_8">机器人规格</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">型号 <div style="width: 100pt"> </div></th>
+<th>G1</th>
+<th>G1-EDU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">高宽厚(站立)</td>
+<td>1320x450x200mm</td>
+<td>1320x450x200mm</td>
+</tr>
+<tr>
+<td style="text-align: left;">高宽厚（折叠）</td>
+<td>690x450x300mm</td>
+<td>690x450x300mm</td>
+</tr>
+<tr>
+<td style="text-align: left;">带电池重量</td>
+<td>约35kg</td>
+<td>约35kg</td>
+</tr>
+<tr>
+<td style="text-align: left;">总自由度</td>
+<td>23</td>
+<td>23~43</td>
+</tr>
+<tr>
+<td style="text-align: left;">单腿自由度</td>
+<td> 6</td>
+<td>6</td>
+</tr>
+<tr>
+<td style="text-align: left;">腰部自由度</td>
+<td>1</td>
+<td>1+（可加选2个腰部自由度）</td>
+</tr>
+<tr>
+<td style="text-align: left;">单手臂自由度</td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr>
+<td style="text-align: left;">单手自由度</td>
+<td>/</td>
+<td><strong>7</strong>（可加选力控3指灵巧手Dex3-1）+<strong>2</strong>（可加选2个手腕自由度）</td>
+</tr>
+<tr>
+<td style="text-align: left;">关节输出轴承</td>
+<td>工业级交叉滚子轴承（高精度，高承载力）</td>
+<td>工业级交叉滚子轴承（高精度，高承载力）</td>
+</tr>
+<tr>
+<td style="text-align: left;">关节电机</td>
+<td>低惯量高速内转子永磁同步电机<br/>（更好的响应速度和散热）</td>
+<td>低惯量高速内转子永磁同步电机<br/>（更好的响应速度和散热）</td>
+</tr>
+<tr>
+<td style="text-align: left;">膝关节最大扭矩[1]</td>
+<td> 90N.m</td>
+<td>120N.m</td>
+</tr>
+<tr>
+<td style="text-align: left;">手臂最大负载[2]</td>
+<td>约2Kg</td>
+<td>约3Kg</td>
+</tr>
+<tr>
+<td style="text-align: left;">小腿+大腿长度</td>
+<td> 0.6M</td>
+<td>0.6M</td>
+</tr>
+<tr>
+<td style="text-align: left;">手臂臂展</td>
+<td>约0.45M</td>
+<td>约0.45M</td>
+</tr>
+<tr>
+<td style="text-align: left;">超大关节运动空间</td>
+<td>腰关节：Z±155°<br/>膝关节：0~165°<br/>髋关节：P±154°、R-30~+170°、Y±158°</td>
+<td>腰关节：Z±155°、X±45°、Y±30°<br/>膝关节：0~165°<br/>髋关节：P±154°、R-30~+170°、Y±158°<br/>腕关节：P±92.5°、Y±92.5°</td>
+</tr>
+<tr>
+<td style="text-align: left;">全关节中空内走线</td>
+<td>有</td>
+<td>有</td>
+</tr>
+<tr>
+<td style="text-align: left;">关节编码器</td>
+<td>双编码器</td>
+<td>双编码器</td>
+</tr>
+<tr>
+<td style="text-align: left;">散热系统</td>
+<td>局部风冷散热</td>
+<td>局部风冷散热</td>
+</tr>
+<tr>
+<td style="text-align: left;">供电方式</td>
+<td>13串锂电池</td>
+<td>13串锂电池</td>
+</tr>
+<tr>
+<td style="text-align: left;">基础算力</td>
+<td>8核高性能CPU</td>
+<td>8核高性能CPU</td>
+</tr>
+<tr>
+<td style="text-align: left;">感知传感器</td>
+<td>深度相机+3D激光雷达</td>
+<td>深度相机+3D激光雷达</td>
+</tr>
+<tr>
+<td style="text-align: left;">4麦克风阵列</td>
+<td>有</td>
+<td>有</td>
+</tr>
+<tr>
+<td style="text-align: left;">5w扬声器</td>
+<td>有</td>
+<td>有</td>
+</tr>
+<tr>
+<td style="text-align: left;">WiFi6、蓝牙5.2</td>
+<td>有</td>
+<td>有</td>
+</tr>
+<tr>
+<td style="text-align: left;">高算力模组</td>
+<td>/</td>
+<td>NVIDIA Jetson Orin</td>
+</tr>
+<tr>
+<td style="text-align: left;">智能电池（快拆）</td>
+<td>9000mAh</td>
+<td>9000mAh</td>
+</tr>
+<tr>
+<td style="text-align: left;">充电器</td>
+<td>54V 5A</td>
+<td>54V 5A</td>
+</tr>
+<tr>
+<td style="text-align: left;">手持式遥控器</td>
+<td>有</td>
+<td>有</td>
+</tr>
+<tr>
+<td style="text-align: left;">续航时间</td>
+<td>约2h</td>
+<td>约2h</td>
+</tr>
+<tr>
+<td style="text-align: left;">智能OTA升级</td>
+<td>有</td>
+<td>有</td>
+</tr>
+<tr>
+<td style="text-align: left;">二次开发[3]</td>
+<td>/</td>
+<td>有</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">注意</p>
+<p>[1] 整机关节电机，最大扭矩有差异，此为其中最大关节电机的最大扭矩
+[2] 手臂最大负载，不同手臂伸展姿态下，差异很大
+[3] 详细功能，请查看二次开发手册
+[4] 更详细保修条款，请参见产品保修手册
+[5] 以上参数，在不同业务场景、不同型号参数配置等情况，在应用中有所差异，请以实际为准
+[6] 人形机器人结构复杂，动力极其强劲，请用户让人和机器人保持足够的安全距离，请务必小心使用
+[7] 产品外观后续可能会有升级调整，请以届时实物为准
+[8] 本产品为民用机器人产品，请各位用户不要危险性改造和使用机器人。
+[9] 请访问宇树科技官网了解更多产品相关条款与政策，请遵守各地区法律法规。      </p>
+</div>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

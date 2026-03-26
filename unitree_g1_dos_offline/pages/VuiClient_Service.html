@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>音频灯光服务接口 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link active" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>音频灯光服务接口</h1>
+          <div class="meta">更新时间：2025-10-22 11:10:09</div>
+        </header>
+        <section class="content">
+          <style>
+    img[alt="1"]{
+        width:500px;
+    }
+
+
+
+  table th:first-of-type {
+    width: 180pt;
+    text-align: center;
+}
+
+</style>
+<h1 id="_1">介绍</h1>
+<p>G1上半身内嵌的音频/灯光相关的硬件设施，使得机器人本体具备了实现语音交互的能力,包括:</p>
+<ul>
+<li>RGB灯条 - 256色</li>
+<li>扬声器 - 8Ω 3瓦(峰值5瓦)</li>
+<li>四麦-麦克风阵列，麦间距20mm(类线性,硅麦)</li>
+</ul>
+<div class="center-block">
+<p><img alt="1" src="../assets/images/638a665eb471726b.webp" title="部件位置"/></p>
+</div>
+
+<h1 id="_2">二次开发</h1>
+<p>软件服务版本要求：
+<strong>vui_service</strong> &gt;= 2.0.3.8，<strong>vui module</strong> &gt;= 2.0.0.3。若内置服务版本不符合此要求，请联系技术支持升级至正确版本。</p>
+<p>音频灯光相关接口目前主要提供以下能力，用户可以使用以下组合来开发自己的语音交互程序。</p>
+<ul>
+<li>ASR(Automatic Speech Recognition语音识别)， 默认非流式模型，本地离线式。输出结果包含方位角，情感，说话人角色等信息，部分字段在开发中，请注意官网更新。</li>
+<li>TTS(Text-to-Speech 文本转语音)，本地离线合成，发音角色可选，支持中文和英文两种语言</li>
+<li>音频流控制</li>
+<li>音量控制</li>
+<li>灯带颜色控制</li>
+</ul>
+<h2 id="audioclient">AudioClient 类</h2>
+<p>AudioClient类可以实现文本转语音，音频控制/播放，灯光控制等功能。</p>
+<h3 id="_3">接口列表：</h3>
+<table>
+<thead>
+<tr>
+<th><strong>函数名</strong></th>
+<th>TtsMaker</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>函数原型</strong></td>
+<td>int32_t TtsMaker(const std::string&amp; text, int32_t speaker_id)</td>
+</tr>
+<tr>
+<td><strong>功能概述</strong></td>
+<td>文字转语音</td>
+</tr>
+<tr>
+<td><strong>参数</strong></td>
+<td><strong>text</strong>：文字<br/><strong>speaker_id</strong>：角色id</td>
+</tr>
+<tr>
+<td><strong>返回值</strong></td>
+<td>调用成功返回 0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td><strong>备注</strong></td>
+<td>speaker_id中文角色填0  英文角色填1，暂不支持中英文混合模式。</td>
+</tr>
+<tr>
+<td><em>speaker_id</em> 0</td>
+<td>你好。我是宇树科技的机器人。例程启动成功<video controls="" src="../assets/files/ac365b79876e643e.wav"></video></td>
+</tr>
+<tr>
+<td><em>speaker_id</em> 1</td>
+<td>Hello. I'm a robot from Unitree Robotics. The example has started successfully. <video controls="" src="../assets/files/30ca144cfe7e387f.wav"></video></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>函数名</strong></th>
+<th>GetVolume</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>函数原型</strong></td>
+<td>int32_t GetVolume(uint8_t &amp;volume）</td>
+</tr>
+<tr>
+<td><strong>功能概述</strong></td>
+<td>获取系统音量</td>
+</tr>
+<tr>
+<td><strong>参数</strong></td>
+<td><strong>volume</strong>：音量大小(0-100)</td>
+</tr>
+<tr>
+<td><strong>返回值</strong></td>
+<td>调用成功返回 0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td><strong>备注</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>函数名</strong></th>
+<th>SetVolume</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>函数原型</strong></td>
+<td>int32_t SetVolume(uint8_t volume)</td>
+</tr>
+<tr>
+<td><strong>功能概述</strong></td>
+<td>设置系统音量</td>
+</tr>
+<tr>
+<td><strong>参数</strong></td>
+<td><strong>volume</strong>：音量大小(0-100)</td>
+</tr>
+<tr>
+<td><strong>返回值</strong></td>
+<td>调用成功返回 0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td><strong>备注</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>函数名</strong></th>
+<th>LedControl</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>函数原型</strong></td>
+<td>int32_t LedControl(uint8_t R, uint8_t G, uint8_t B)</td>
+</tr>
+<tr>
+<td><strong>功能概述</strong></td>
+<td>灯带控制</td>
+</tr>
+<tr>
+<td><strong>参数</strong></td>
+<td><strong>R</strong>：红色(0-255)<br/><strong>G</strong>：绿色(0-255)<br/><strong>B</strong>：蓝色(0-255)</td>
+</tr>
+<tr>
+<td><strong>返回值</strong></td>
+<td>调用成功返回 0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td><strong>备注</strong></td>
+<td>此接口调用间隔需大于200ms</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>函数名</strong></th>
+<th>PlayStream</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>函数原型</strong></td>
+<td>int32_t PlayStream(std::string app_name, std::string stream_id, std::vector<uint8_t> pcm_data)</uint8_t></td>
+</tr>
+<tr>
+<td><strong>功能概述</strong></td>
+<td>音频流播放</td>
+</tr>
+<tr>
+<td><strong>参数</strong></td>
+<td><strong>app_name</strong>：应用名称<br/><strong>stream_id</strong>：标识id,  相同为缓存续播，不同则打断播放<br/><strong>pcm_data</strong>：PCM格式  采样率16K 单通道  16bit</td>
+</tr>
+<tr>
+<td><strong>返回值</strong></td>
+<td>调用成功返回 0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td><strong>备注</strong></td>
+<td>注意音频格式</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>函数名</strong></th>
+<th>PlayStop</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>函数原型</strong></td>
+<td>int32_t PlayStop(std::string app_name)</td>
+</tr>
+<tr>
+<td><strong>功能概述</strong></td>
+<td>停止播放</td>
+</tr>
+<tr>
+<td><strong>参数</strong></td>
+<td><strong>app_name</strong>：应用名称</td>
+</tr>
+<tr>
+<td><strong>返回值</strong></td>
+<td>调用成功返回 0，否则返回相关错误码。</td>
+</tr>
+<tr>
+<td><strong>备注</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="asr">ASR消息 / 播放状态</h2>
+<p>在麦克风打开状态下(可使用APP或者遥控器切换到唤醒模式)，内置麦克风+ASR模块会识别环境中的人声并进行识别。</p>
+<p>订阅话题 <code>rt/audio_msg</code>(类型: <code>std_msgs::msg::dds_::String_</code>) 获取内置离线式ASR模块提供的识别信息</p>
+<p><strong>ASR消息</strong></p>
+<pre><code>{
+    "index": 1,
+    "timestamp":29319303490
+    "text": "你好",
+    "angle": 90,
+    "speaker_id": 0,
+    "sense": "unknown",
+    "confidence": 0.95,
+    "language": "zh-CN",
+    "is_final": true
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>参数类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>index</td>
+<td>整形</td>
+<td>消息唯一序号</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>整形</td>
+<td>时间戳</td>
+</tr>
+<tr>
+<td>text</td>
+<td>字符串</td>
+<td>语音识别结果</td>
+</tr>
+<tr>
+<td>angle</td>
+<td>整形</td>
+<td>方位角度 0-180</td>
+</tr>
+<tr>
+<td>speaker_id</td>
+<td>整形</td>
+<td>说话人识别结果</td>
+</tr>
+<tr>
+<td>sense</td>
+<td>字符串</td>
+<td>情绪识别结果</td>
+</tr>
+<tr>
+<td>confidence</td>
+<td>浮点型</td>
+<td>置信度</td>
+</tr>
+<tr>
+<td>language</td>
+<td>字符串</td>
+<td>语言种类</td>
+</tr>
+<tr>
+<td>is_final</td>
+<td>整形</td>
+<td>结束标志位 (用于流式识别模式，默认非流式)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>播放状态</strong></p>
+<pre><code>{
+   "play_state": 1
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>参数类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>play_state</td>
+<td>整形</td>
+<td>0:停止播放  1:开始播放</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">麦克风音频</h2>
+<p>在麦克风<strong>打开</strong>状态下(可使用APP或者遥控器切换到唤醒模式)，在组播地址239.168.123.161 端口5555会输出<strong>降噪</strong>后的音频数据。</p>
+<p>音频数据格式为单通道/16K采样率/16bit</p>
+<p><strong>参考例程</strong></p>
+<pre><code class="language-C++">#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;unitree/common/time/time_tool.hpp&gt;
+#include &lt;unitree/idl/ros2/String_.hpp&gt;
+#include &lt;unitree/robot/channel/channel_subscriber.hpp&gt;
+#include &lt;unitree/robot/g1/audio/g1_audio_client.hpp&gt;
+
+#include "wav.hpp"
+
+#define AUDIO_FILE_PATH "../example/g1/audio/test.wav"
+#define AUDIO_SUBSCRIBE_TOPIC "rt/audio_msg"
+#define GROUP_IP "239.168.123.161"
+#define PORT 5555
+
+#define WAV_SECOND 5 // record seconds
+#define WAV_LEN (16000 * 2 * WAV_SECOND)
+int sock;
+
+void asr_handler(const void *msg) {
+  std_msgs::msg::dds_::String_ *resMsg = (std_msgs::msg::dds_::String_ *)msg;
+  std::cout &lt;&lt; "Topic:\"rt/audio_msg\" recv: " &lt;&lt; resMsg-&gt;data() &lt;&lt; std::endl;
+}
+
+std::string get_local_ip_for_multicast() {
+  struct ifaddrs *ifaddr, *ifa;
+  char host[NI_MAXHOST];
+  std::string result = "";
+
+  getifaddrs(&amp;ifaddr);
+  for (ifa = ifaddr; ifa != nullptr; ifa = ifa-&gt;ifa_next) {
+      if (!ifa-&gt;ifa_addr || ifa-&gt;ifa_addr-&gt;sa_family != AF_INET) continue;
+      getnameinfo(ifa-&gt;ifa_addr, sizeof(struct sockaddr_in), host, NI_MAXHOST, NULL, 0, NI_NUMERICHOST);
+      std::string ip(host);
+      if (ip.find("192.168.123.") == 0) {
+          result = ip;
+          break;
+      }
+  }
+  freeifaddrs(ifaddr);
+  return result;
+}
+
+void thread_mic(void) {
+  sock = socket(AF_INET, SOCK_DGRAM, 0);
+  sockaddr_in local_addr{};
+  local_addr.sin_family = AF_INET;
+  local_addr.sin_port = htons(PORT);
+  local_addr.sin_addr.s_addr = INADDR_ANY;
+  bind(sock, (sockaddr *)&amp;local_addr, sizeof(local_addr));
+
+  ip_mreq mreq{};
+  inet_pton(AF_INET, GROUP_IP, &amp;mreq.imr_multiaddr);
+  std::string local_ip = get_local_ip_for_multicast();
+  std::cout &lt;&lt; "local ip: "&lt;&lt;local_ip &lt;&lt; std::endl;
+  mreq.imr_interface.s_addr = inet_addr(local_ip.c_str());
+  setsockopt(sock, IPPROTO_IP, IP_ADD_MEMBERSHIP, &amp;mreq, sizeof(mreq));
+
+  int total_bytes = 0;
+  std::vector&lt;int16_t&gt; pcm_data;
+  pcm_data.reserve(WAV_LEN / 2);
+  std::cout &lt;&lt; "start record!" &lt;&lt; std::endl;
+  while (total_bytes &lt; WAV_LEN) {
+    char buffer[2048];
+    ssize_t len = recvfrom(sock, buffer, sizeof(buffer), 0, nullptr, nullptr);
+    if (len &gt; 0) {
+      size_t sample_count = len / 2;
+      const int16_t *samples = reinterpret_cast&lt;const int16_t *&gt;(buffer);
+      pcm_data.insert(pcm_data.end(), samples, samples + sample_count);
+      total_bytes += len;
+    }
+  }
+
+  WriteWave("record.wav", 16000, pcm_data.data(), pcm_data.size(), 1);
+  std::cout &lt;&lt; "record finish! save to record.wav " &lt;&lt; std::endl;
+}
+
+int main(int argc, char const *argv[]) {
+  if (argc &lt; 2) {
+    std::cout &lt;&lt; "Usage: audio_client_example [NetWorkInterface(eth0)]"
+              &lt;&lt; std::endl;
+    exit(0);
+  }
+  int32_t ret;
+  /*
+   * Initilaize ChannelFactory
+   */
+  unitree::robot::ChannelFactory::Instance()-&gt;Init(0, argv[1]);
+  unitree::robot::g1::AudioClient client;
+  client.Init();
+  client.SetTimeout(10.0f);
+
+  /*ASR message Example*/
+  unitree::robot::ChannelSubscriber&lt;std_msgs::msg::dds_::String_&gt; subscriber(
+      AUDIO_SUBSCRIBE_TOPIC);
+  subscriber.InitChannel(asr_handler);
+
+  /*Volume Example*/
+  uint8_t volume;
+  ret = client.GetVolume(volume);
+  std::cout &lt;&lt; "GetVolume API ret:" &lt;&lt; ret
+            &lt;&lt; "  volume = " &lt;&lt; std::to_string(volume) &lt;&lt; std::endl;
+  ret = client.SetVolume(100);
+  std::cout &lt;&lt; "SetVolume to 100% , API ret:" &lt;&lt; ret &lt;&lt; std::endl;
+
+  /*TTS Example*/
+  ret = client.TtsMaker("你好。我是宇树科技的机器人。例程启动成功",
+                        0);  // Auto play
+  std::cout &lt;&lt; "TtsMaker API ret:" &lt;&lt; ret &lt;&lt; std::endl;
+  unitree::common::Sleep(5);
+
+  ret = client.TtsMaker(
+      "Hello. I'm a robot from Unitree Robotics. The example has started "
+      "successfully. ",
+      1);  // Engilsh TTS
+  std::cout &lt;&lt; "TtsMaker API ret:" &lt;&lt; ret &lt;&lt; std::endl;
+  unitree::common::Sleep(8);
+
+  /*Audio Play Example*/
+  int32_t sample_rate = -1;
+  int8_t num_channels = 0;
+  bool filestate = false;
+  std::vector&lt;uint8_t&gt; pcm =
+      ReadWave(AUDIO_FILE_PATH, &amp;sample_rate, &amp;num_channels, &amp;filestate);
+
+  std::cout &lt;&lt; "wav file sample_rate = " &lt;&lt; sample_rate
+            &lt;&lt; " num_channels =  " &lt;&lt; std::to_string(num_channels)
+            &lt;&lt; " filestate =" &lt;&lt; filestate &lt;&lt; std::endl;
+
+  if (filestate &amp;&amp; sample_rate == 16000 &amp;&amp; num_channels == 1) {
+    client.PlayStream(
+        "example", std::to_string(unitree::common::GetCurrentTimeMillisecond()),
+        pcm);
+    std::cout &lt;&lt; "start play stream" &lt;&lt; std::endl;
+    unitree::common::Sleep(3);
+    std::cout &lt;&lt; "stop play stream" &lt;&lt; std::endl;
+    ret = client.PlayStop("example");
+  } else {
+    std::cout &lt;&lt; "audio file format error, please check!" &lt;&lt; std::endl;
+  }
+
+  /*LED Control Example*/
+  client.LedControl(0, 255, 0);
+  unitree::common::Sleep(1);
+  client.LedControl(0, 0, 0);
+  unitree::common::Sleep(1);
+  client.LedControl(0, 0, 255);
+
+  std::cout &lt;&lt; "AudioClient api test finish , asr start..." &lt;&lt; std::endl;
+
+  std::thread mic_t(thread_mic);
+
+  while (1) {
+    sleep(1);  // wait for asr message
+  }
+  mic_t.join();
+  return 0;
+}
+</code></pre>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

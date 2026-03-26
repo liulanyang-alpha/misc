@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>遥控说明 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link active" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>遥控说明</h1>
+          <div class="meta">更新时间：2026-03-13 12:17:12</div>
+        </header>
+        <section class="content">
+          <style>
+table th:first-of-type {
+    width: 50%;
+}
+table th:nth-of-type(2) {
+    width: 50%;
+}
+</style>
+<h1 id="_1">使用手册</h1>
+<p>G1 遥控器使用说明，请查阅：<a href="https://marketing.unitree.com/article/zh/G1/Remote_Control.html" rel="noopener noreferrer" target="_blank">《G1遥控器使用手册》</a></p>
+<p>运控版本 &gt; 8.6.0.0 遥控器按键贴纸下载：<a href="https://oss-global-cdn.unitree.com/static/18b8ddf1dd7a40b987f89cdfa53b2209.pdf" rel="noopener noreferrer" target="_blank">29dof遥控器按键说明</a>、
+<a href="https://oss-global-cdn.unitree.com/static/021b5668bace4cf484224b47ae0be98d.pdf" rel="noopener noreferrer" target="_blank">23dof遥控器按键说明</a></p>
+<p>运控版本 &gt;= 8.5.0.0 29-Dof 遥控器按键贴纸下载：<a href="https://oss-global-cdn.unitree.com/static/5014b2b84df94951b1e2197081e02822.pdf" rel="noopener noreferrer" target="_blank">遥控器按键说明</a></p>
+<p>运控版本 &gt;= 8.4.2.222 29-Dof 遥控器按键贴纸下载：<a href="https://oss-global-cdn.unitree.com/static/8651e18554a84171b1bb7eada2c532ce.pdf" rel="noopener noreferrer" target="_blank">遥控器按键说明</a></p>
+<p>运控版本 &gt;= 8.4.2.222 23-Dof 遥控器按键贴纸下载：<a href="https://oss-global-cdn.unitree.com/static/656cb0b067a64efc8c2d3e439a0e13c2.pdf" rel="noopener noreferrer" target="_blank">遥控器按键说明</a></p>
+<p>运控版本&gt;= 8.2.0.0 遥控器按键贴纸下载：<a href="https://oss-global-cdn.unitree.com/static/6c84fd968f344db09ce850889b78b803.pdf" rel="noopener noreferrer" target="_blank">遥控器按键说明</a></p>
+<p>运控版本低于 8.2.0.0 遥控器按键贴纸下载：<a href="https://oss-global-cdn.unitree.com/static/f3009897dc514625bc3f83032e21c6e4.pdf" rel="noopener noreferrer" target="_blank">遥控器按键说明</a></p>
+<h1 id="_2">概念说明</h1>
+<table>
+<tr>
+<th bgcolor="#D3D3D3" style="width: 10%;">概念</th>
+<th bgcolor="#D3D3D3">说明</th>
+</tr>
+<tr>
+<td> 零力矩模式 </td>
+<td> 机器人所有电机停止主动运动，摆动时没有阻尼感。</td>
+</tr>
+<tr>
+<td>阻尼模式</td>
+<td> 机器人所有电机停止主动运动，摆动时有明显阻尼感，可以进入预备模式 </td>
+</tr>
+<tr>
+<td>预备模式</td>
+<td> 机器人将在5秒内缓慢摆出运动模式前的准备姿势（无平衡控制） </td>
+</tr>
+<tr>
+<td>下蹲模式</td>
+<td> 机器人将在5秒内缓慢摆出下蹲姿势（无平衡控制） </td>
+</tr>
+<tr>
+<td>落座模式</td>
+<td> 机器人将在5秒内缓慢摆出落座姿势（无平衡控制） </td>
+</tr>
+<tr>
+<td>运动模式</td>
+<td> 可以通过遥控器控制机器人移动的模式 </td>
+</tr>
+<tr>
+<td>持续走路模式</td>
+<td> 机器人始终处于踏步状态 </td>
+</tr>
+<tr>
+<td>站立模式</td>
+<td> 该模式下，当摇杆指令为零时，机器人停止踏步，进入站立；当摇杆指令不为零，或机器人受到干扰难以维持平衡时，机器人将开始迈步。 </td>
+</tr>
+<tr>
+<td>调试模式</td>
+<td> 用于底层开发。在需要使用 SDK 进行开发调试时，请务必确保 G1 已经进入调试模式(阻尼或零力矩模式下，遥控器按L2+R2进入调试模式)，以停止运动控制程序发送指令，这样可以避免潜在的指令冲突问题。您可以按下 L2+A 来确认是否进入了调试模式。调试中，若出现紧急情况，请通过遥控器按 L2 + B 让设备进入阻尼状态。 </td>
+</tr></table>
+<blockquote>
+<p>机器人行走模式，暂未部署爬楼梯的功能，请勿随意爬楼梯，避免损伤机器人。</p>
+</blockquote>
+<h1 id="led">运控状态与LED灯颜色显示</h1>
+<table>
+<thead>
+<tr>
+<th>运控模式</th>
+<th>LED灯带颜色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>正常运控</td>
+<td>蓝灯常亮</td>
+</tr>
+<tr>
+<td>阻尼模式</td>
+<td>橙灯常亮</td>
+</tr>
+<tr>
+<td>落座模式</td>
+<td>绿灯常亮</td>
+</tr>
+<tr>
+<td>调试模式</td>
+<td>黄灯常亮</td>
+</tr>
+<tr>
+<td>零力矩模式</td>
+<td>紫灯常亮</td>
+</tr>
+<tr>
+<td>预备模式</td>
+<td>深蓝色灯常亮</td>
+</tr>
+<tr>
+<td>异常状态</td>
+<td>红灯常亮</td>
+</tr>
+</tbody>
+</table>
+<h1 id="_3">模式切换</h1>
+<p><img alt="" src="https://oss-global-cdn.unitree.com/static/1de228d539a847dd89b0a3145570fb16_11798x7046.jpg"/></p>
+<div class="admonition note">
+<p class="admonition-title">注意</p>
+<p>1、从<strong>主运控</strong>通过 <strong>L2 + A</strong> 切回<strong>蹲姿</strong>状态后，在不关机的情况下，如果还想切<strong>回主运控</strong>模式，需要通过 <strong>L2 + B</strong> 进入<strong>阻尼</strong>模式，再通过 <strong>L2 + A</strong> 才能切回<strong>主运控</strong>。</p>
+<p>2、设备部仅支持在<code>零力矩</code>或者<code>阻尼</code>状态下，按<code>L2+R2</code>才能进入<code>调试模式</code></p>
+<p>3、在站立状态下，部分按键需要组合<code>长按2秒</code>才能生效。</p>
+<p>4、<strong>L2 + B</strong> <code>阻尼按键，作为急停按键，在调试状态下依然有效, 能有效阻止机器人状态失控。</code></p>
+</div>
+<h1 id="_4">按键说明</h1>
+<table>
+<thead>
+<tr>
+<th>切换模式/功能</th>
+<th>按键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>调试模式</td>
+<td>长按 L2 + 单击 R2</td>
+</tr>
+<tr>
+<td>零力矩模式</td>
+<td>长按 L2 + 单击 Y</td>
+</tr>
+<tr>
+<td>阻尼模式</td>
+<td><strong>①</strong> 长按 L2 + 单击 B</td>
+</tr>
+<tr>
+<td>锁定站立</td>
+<td><strong>②</strong> 长按 L2 + 单击 UP</td>
+</tr>
+<tr>
+<td>落座模式</td>
+<td><strong>④</strong> 长按 L2 + 单击 LEFT</td>
+</tr>
+<tr>
+<td>躺卧站立</td>
+<td><strong>⑤</strong> 长按 L2 + 单击  X</td>
+</tr>
+<tr>
+<td>蹲站切换</td>
+<td><strong>⑥</strong>长按  L2 + 单击  A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>交互功能</th>
+<th>按键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>挥手</td>
+<td>长按 SELECT + 单击  Y</td>
+</tr>
+<tr>
+<td>握手</td>
+<td>长按 SELECT + 单击  A</td>
+</tr>
+<tr>
+<td>转身挥手</td>
+<td>长按 SELECT + 单击  X</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>③</strong> R2 + A（走跑运控）</th>
+<th>按键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>慢速跑</td>
+<td>长按 R2 +  DOWN</td>
+</tr>
+<tr>
+<td>快速跑</td>
+<td>长按 R2 +  UP</td>
+</tr>
+<tr>
+<td>前倾补尝</td>
+<td>长按 START + 长按 UP</td>
+</tr>
+<tr>
+<td>后倾补尝</td>
+<td>长按 START + 长按 DOWN</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>⑦</strong> R1 + X （常规运控）</th>
+<th>按键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>持续踏步(不推荐)</td>
+<td>双击 START</td>
+</tr>
+<tr>
+<td>站立</td>
+<td>双击 START</td>
+</tr>
+<tr>
+<td>低速模式</td>
+<td>双击 L2</td>
+</tr>
+<tr>
+<td>高速模式</td>
+<td>双击 L1</td>
+</tr>
+<tr>
+<td>偏移补偿</td>
+<td>左偏：长按 R1 + 单击 → <br/>右偏：长按 R1 + 单击 ← <br/>前偏：长按 R1 + 单击 ↓<br/>后偏：长按 R1 + 单击 ↑</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>⑧</strong> R1 + Y （仅三自由度腰部结构)</th>
+<th>按键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>持续踏步(不推荐)</td>
+<td>双击 START</td>
+</tr>
+<tr>
+<td>站立</td>
+<td>双击 START</td>
+</tr>
+<tr>
+<td>低速模式</td>
+<td>双击 L2</td>
+</tr>
+<tr>
+<td>高速模式</td>
+<td>双击 L1</td>
+</tr>
+<tr>
+<td>偏移补偿</td>
+<td>左偏：长按 R1 + 单击 → <br/>右偏：长按 R1 + 单击 ← <br/>前偏：长按 R1 + 单击 ↓<br/>后偏：长按 R1 + 单击 ↑</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<ul>
+<li><strong>⑧</strong>仅适用于腰部三自由度结构，推荐使用 R1 + Y 模式</li>
+<li>常规开机流程： 开机-&gt;<strong>①</strong>-&gt;<strong>②</strong>-&gt;<strong>③</strong>-&gt;演示-&gt;<strong>④</strong>(椅子落座)-&gt;关机</li>
+<li>躺倒开机流程：开机（确保设备胯部与地面贴平)-&gt;<strong>①</strong>-&gt;<strong>⑤</strong>-&gt;演示-&gt;<strong>⑥</strong>-&gt;关机</li>
+<li>蹲姿开机流程：开机(蹲姿状态)-&gt;<strong>①</strong>-&gt;<strong>⑥</strong>-&gt;演示-&gt;<strong>⑥</strong>-&gt;关机</li>
+<li>使用保护架开关机流程，请参考<a href="quick_start.html">《快速开始》</a></li>
+</ul>
+</blockquote>
+<div class="admonition note">
+<p class="admonition-title">注意 ！！！</p>
+<p>1、躺姿开机和蹲姿开机仅适用于平整、坚硬地面，其他场景有摔倒风险，请勿随意尝试。
+2、装有灵巧手设备，请慎用躺姿、蹲姿开机方式，有可能对灵巧手造成损坏。</p>
+</div>
+
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>里程计服务接口 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link active" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>里程计服务接口</h1>
+          <div class="meta">更新时间：2025-01-06 10:35:07</div>
+        </header>
+        <section class="content">
+          <p>里程计服务接口用于发布机器人的位置、速度、欧拉角、yaw角速度以及四元数信息，发布频率包含高频(<strong>500Hz</strong>)和低频(<strong>20Hz</strong>)两种</p>
+<h1 id="_1">软件服务版本要求</h1>
+<p><strong>State Estimator</strong> &gt;= 1.0.0.1，若内置服务版本低，请联系技术支持升级至正确版本。</p>
+<h1 id="_2">接口说明</h1>
+<p>用户通过订阅DDS话题“rt/odommodestate”来接收500Hz频率的里程计信息，也可通过订阅DDS话题“rt/lf/odommodestate”来接收20Hz频率的里程计信息，高低频信息可同时接收。</p>
+<ul>
+<li>里程计信息说明</li>
+</ul>
+<p><strong>坐标系定义：</strong>
+<strong>世界坐标系</strong>——以开机时刻机身几何中心在地面的投影点为原点建立世界坐标系，x轴正方向朝机身前方，y轴正方向朝机身左方，z轴正方向与重力方向相反，且x、y、z轴服从右手定则分布。
+<strong>机器人坐标系</strong>——以机身几何中心为原点建立机器人坐标系，x轴正方向朝机身前方，y轴正方向朝机身左方，z轴正方向与重力方向相反，且x、y、z轴服从右手定则分布。</p>
+<p>1.位置信息
+位置信息储存在三维数组中，三个数组成员依次为机身几何中心在世界坐标系下的x、y、z坐标，单位m。</p>
+<p>2.速度信息
+速度信息储存在三维数组中，三个数组成员依次为机身几何中心沿机器人坐标系x、y、z轴的线速度，单位m/s。</p>
+<p>3.欧拉角信息
+欧拉角信息储存在三维数组中，三个数组成员依次为机器人坐标系绕世界坐标系x、y、z轴的转动角度，单位rad。</p>
+<p>4.yaw角速度信息
+yaw角速度为机身绕机器人坐标系z轴的转动角速度，单位rad/s。</p>
+<p>5.四元数信息
+四元数信息储存在四维数组中，用于表示机器人坐标系绕世界坐标系的转动情况，四个数组成员依次为w、x、y、z，且w^2+x^2+y^2+z^2=1。</p>
+<ul>
+<li>例程</li>
+</ul>
+<pre><code class="language-C++">#include &lt;iostream&gt;
+
+#include &lt;unitree/robot/channel/channel_publisher.hpp&gt;
+#include &lt;unitree/robot/channel/channel_subscriber.hpp&gt;
+#include &lt;unitree/idl/go2/LowState_.hpp&gt;
+#include &lt;unitree/idl/go2/LowCmd_.hpp&gt;
+#include &lt;unitree/common/time/time_tool.hpp&gt;
+#include &lt;unitree/common/thread/thread.hpp&gt;
+#include &lt;unitree/idl/go2/SportModeState_.hpp&gt;
+
+using namespace unitree::common;
+using namespace unitree::robot;
+
+#define TOPIC_SPORT_STATE "rt/odommodestate"//high frequency
+#define TOPIC_SPORT_LF_STATE "rt/lf/odommodestate"//low frequency
+
+class Custom
+{
+public:
+    explicit Custom()
+    {}
+
+    ~Custom()
+    {}
+
+    void Init();
+
+private:
+
+    /*high frequency message handler function for subscriber*/
+    void HighFreOdomMessageHandler(const void* messages);
+    /*low frequency message handler function for subscriber*/
+    void LowFreOdomMessageHandler(const void* messages);
+
+private:
+
+    unitree_go::msg::dds_::SportModeState_ estimator_state{};
+    unitree_go::msg::dds_::SportModeState_ lf_estimator_state{};
+
+    ChannelSubscriberPtr&lt;unitree_go::msg::dds_::SportModeState_&gt; estimate_state_subscriber;
+    ChannelSubscriberPtr&lt;unitree_go::msg::dds_::SportModeState_&gt; lf_estimate_state_subscriber;
+};
+
+
+void Custom::Init()
+{
+    /*create subscriber*/
+    estimate_state_subscriber.reset(new ChannelSubscriber&lt;unitree_go::msg::dds_::SportModeState_&gt;(TOPIC_SPORT_STATE));
+    estimate_state_subscriber-&gt;InitChannel(std::bind(&amp;Custom::HighFreOdomMessageHandler, this, std::placeholders::_1), 1);
+
+    /*create subscriber*/
+    lf_estimate_state_subscriber.reset(new ChannelSubscriber&lt;unitree_go::msg::dds_::SportModeState_&gt;(TOPIC_SPORT_LF_STATE));
+    lf_estimate_state_subscriber-&gt;InitChannel(std::bind(&amp;Custom::LowFreOdomMessageHandler, this, std::placeholders::_1), 1);
+}
+
+void Custom::HighFreOdomMessageHandler(const void* message)
+{
+    estimator_state = *(unitree_go::msg::dds_::SportModeState_*)message;
+
+    std::cout &lt;&lt; "position info: " &lt;&lt; std::endl;
+    std::cout &lt;&lt; "x: " &lt;&lt; estimator_state.position()[0] &lt;&lt; std::endl;
+    std::cout &lt;&lt; "y: " &lt;&lt; estimator_state.position()[1] &lt;&lt; std::endl;
+    std::cout &lt;&lt; "z: " &lt;&lt; estimator_state.position()[2] &lt;&lt; std::endl;
+
+    std::cout &lt;&lt; "velocity info: " &lt;&lt; std::endl;
+    std::cout &lt;&lt; "x: " &lt;&lt; estimator_state.velocity()[0] &lt;&lt; std::endl;
+    std::cout &lt;&lt; "y: " &lt;&lt; estimator_state.velocity()[1] &lt;&lt; std::endl;
+    std::cout &lt;&lt; "z: " &lt;&lt; estimator_state.velocity()[2] &lt;&lt; std::endl;
+
+    std::cout &lt;&lt; "eular angle info: " &lt;&lt; std::endl;
+    std::cout &lt;&lt; "x: " &lt;&lt; estimator_state.imu_state().rpy()[0] &lt;&lt; std::endl;
+    std::cout &lt;&lt; "y: " &lt;&lt; estimator_state.imu_state().rpy()[1] &lt;&lt; std::endl;
+    std::cout &lt;&lt; "z: " &lt;&lt; estimator_state.imu_state().rpy()[2] &lt;&lt; std::endl;
+
+    std::cout &lt;&lt; "yaw speed info: " &lt;&lt; std::endl;
+    std::cout &lt;&lt; estimator_state.yaw_speed() &lt;&lt; std::endl;
+
+    std::cout &lt;&lt; "Quaternion info: " &lt;&lt; std::endl;
+    std::cout &lt;&lt; "w: " &lt;&lt; estimator_state.imu_state().quaternion()[0] &lt;&lt; std::endl;
+    std::cout &lt;&lt; "x: " &lt;&lt; estimator_state.imu_state().quaternion()[1] &lt;&lt; std::endl;
+    std::cout &lt;&lt; "y: " &lt;&lt; estimator_state.imu_state().quaternion()[2] &lt;&lt; std::endl;
+    std::cout &lt;&lt; "z: " &lt;&lt; estimator_state.imu_state().quaternion()[3] &lt;&lt; std::endl;
+}
+
+void Custom::LowFreOdomMessageHandler(const void* message)
+{
+    lf_estimator_state = *(unitree_go::msg::dds_::SportModeState_*)message;
+
+    std::cout &lt;&lt; "position info: " &lt;&lt; std::endl;
+    std::cout &lt;&lt; "x: " &lt;&lt; lf_estimator_state.position()[0] &lt;&lt; std::endl;
+    std::cout &lt;&lt; "y: " &lt;&lt; lf_estimator_state.position()[1] &lt;&lt; std::endl;
+    std::cout &lt;&lt; "z: " &lt;&lt; lf_estimator_state.position()[2] &lt;&lt; std::endl;
+
+    std::cout &lt;&lt; "velocity info: " &lt;&lt; std::endl;
+    std::cout &lt;&lt; "x: " &lt;&lt; lf_estimator_state.velocity()[0] &lt;&lt; std::endl;
+    std::cout &lt;&lt; "y: " &lt;&lt; lf_estimator_state.velocity()[1] &lt;&lt; std::endl;
+    std::cout &lt;&lt; "z: " &lt;&lt; lf_estimator_state.velocity()[2] &lt;&lt; std::endl;
+
+    std::cout &lt;&lt; "eular angle info: " &lt;&lt; std::endl;
+    std::cout &lt;&lt; "x: " &lt;&lt; lf_estimator_state.imu_state().rpy()[0] &lt;&lt; std::endl;
+    std::cout &lt;&lt; "y: " &lt;&lt; lf_estimator_state.imu_state().rpy()[1] &lt;&lt; std::endl;
+    std::cout &lt;&lt; "z: " &lt;&lt; lf_estimator_state.imu_state().rpy()[2] &lt;&lt; std::endl;
+
+    std::cout &lt;&lt; "yaw speed info: " &lt;&lt; std::endl;
+    std::cout &lt;&lt; lf_estimator_state.yaw_speed() &lt;&lt; std::endl;
+
+    std::cout &lt;&lt; "Quaternion info: " &lt;&lt; std::endl;
+    std::cout &lt;&lt; "w: " &lt;&lt; lf_estimator_state.imu_state().quaternion()[0] &lt;&lt; std::endl;
+    std::cout &lt;&lt; "x: " &lt;&lt; lf_estimator_state.imu_state().quaternion()[1] &lt;&lt; std::endl;
+    std::cout &lt;&lt; "y: " &lt;&lt; lf_estimator_state.imu_state().quaternion()[2] &lt;&lt; std::endl;
+    std::cout &lt;&lt; "z: " &lt;&lt; lf_estimator_state.imu_state().quaternion()[3] &lt;&lt; std::endl;
+}
+
+int main(int argc, const char** argv)
+{
+    if (argc &lt; 2)
+    {
+        std::cout &lt;&lt; "Usage: " &lt;&lt; argv[0] &lt;&lt; " networkInterface" &lt;&lt; std::endl;
+        exit(-1); 
+    }
+
+    ChannelFactory::Instance()-&gt;Init(0, argv[1]);
+
+    Custom custom;
+    custom.Init();
+
+    while (1)
+    {
+        sleep(10);
+    }
+
+    return 0;
+}
+</code></pre>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

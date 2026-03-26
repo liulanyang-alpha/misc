@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>手臂控制例程 - Unitree G1 离线文档</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>G1 SDK 开发指南</h1>
+        <p>本地离线镜像，可直接使用浏览器打开。</p>
+      </div>
+      <ul class="nav-tree"><li class="nav-item"><a class="nav-link" href="about_G1.html">关于G1</a></li><li class="nav-item"><a class="nav-link" href="Operational_guidance.html">操作指南</a><ul><li class="nav-item"><a class="nav-link" href="quick_start.html">快速开始</a></li><li class="nav-item"><a class="nav-link" href="remote_control.html">遥控说明</a></li><li class="nav-item"><a class="nav-link" href="waist_fastener.html">腰部固定件使用说明</a></li><li class="nav-item"><a class="nav-link" href="voice_assistant_instructions.html">语音助手使用说明</a></li><li class="nav-item"><a class="nav-link" href="audio_playback.html">音频播放</a></li></ul></li><li class="nav-item"><a class="nav-link" href="application_development.html">应用开发</a><ul><li class="nav-item"><a class="nav-link" href="sdk_overview.html">SDK概述</a></li><li class="nav-item"><a class="nav-link" href="architecture_description.html">软件架构说明</a></li><li class="nav-item"><a class="nav-link" href="get_sdk.html">获取SDK</a></li><li class="nav-item"><a class="nav-link" href="quick_development.html">快速开发</a></li></ul></li><li class="nav-item"><a class="nav-link" href="basic_motion_development.html">底层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="basic_motion_routine.html">底层运动参考例程</a></li><li class="nav-item"><a class="nav-link" href="joint_motor_sequence.html">关节电机顺序</a></li><li class="nav-item"><a class="nav-link" href="remote_control_data.html">遥控器数据结构</a></li><li class="nav-item"><a class="nav-link" href="dexterous_hand.html">Dex3-1 灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="inspire_ftp_dexterity_hand.html">因时FTP灵巧手</a></li><li class="nav-item"><a class="nav-link" href="inspire_dfx_dexterous_hand.html">因时DFX灵巧手开发</a></li><li class="nav-item"><a class="nav-link" href="brainco_hand.html">强脑灵巧手</a></li></ul></li><li class="nav-item"><a class="nav-link" href="services_interface.html">软件服务接口</a><ul><li class="nav-item"><a class="nav-link" href="dds_services_interface.html">DDS通信接口</a></li><li class="nav-item"><a class="nav-link" href="robot_state_client_interface.html">设备状态服务接口</a></li><li class="nav-item"><a class="nav-link" href="basic_services_interface.html">底层服务接口</a></li><li class="nav-item"><a class="nav-link" href="sport_services_interface.html">高层运动服务接口</a></li><li class="nav-item"><a class="nav-link" href="odometer_service_interface.html">里程计服务接口</a></li><li class="nav-item"><a class="nav-link" href="VuiClient_Service.html">音频灯光服务接口</a></li><li class="nav-item"><a class="nav-link" href="lidar_services_interface.html">LiDAR服务接口</a></li><li class="nav-item"><a class="nav-link" href="slam_navigation_services_interface.html">SLAM导航服务接口</a></li><li class="nav-item"><a class="nav-link" href="motion_witcher_service_interface.html">运控切换接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="high_motion_development.html">高层运动开发</a><ul><li class="nav-item"><a class="nav-link" href="rpc_routine.html">RPC例程</a></li><li class="nav-item"><a class="nav-link active" href="arm_control_routine.html">手臂控制例程</a></li><li class="nav-item"><a class="nav-link" href="arm_action_interface.html">手臂动作服务接口</a></li></ul></li><li class="nav-item"><a class="nav-link" href="more_cases.html">更多例程</a><ul><li class="nav-item"><a class="nav-link" href="rl_control_routine.html">RL例程</a></li><li class="nav-item"><a class="nav-link" href="ros2_communication_routine.html">ROS2 通信例程</a></li><li class="nav-item"><a class="nav-link" href="dds_communication_routine.html">DDS通信例程</a></li><li class="nav-item"><a class="nav-link" href="lidar_Instructions.html">激光雷达例程</a></li><li class="nav-item"><a class="nav-link" href="depth_camera_instruction.html">深度相机例程</a></li></ul></li><li class="nav-item"><a class="nav-link" href="debugging_specification.html">调试说明</a></li><li class="nav-item"><a class="nav-link" href="FAQ.html">常见问题</a></li><li class="nav-item"><a class="nav-link" href="common_istakes_and_definitions.html">常见错误及释义</a></li></ul>
+    </aside>
+    <main class="main">
+      <article class="article-shell">
+        <header class="article-head">
+          <h1>手臂控制例程</h1>
+          <div class="meta">更新时间：2024-09-27 14:11:51</div>
+        </header>
+        <section class="content">
+          <p>本例程通过高层运控的 DDS 接口，实现了机器人的上肢控制。程序源代码可以位于 <code>example/g1/high_level/g1_arm_sdk_dds_example.cpp</code> ，也可通过<a href="https://github.com/unitreerobotics/unitree_sdk2" rel="noopener noreferrer" target="_blank">此处</a>访问。运行方式与<a href="quick_development.html">《快速开发》</a>类似，但无需进入调试模式。</p>
+<p>DDS 接口由内置运动服务提供，在测试时，建议将机器人悬挂并进入锁定站立模式</p>
+<h1 id="_1">例程解析</h1>
+<h2 id="_2">主要逻辑</h2>
+<p>程序通过键盘输入触发，按照命令行文本提示按下回车键，程序将依次执行以下内容：</p>
+<ol>
+<li>
+<p>在 5s 内将手臂移动到零位。</p>
+</li>
+<li>
+<p>在 5s 内水平张开双臂。</p>
+</li>
+<li>
+<p>在 5s 内放下双臂。</p>
+</li>
+<li>
+<p>在 2s 内缓慢退出高层运动服务的手臂控制。</p>
+</li>
+</ol>
+<h1 id="_3">详细解析</h1>
+<p>例程中首先调用DDS接口订阅" <code>rt/arm_sdk</code> " 的 topic 消息</p>
+<pre><code class="language-C++">unitree::robot::ChannelFactory::Instance()-&gt;Init(0, argv[1]);
+
+unitree::robot::ChannelPublisherPtr&lt;unitree_hg::msg::dds_::LowCmd_&gt;
+    arm_sdk_publisher;
+unitree_hg::msg::dds_::LowCmd_ msg;
+
+arm_sdk_publisher.reset(
+    new unitree::robot::ChannelPublisher&lt;unitree_hg::msg::dds_::LowCmd_&gt;(
+        kTopicArmSDK));
+arm_sdk_publisher-&gt;InitChannel();
+</code></pre>
+<p>接着向 "<code>rt/arm_sdk</code>" topic 发送相应的控制指令实现机器人的上肢控制。例程中的控制流程包括四个部分：</p>
+<ul>
+<li>双臂复位</li>
+<li>双臂水平张开</li>
+<li>双臂放下   </li>
+<li>退出控制</li>
+</ul>
+<h2 id="_4">双臂复位</h2>
+<pre><code class="language-C++">// wait for init
+std::cout &lt;&lt; "Press ENTER to init arms ...";
+std::cin.get();
+
+// set init pos
+std::cout &lt;&lt; "Initailizing arms ...";
+float init_time = 5.0f;
+int init_time_steps = static_cast&lt;int&gt;(init_time / control_dt);
+
+for (int i = 0; i &lt; init_time_steps; ++i) {
+// increase weight
+weight += delta_weight;
+weight = std::clamp(weight, 0.f, 1.f);
+std::cout &lt;&lt; weight &lt;&lt; std::endl;
+
+// set weight
+msg.motor_cmd().at(JointIndex::kNotUsedJoint).q(weight * weight);
+
+// set control joints
+for (int j = 0; j &lt; init_pos.size(); ++j) {
+    msg.motor_cmd().at(arm_joints.at(j)).q(init_pos.at(j));
+    msg.motor_cmd().at(arm_joints.at(j)).dq(dq);
+    msg.motor_cmd().at(arm_joints.at(j)).kp(kp);
+    msg.motor_cmd().at(arm_joints.at(j)).kd(kd);
+    msg.motor_cmd().at(arm_joints.at(j)).tau(tau_ff);
+}
+
+// send dds msg
+arm_sdk_publisher-&gt;Write(msg);
+
+// sleep
+std::this_thread::sleep_for(sleep_time);
+}
+
+std::cout &lt;&lt; "Done!" &lt;&lt; std::endl;
+</code></pre>
+<blockquote>
+<p><strong>补充说明</strong>
+<code>motor_cmd</code> 的 <code>JointIndex::kNotUsedJoint</code> 未使用的关节电机序号。在 SDK 中这一关节角位置的值被当作其他电机转动的过渡权值 (上述代码中的 weight)。当 <strong>weight</strong>  从 0 变化到 1 时，电机将逐渐由当前位置过渡到期望位置，<strong>weight</strong> 的变化速度越快，电机的过度速度也越快，可参考<a href="sport_services_interface.html">《高层运动服务接口》</a>。</p>
+</blockquote>
+<h2 id="_5">双臂水平张开</h2>
+<pre><code class="language-C++">// 等待 ENTER 被按下
+std::cout &lt;&lt; "Press ENTER to start arm ctrl ..." &lt;&lt; std::endl;
+std::cin.get();
+
+
+std::cout &lt;&lt; "Start arm ctrl!" &lt;&lt; std::endl;
+float period = 5.f; // 张开双臂的时间
+// 完成动作需要的控制步数
+int num_time_steps = static_cast&lt;int&gt;(period / control_dt);
+
+std::array&lt;float, 10&gt; current_jpos_des{};
+
+// lift arms up
+for (int i = 0; i &lt; num_time_steps; ++i) {
+    // update jpos des
+  for (int j = 0; j &lt; init_pos.size(); ++j) {
+      // 逐渐增加关节期望位置至手臂张开时的关节位置
+      // target_pos 为手臂张开时的关节位置
+      current_jpos_des.at(j) += std::clamp(target_pos.at(j) - current_jpos_des.at(j), -max_joint_delta, max_joint_delta);
+  }
+
+  // 设置上肢关节位置
+  for (int j = 0; j &lt; init_pos.size(); ++j) {
+      msg.motor_cmd().at(arm_joints.at(j)).q(current_jpos_des.at(j));
+      msg.motor_cmd().at(arm_joints.at(j)).dq(dq);
+      msg.motor_cmd().at(arm_joints.at(j)).kp(kp);
+      msg.motor_cmd().at(arm_joints.at(j)).kd(kd);
+      msg.motor_cmd().at(arm_joints.at(j)).tau(tau_ff);
+    }
+
+  // 发送上肢电机的控制指令
+  arm_sdk_publisher-&gt;Write(msg);
+
+  // 延时一个控制步长
+  std::this_thread::sleep_for(sleep_time);
+}
+</code></pre>
+<h2 id="_6">双臂放下</h2>
+<pre><code class="language-C++">for (int i = 0; i &lt; num_time_steps; ++i) {
+    // update jpos des
+    for (int j = 0; j &lt; init_pos.size(); ++j) {
+      // 逐渐减小关节期望位置至初始位置
+      current_jpos_des.at(j) += std::clamp(init_pos.at(j) - current_jpos_des.at(j), -max_joint_delta, max_joint_delta);
+    }
+
+    // 设置上肢关节位置
+    for (int j = 0; j &lt; init_pos.size(); ++j) {
+      msg.motor_cmd().at(arm_joints.at(j)).q(current_jpos_des.at(j));
+      msg.motor_cmd().at(arm_joints.at(j)).dq(dq);
+      msg.motor_cmd().at(arm_joints.at(j)).kp(kp);
+      msg.motor_cmd().at(arm_joints.at(j)).kd(kd);
+      msg.motor_cmd().at(arm_joints.at(j)).tau(tau_ff);
+    }
+
+    // 发送上肢电机的控制指令
+    arm_sdk_publisher-&gt;Write(msg);
+
+    // 延时一个控制步长
+    std::this_thread::sleep_for(sleep_time);
+}
+</code></pre>
+<h2 id="_7">退出控制</h2>
+<pre><code class="language-C++">    // stop control
+    std::cout &lt;&lt; "Stoping arm ctrl ...";
+    float stop_time = 2.0f;
+    int stop_time_steps = static_cast&lt;int&gt;(stop_time / control_dt);
+
+    for (int i = 0; i &lt; stop_time_steps; ++i) {
+        // increase weight
+        weight -= delta_weight;
+        weight = std::clamp(weight, 0.f, 1.f);
+
+        // 设置电机转动的平滑增减权重
+        // 电机将逐渐进入自由状态
+        msg.motor_cmd().at(JointIndex::kNotUsedJoint).q(weight);
+
+        // 发送上肢电机的控制指令
+        arm_sdk_publisher-&gt;Write(msg);
+
+        // 延时一个控制步长
+        std::this_thread::sleep_for(sleep_time);
+    }
+
+      std::cout &lt;&lt; "Done!" &lt;&lt; std::endl;
+</code></pre>
+          <div class="footer-note">来源空间：G1_developer / 语言：zh</div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>
